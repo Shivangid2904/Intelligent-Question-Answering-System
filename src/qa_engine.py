@@ -10,22 +10,32 @@ class QAEngine:
         self.chunks = chunks
         self.texts = [c.text for c in chunks]
 
-        self.embeddings = model.encode(self.texts)
+        # ✅ Semantic similarity
+        self.embeddings = model.encode(
+            self.texts,
+            normalize_embeddings=True
+        )
         self.embeddings = np.array(self.embeddings).astype("float32")
 
         dim = self.embeddings.shape[1]
-        self.index = faiss.IndexFlatL2(dim)
+
+        self.index = faiss.IndexFlatIP(dim)
         self.index.add(self.embeddings)
 
-    def search(self, query, k=3):
-        query_embedding = model.encode([query])
+    def search(self, query, k=10):  # 🔥 increased search depth
+        query_embedding = model.encode(
+            [query],
+            normalize_embeddings=True
+        )
         query_embedding = np.array(query_embedding).astype("float32")
 
         D, I = self.index.search(query_embedding, k)
 
         results = []
-        for idx in I[0]:
+        for i, idx in enumerate(I[0]):
             if 0 <= idx < len(self.texts):
-                results.append(self.chunks[idx])
+                chunk = self.chunks[idx]
+                chunk.score = float(D[0][i])
+                results.append(chunk)
 
         return results
