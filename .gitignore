@@ -1,9 +1,4 @@
 # ========================
-# Secrets & API Keys (NEVER commit these)
-# ========================
-.streamlit/secrets.toml
-
-# ========================
 # Python
 # ========================
 __pycache__/
