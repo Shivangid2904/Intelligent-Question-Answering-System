@@ -1,0 +1,48 @@
+# ========================
+# Secrets & API Keys (NEVER commit these)
+# ========================
+.streamlit/secrets.toml
+
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# ========================
+# Virtual Environments
+# ========================
+venv/
+.venv/
+env/
+.env/
+
+# ========================
+# Data / History files
+# ========================
+history.json
+
+# ========================
+# OS Files
+# ========================
+.DS_Store
+Thumbs.db
+
+# ========================
+# IDE
+# ========================
+.vscode/
+.idea/
+*.code-workspace
+
+# ========================
+# FAISS / Model cache
+# ========================
+*.index
