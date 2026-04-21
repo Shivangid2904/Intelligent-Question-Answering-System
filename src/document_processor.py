@@ -1,12 +1,11 @@
 import spacy
 import fitz  # PyMuPDF
 
-# 🔥 Fast spaCy
-nlp = spacy.load("en_core_web_sm", disable=["ner", "parser"])
-
-# ✅ Sentence detection fix
-if "sentencizer" not in nlp.pipe_names:
-    nlp.add_pipe("sentencizer")
+def get_nlp():
+    nlp = spacy.load("en_core_web_sm", disable=["ner", "parser"])
+    if "sentencizer" not in nlp.pipe_names:
+        nlp.add_pipe("sentencizer")
+    return nlp
 
 
 class Chunk:
@@ -20,14 +19,13 @@ class DocumentProcessor:
     def __init__(self):
         self.chunks = []
 
-    def process_file(self, uploaded_file):
+    def process_file(self, uploaded_file, nlp):
         text = ""
 
         doc = fitz.open(stream=uploaded_file.read(), filetype="pdf")
         for page in doc:
             text += page.get_text()
 
-        # 🔥 Increase coverage slightly (important)
         text = text[:80000]
 
         doc_spacy = nlp(text)
@@ -45,7 +43,6 @@ class DocumentProcessor:
         # 🔥 Increase chunk count
         self.chunks = chunks[:200]
 
-        # ✅ POS tagging
         for chunk in self.chunks:
             doc = nlp(chunk.text)
-            chunk.pos_tags = [(token.text, token.pos_) for token in doc[:10]]
+            chunk.pos_tags = [(token.text, token.pos_) for token in doc[:10]]

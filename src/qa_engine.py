@@ -2,15 +2,17 @@ import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
+
+def get_embedding_model():
+    return SentenceTransformer("all-MiniLM-L6-v2")
 
 
 class QAEngine:
-    def __init__(self, chunks):
+    def __init__(self, chunks, model):
         self.chunks = chunks
         self.texts = [c.text for c in chunks]
+        self.model = model
 
-        # ✅ Semantic similarity
         self.embeddings = model.encode(
             self.texts,
             normalize_embeddings=True
@@ -18,12 +20,11 @@ class QAEngine:
         self.embeddings = np.array(self.embeddings).astype("float32")
 
         dim = self.embeddings.shape[1]
-
         self.index = faiss.IndexFlatIP(dim)
         self.index.add(self.embeddings)
 
-    def search(self, query, k=10):  # 🔥 increased search depth
-        query_embedding = model.encode(
+    def search(self, query, k=10):
+        query_embedding = self.model.encode(
             [query],
             normalize_embeddings=True
         )
