@@ -17,30 +17,22 @@ if not os.path.exists(HISTORY_FILE):
     with open(HISTORY_FILE, "w", encoding="utf-8") as f:
         json.dump([], f)
 
-# --- SIDEBAR: API KEY ---
-# Auto-load from secrets.toml if available
-_default_key = st.secrets.get("GEMINI_API_KEY", "") if hasattr(st, "secrets") else ""
-
+# --- SIDEBAR: OLLAMA SETTINGS ---
 with st.sidebar:
     st.header("⚙️ Settings")
-    gemini_api_key = st.text_input(
-        "Gemini API Key",
-        type="password",
-        value=_default_key,
-        placeholder="Paste your key here...",
-        help="Get a free key at https://aistudio.google.com/app/apikey"
+    st.markdown("**🦙 LLM: Ollama (Local)**")
+    ollama_model = st.selectbox(
+        "Model",
+        ["llama3.2", "llama3", "mistral", "phi3", "gemma2"],
+        index=0,
+        help="Make sure the model is pulled: ollama pull <model>"
     )
-    if gemini_api_key:
-        st.success("✅ API key set — LLM answers enabled")
-    else:
-        st.warning("⚠️ No API key — using extracted answers")
-
+    st.success("✅ Running locally — no API key needed!")
     st.markdown("---")
-    st.markdown("**How to get a free key:**")
-    st.markdown("1. Go to [aistudio.google.com](https://aistudio.google.com/app/apikey)")
-    st.markdown("2. Sign in with Google")
-    st.markdown("3. Click **Create API Key**")
-    st.markdown("4. Paste it above")
+    st.markdown("**Make sure Ollama is running:**")
+    st.code(f"ollama serve", language="bash")
+    st.markdown(f"**To pull a model:**")
+    st.code(f"ollama pull {ollama_model}", language="bash")
 
 # --- INIT SESSION STATE ---
 if "processor" not in st.session_state:
@@ -112,10 +104,13 @@ if query and st.session_state.engine:
         filtered_passages.sort(key=lambda x: x["score"], reverse=True)
 
         # --- GENERATE ANSWER ---
-        if gemini_api_key and filtered_passages:
-            with st.spinner("🤖 Generating answer with Gemini..."):
-                llm_answer = generate_answer(gemini_api_key, query, filtered_passages)
-            answer_source = "gemini"
+        if filtered_passages:
+            st.subheader(f"🦙 AI Answer (Ollama)")
+            with st.spinner(f"Thinking with {ollama_model}..."):
+                # Stream tokens and collect full answer
+                stream_gen = generate_answer(query, filtered_passages, model=ollama_model)
+                llm_answer = st.write_stream(stream_gen)
+            answer_source = "ollama"
         else:
             # Fallback: extract sentences with keyword match
             text = best.text.strip()
@@ -123,6 +118,7 @@ if query and st.session_state.engine:
             relevant = [s.strip() for s in sentences if any(w in s.lower() for w in query_words)]
             llm_answer = ". ".join(relevant[:2]) if relevant else sentences[0]
             answer_source = "extracted"
+
 
         # --- SAVE TO HISTORY ---
         entry = {
@@ -150,10 +146,12 @@ if query and st.session_state.history:
 
     # Only show if it matches the current question
     if latest.get("question") == query:
-        is_llm = latest.get("answer_source") == "gemini"
-        label = "🤖 AI Answer (Gemini)" if is_llm else "🤖 Current Answer (Extracted)"
-        st.subheader(label)
-        st.success(latest["answer"])
+        is_llm = latest.get("answer_source") == "ollama"
+        if not is_llm:
+            # For extracted answers, show the subheader + answer text
+            st.subheader("🤖 Current Answer (Extracted)")
+            st.success(latest["answer"])
+        # For ollama: answer was already streamed above — skip duplicate display
 
         col1, col2 = st.columns(2)
         with col1:
