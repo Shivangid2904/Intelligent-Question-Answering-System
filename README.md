@@ -1,8 +1,8 @@
 # 📚 Intelligent Question Answering System
 
-A RAG (Retrieval-Augmented Generation) based Question Answering system built with **Streamlit**, **FAISS**, **Sentence Transformers**, and **Google Gemini**.
+A RAG (Retrieval-Augmented Generation) based Question Answering system built with **Streamlit**, **FAISS**, **Sentence Transformers**, and **Ollama (local LLM)**.
 
-Upload any PDF and ask questions — the system retrieves the most relevant passages and uses Gemini AI to generate accurate, synthesized answers.
+Upload any PDF and ask questions — the system retrieves the most relevant passages and uses a local AI model to generate accurate, synthesized answers. **No API key required. Completely free and private.**
 
 ---
 
@@ -10,10 +10,11 @@ Upload any PDF and ask questions — the system retrieves the most relevant pass
 
 - 📄 **PDF Upload** — Extract and process text from any PDF
 - 🔍 **Semantic Search** — FAISS vector search with `all-MiniLM-L6-v2` embeddings
-- 🤖 **AI Answers** — Gemini 1.5 Flash generates natural language answers from retrieved context
-- 📊 **Relevance Scoring** — Hybrid scoring (semantic + keyword match)
+- 🦙 **Local AI Answers** — Ollama runs LLMs locally (llama3.2, mistral, phi3, etc.)
+- ⚡ **Streaming** — Answers appear word-by-word in real time
+- 📊 **Relevance Filtering** — Hybrid scoring (semantic + keyword match), threshold ≥ 0.40
 - 🗂️ **Q&A History** — Persists previous questions and answers across sessions
-- 🔒 **Secure Key Storage** — API key stored locally via Streamlit secrets
+- 🔒 **100% Private** — Everything runs on your machine, no data sent anywhere
 
 ---
 
@@ -26,7 +27,7 @@ Upload any PDF and ask questions — the system retrieves the most relevant pass
 | NLP Preprocessing | spaCy |
 | Embeddings | Sentence Transformers (`all-MiniLM-L6-v2`) |
 | Vector Search | FAISS (IndexFlatIP) |
-| LLM | Google Gemini 1.5 Flash |
+| LLM | Ollama (llama3.2 / any local model) |
 
 ---
 
@@ -34,32 +35,30 @@ Upload any PDF and ask questions — the system retrieves the most relevant pass
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/Intelligent-Question-Answering-System.git
+git clone https://github.com/Shivangid2904/Intelligent-Question-Answering-System.git
 cd Intelligent-Question-Answering-System
 ```
 
-### 2. Install dependencies
+### 2. Install Python dependencies
 ```bash
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 ```
 
-### 3. Set up your Gemini API key
-Get a free key at [aistudio.google.com](https://aistudio.google.com/app/apikey), then:
-
+### 3. Install Ollama
+Download and install from [ollama.com/download](https://ollama.com/download), then pull a model:
 ```bash
-cp .streamlit/secrets.toml.example .streamlit/secrets.toml
-```
-
-Edit `.streamlit/secrets.toml` and paste your key:
-```toml
-GEMINI_API_KEY = "your-key-here"
+ollama pull llama3.2:1b   # Fast, lightweight (~700MB)
+# OR
+ollama pull llama3.2      # Better quality (~2GB)
 ```
 
 ### 4. Run the app
 ```bash
 streamlit run app.py
 ```
+
+Ollama runs automatically in the background after installation — no extra setup needed!
 
 ---
 
@@ -69,21 +68,35 @@ streamlit run app.py
 ├── app.py                        # Main Streamlit application
 ├── requirements.txt              # Python dependencies
 ├── history.json                  # Q&A history (auto-generated, gitignored)
-├── src/
-│   ├── document_processor.py     # PDF parsing & chunking with spaCy
-│   ├── qa_engine.py              # FAISS vector index & semantic search
-│   └── llm_engine.py             # Gemini LLM answer generation
-└── .streamlit/
-    ├── secrets.toml              # Your API key (gitignored, never committed)
-    └── secrets.toml.example      # Template for others to follow
+└── src/
+    ├── document_processor.py     # PDF parsing & chunking with spaCy
+    ├── qa_engine.py              # FAISS vector index & semantic search
+    └── llm_engine.py             # Ollama LLM streaming answer generation
 ```
 
 ---
 
-## ⚠️ Important
+## 💡 How It Works
 
-- **Never commit `.streamlit/secrets.toml`** — it contains your API key and is already in `.gitignore`
-- The app works **without a Gemini key** (falls back to extracted answers), but AI-generated answers are much better
+```
+PDF Upload → Text Extraction → spaCy Chunking
+    → Sentence Embeddings → FAISS Index
+    → Query → Semantic Search → Relevance Filter
+    → Ollama LLM → Streamed Answer
+```
+
+---
+
+## ⚙️ Model Selection
+
+In the sidebar, you can switch between models:
+
+| Model | Size | Speed | Quality |
+|---|---|---|---|
+| `llama3.2:1b` | ~700MB | ⚡ Fast | Good |
+| `llama3.2` | ~2GB | 🐢 Moderate | Better |
+| `mistral` | ~4GB | 🐢 Slower | Great |
+| `phi3` | ~2GB | ⚡ Fast | Good |
 
 ---
 
