@@ -21,13 +21,9 @@ Unlike cloud-based AI applications, IntelliAsk runs entirely on the user's machi
 ---
 
 ## Screenshots
-
 ### Home Interface
 
-<!-- Replace with your uploaded image -->
-
-![Home Interface](<img width="955" height="479" alt="Screenshot 2026-06-27 234024" src="https://github.com/user-attachments/assets/24a3cff5-cc30-4230-9db7-b74dfff3de0c" />
-)
+<img width="955" alt="Home Interface" src="https://github.com/user-attachments/assets/24a3cff5-cc30-4230-9db7-b74dfff3de0c">
 
 The landing page provides an intuitive interface for selecting a local language model, uploading PDF documents, and asking natural language questions.
 
@@ -35,8 +31,7 @@ The landing page provides an intuitive interface for selecting a local language 
 
 ### Document Upload & Model Selection
 
-![Document Upload](<img width="955" height="479" alt="Screenshot 2026-06-27 234331" src="https://github.com/user-attachments/assets/fb812e78-6dc3-4c12-bb38-f34369f3cf72" />
-)
+<img width="955" alt="Document Upload" src="https://github.com/user-attachments/assets/fb812e78-6dc3-4c12-bb38-f34369f3cf72">
 
 Users can upload PDF documents and switch between multiple locally installed Ollama models without restarting the application.
 
@@ -44,8 +39,7 @@ Users can upload PDF documents and switch between multiple locally installed Oll
 
 ### AI Generated Answer
 
-![Generated Answer](<img width="955" height="481" alt="Screenshot 2026-06-27 234404" src="https://github.com/user-attachments/assets/f2406a4a-9dc5-4800-99e8-b2b838fa164c" />
-)
+<img width="955" alt="Generated Answer" src="https://github.com/user-attachments/assets/f2406a4a-9dc5-4800-99e8-b2b838fa164c">
 
 The system retrieves the most relevant document passages using semantic similarity search and synthesizes an answer using a locally hosted Large Language Model.
 
@@ -53,8 +47,7 @@ The system retrieves the most relevant document passages using semantic similari
 
 ### Supporting Passages & Question History
 
-![Supporting Passages](<img width="850" height="425" alt="Screenshot 2026-06-27 234352" src="https://github.com/user-attachments/assets/e9e0badf-1d1c-488f-a1a1-0f464a06c081" />
-)
+<img width="850" alt="Supporting Passages" src="https://github.com/user-attachments/assets/e9e0badf-1d1c-488f-a1a1-0f464a06c081">
 
 Every response includes supporting document passages, semantic relevance scores, and persistent question history to improve transparency and explainability.
 
