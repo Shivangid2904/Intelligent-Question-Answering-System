@@ -1,5 +1,11 @@
 # IntelliAsk – Intelligent Question Answering System
 
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
+![FAISS](https://img.shields.io/badge/FAISS-Vector_Search-green)
+![Ollama](https://img.shields.io/badge/Ollama-Local_LLM-black)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
 IntelliAsk is a Retrieval-Augmented Generation (RAG) based Question Answering System that enables users to upload PDF documents and ask natural language questions. The application retrieves the most relevant document passages using semantic search and generates context-aware answers using a locally hosted Large Language Model (LLM) through Ollama.
 
 Unlike cloud-based AI applications, IntelliAsk runs entirely on the user's machine, requiring no API keys or external services, thereby ensuring complete privacy and offline functionality.
@@ -8,19 +14,28 @@ Unlike cloud-based AI applications, IntelliAsk runs entirely on the user's machi
 
 ## Features
 
-- Upload and process PDF documents
-- Semantic search using FAISS vector indexing
-- Context-aware answer generation using local LLMs
-- Real-time streaming responses
-- Hybrid relevance scoring (semantic + keyword matching)
-- Supporting passage visualization with similarity scores
-- Persistent question history
-- Multiple Ollama model support
-- Fully offline and privacy-preserving architecture
+* Upload and process PDF documents
+* Semantic search using FAISS vector indexing
+* Context-aware answer generation using local LLMs
+* Real-time streaming responses
+* Hybrid relevance scoring (semantic + keyword matching)
+* Supporting passage visualization with similarity scores
+* Persistent question history
+* Multiple Ollama model support
+* Fully offline and privacy-preserving architecture
+
+---
+
+## Why Retrieval-Augmented Generation (RAG)?
+
+Traditional Large Language Models generate responses solely from their pre-trained knowledge, which can result in outdated or hallucinated information.
+
+IntelliAsk enhances answer quality by retrieving the most relevant passages from the uploaded document before generating a response. This ensures that answers are grounded in the document content, improving both accuracy and relevance.
 
 ---
 
 ## Screenshots
+
 ### Home Interface
 
 <img width="955" alt="Home Interface" src="https://github.com/user-attachments/assets/24a3cff5-cc30-4230-9db7-b74dfff3de0c">
@@ -57,9 +72,8 @@ Every response includes supporting document passages, semantic relevance scores,
 
 A complete walkthrough of the application is available below.
 
-**Demo:** 
+**Demo:**
 **[Watch Demo Video](https://drive.google.com/file/d/1q8-x_RziRFKCrJf_UVMTwpO0EpHAUsKa/view?usp=sharing)**
-
 
 ---
 
@@ -91,16 +105,16 @@ A complete walkthrough of the application is available below.
 
 ## Technology Stack
 
-| Layer | Technology |
-|--------|------------|
-| Frontend | Streamlit |
-| PDF Processing | PyMuPDF |
-| NLP Preprocessing | spaCy |
-| Embedding Model | all-MiniLM-L6-v2 |
-| Vector Search | FAISS |
-| Large Language Model | Ollama |
-| Supported Models | Llama 3.2, Mistral, Phi-3, Gemma |
-| Programming Language | Python |
+| Layer                | Technology                       |
+| -------------------- | -------------------------------- |
+| Frontend             | Streamlit                        |
+| PDF Processing       | PyMuPDF                          |
+| NLP Preprocessing    | spaCy                            |
+| Embedding Model      | all-MiniLM-L6-v2                 |
+| Vector Search        | FAISS                            |
+| Large Language Model | Ollama                           |
+| Supported Models     | Llama 3.2, Mistral, Phi-3, Gemma |
+| Programming Language | Python                           |
 
 ---
 
@@ -168,8 +182,6 @@ git clone https://github.com/Shivangid2904/Intelligent-Question-Answering-System
 cd Intelligent-Question-Answering-System
 ```
 
----
-
 ### Install Dependencies
 
 ```bash
@@ -181,8 +193,6 @@ If required, install the spaCy English model:
 ```bash
 python -m spacy download en_core_web_sm
 ```
-
----
 
 ### Install Ollama
 
@@ -202,8 +212,6 @@ or
 ollama pull llama3.2:1b
 ```
 
----
-
 ### Run the Application
 
 ```bash
@@ -214,13 +222,13 @@ streamlit run app.py
 
 ## Supported Models
 
-| Model | Approx. Size | Speed | Quality |
-|--------|-------------:|-------|----------|
-| llama3.2:1b | ~700 MB | Fast | Good |
-| llama3.2 | ~2 GB | Moderate | Better |
-| phi3 | ~2 GB | Fast | Good |
-| mistral | ~4 GB | Moderate | Great |
-| gemma2 | Varies | Moderate | Good |
+| Model       | Approx. Size | Speed    | Quality |
+| ----------- | -----------: | -------- | ------- |
+| llama3.2:1b |      ~700 MB | Fast     | Good    |
+| llama3.2    |        ~2 GB | Moderate | Better  |
+| phi3        |        ~2 GB | Fast     | Good    |
+| mistral     |        ~4 GB | Moderate | Great   |
+| gemma2      |       Varies | Moderate | Good    |
 
 ---
 
@@ -228,53 +236,75 @@ streamlit run app.py
 
 ### Document Processing
 
-- PDF parsing using PyMuPDF
-- Text preprocessing with spaCy
-- Intelligent document chunking
+* PDF parsing using PyMuPDF
+* Text preprocessing with spaCy
+* Intelligent document chunking
 
 ### Semantic Retrieval
 
-- Sentence embeddings with all-MiniLM-L6-v2
-- FAISS vector similarity search
-- Hybrid relevance filtering
+* Sentence embeddings with all-MiniLM-L6-v2
+* FAISS vector similarity search
+* Hybrid relevance filtering
 
 ### Local AI Inference
 
-- Multiple Ollama model support
-- Context-aware answer generation
-- Token streaming
+* Multiple Ollama model support
+* Context-aware answer generation
+* Token streaming
 
 ### User Experience
 
-- Interactive Streamlit interface
-- Persistent Q&A history
-- Supporting passage visualization
-- Semantic relevance scoring
+* Interactive Streamlit interface
+* Persistent Q&A history
+* Supporting passage visualization
+* Semantic relevance scoring
 
 ---
 
 ## Advantages
 
-- Runs completely offline
-- No API keys required
-- Privacy-preserving architecture
-- Fast semantic retrieval
-- Multiple local LLM support
-- Modular and extensible codebase
-- Easy deployment
+* Runs completely offline
+* No API keys required
+* Privacy-preserving architecture
+* Fast semantic retrieval
+* Multiple local LLM support
+* Modular and extensible codebase
+* Easy deployment
+
+---
+
+## Limitations
+
+* Supports PDF documents only.
+* Performance depends on the selected local language model.
+* OCR for scanned PDFs is not currently supported.
+* Processes one document at a time.
 
 ---
 
 ## Future Improvements
 
-- Multi-document knowledge base
-- OCR support for scanned PDFs
-- Citation-aware answer generation
-- Conversation memory
-- Document summarization
-- Docker deployment
-- User authentication
-- Advanced reranking models
+* Multi-document knowledge base
+* OCR support for scanned PDFs
+* Citation-aware answer generation
+* Conversation memory
+* Document summarization
+* Docker deployment
+* User authentication
+* Advanced reranking models
+
+---
+
+## Acknowledgements
+
+This project makes use of the following open-source technologies:
+
+* Streamlit
+* FAISS
+* Sentence Transformers
+* Ollama
+* spaCy
+* PyMuPDF
 
 ---
 
@@ -287,3 +317,4 @@ This project is licensed under the MIT License.
 ## Author
 
 **Shivangi Dubey**
+
