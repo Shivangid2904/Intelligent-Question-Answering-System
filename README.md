@@ -1,108 +1,296 @@
-# Intelligent Question Answering System
+# IntelliAsk – Intelligent Question Answering System
 
-A RAG (Retrieval-Augmented Generation) based Question Answering system built with **Streamlit**, **FAISS**, **Sentence Transformers**, and **Ollama (local LLM)**.
+IntelliAsk is a Retrieval-Augmented Generation (RAG) based Question Answering System that enables users to upload PDF documents and ask natural language questions. The application retrieves the most relevant document passages using semantic search and generates context-aware answers using a locally hosted Large Language Model (LLM) through Ollama.
 
-Upload any PDF and ask questions—the system retrieves the most relevant passages and uses a local AI model to generate accurate, synthesized answers. **No API key required. Completely free and private.**
+Unlike cloud-based AI applications, IntelliAsk runs entirely on the user's machine, requiring no API keys or external services, thereby ensuring complete privacy and offline functionality.
 
 ---
 
 ## Features
 
-* **PDF Upload** — Extract and process text from any PDF
-* **Semantic Search** — FAISS vector search with `all-MiniLM-L6-v2` embeddings
-* **Local AI Answers** — Ollama runs LLMs locally (`llama3.2`, `mistral`, `phi3`, etc.)
-* **Streaming** — Answers appear word-by-word in real time
-* **Relevance Filtering** — Hybrid scoring (semantic + keyword match), threshold ≥ 0.40
-* **Q&A History** — Persists previous questions and answers across sessions
-* **100% Private** — Everything runs locally with no external API calls
+- Upload and process PDF documents
+- Semantic search using FAISS vector indexing
+- Context-aware answer generation using local LLMs
+- Real-time streaming responses
+- Hybrid relevance scoring (semantic + keyword matching)
+- Supporting passage visualization with similarity scores
+- Persistent question history
+- Multiple Ollama model support
+- Fully offline and privacy-preserving architecture
 
 ---
 
-## Tech Stack
+## Screenshots
 
-| Layer             | Technology                                 |
-| ----------------- | ------------------------------------------ |
-| UI                | Streamlit                                  |
-| PDF Parsing       | PyMuPDF (fitz)                             |
-| NLP Preprocessing | spaCy                                      |
-| Embeddings        | Sentence Transformers (`all-MiniLM-L6-v2`) |
-| Vector Search     | FAISS (IndexFlatIP)                        |
-| LLM               | Ollama (`llama3.2` / any local model)      |
+### Home Interface
+
+<!-- Replace with your uploaded image -->
+
+![Home Interface](<img width="955" height="479" alt="Screenshot 2026-06-27 234024" src="https://github.com/user-attachments/assets/24a3cff5-cc30-4230-9db7-b74dfff3de0c" />
+)
+
+The landing page provides an intuitive interface for selecting a local language model, uploading PDF documents, and asking natural language questions.
 
 ---
 
-## Getting Started
+### Document Upload & Model Selection
 
-### 1. Clone the repository
+![Document Upload](<img width="955" height="479" alt="Screenshot 2026-06-27 234331" src="https://github.com/user-attachments/assets/fb812e78-6dc3-4c12-bb38-f34369f3cf72" />
+)
 
-```bash
-git clone https://github.com/Shivangid2904/Intelligent-Question-Answering-System.git
-cd Intelligent-Question-Answering-System
+Users can upload PDF documents and switch between multiple locally installed Ollama models without restarting the application.
+
+---
+
+### AI Generated Answer
+
+![Generated Answer](<img width="955" height="481" alt="Screenshot 2026-06-27 234404" src="https://github.com/user-attachments/assets/f2406a4a-9dc5-4800-99e8-b2b838fa164c" />
+)
+
+The system retrieves the most relevant document passages using semantic similarity search and synthesizes an answer using a locally hosted Large Language Model.
+
+---
+
+### Supporting Passages & Question History
+
+![Supporting Passages](<img width="850" height="425" alt="Screenshot 2026-06-27 234352" src="https://github.com/user-attachments/assets/e9e0badf-1d1c-488f-a1a1-0f464a06c081" />
+)
+
+Every response includes supporting document passages, semantic relevance scores, and persistent question history to improve transparency and explainability.
+
+---
+
+## Demo Video
+
+A complete walkthrough of the application is available below.
+
+**Demo:** 
+**[Watch Demo Video](https://drive.google.com/file/d/1q8-x_RziRFKCrJf_UVMTwpO0EpHAUsKa/view?usp=sharing)**
+
+
+---
+
+## Architecture
+
+```text
+                    PDF Upload
+                         │
+                  PyMuPDF Extraction
+                         │
+                  spaCy Text Chunking
+                         │
+         Sentence Transformer Embeddings
+                         │
+                  FAISS Vector Index
+                         │
+             Semantic Similarity Retrieval
+                         │
+              Relevant Context Selection
+                         │
+                 Ollama Local LLM
+                         │
+             Streamed AI Generated Answer
+                         │
+                Streamlit User Interface
 ```
 
-### 2. Install Python dependencies
+---
 
-```bash
-pip install -r requirements.txt
-python -m spacy download en_core_web_sm
+## Technology Stack
+
+| Layer | Technology |
+|--------|------------|
+| Frontend | Streamlit |
+| PDF Processing | PyMuPDF |
+| NLP Preprocessing | spaCy |
+| Embedding Model | all-MiniLM-L6-v2 |
+| Vector Search | FAISS |
+| Large Language Model | Ollama |
+| Supported Models | Llama 3.2, Mistral, Phi-3, Gemma |
+| Programming Language | Python |
+
+---
+
+## Project Workflow
+
+```text
+PDF Upload
+      │
+      ▼
+Text Extraction
+      │
+      ▼
+Text Chunking
+      │
+      ▼
+Sentence Embeddings
+      │
+      ▼
+FAISS Index Construction
+      │
+      ▼
+User Question
+      │
+      ▼
+Semantic Retrieval
+      │
+      ▼
+Relevant Context
+      │
+      ▼
+Local LLM (Ollama)
+      │
+      ▼
+AI Generated Answer
 ```
-
-### 3. Install Ollama
-
-Download and install from https://ollama.com/download, then pull a model:
-
-```bash
-ollama pull llama3.2:1b   # Fast, lightweight (~700MB)
-# OR
-ollama pull llama3.2      # Better quality (~2GB)
-```
-
-### 4. Run the application
-
-```bash
-streamlit run app.py
-```
-
-Ollama runs automatically in the background after installation—no additional setup required.
 
 ---
 
 ## Project Structure
 
 ```text
-├── app.py                        # Main Streamlit application
-├── requirements.txt              # Python dependencies
-├── history.json                  # Q&A history (auto-generated, gitignored)
-└── src/
-    ├── document_processor.py     # PDF parsing & chunking with spaCy
-    ├── qa_engine.py              # FAISS vector index & semantic search
-    └── llm_engine.py             # Ollama LLM streaming answer generation
+Intelligent-Question-Answering-System/
+
+├── src/
+│   ├── __init__.py
+│   ├── document_processor.py
+│   ├── llm_engine.py
+│   └── qa_engine.py
+│
+├── .gitignore
+├── app.py
+├── history.json
+├── README.md
+└── requirements.txt
 ```
 
 ---
 
-## How It Works
+## Installation
 
-```text
-PDF Upload → Text Extraction → spaCy Chunking
-    → Sentence Embeddings → FAISS Index
-    → Query → Semantic Search → Relevance Filter
-    → Ollama LLM → Streamed Answer
+### Clone the Repository
+
+```bash
+git clone https://github.com/Shivangid2904/Intelligent-Question-Answering-System.git
+cd Intelligent-Question-Answering-System
 ```
 
 ---
 
-## Model Selection
+### Install Dependencies
 
-| Model         | Size   | Speed    | Quality |
-| ------------- | ------ | -------- | ------- |
-| `llama3.2:1b` | ~700MB | Fast     | Good    |
-| `llama3.2`    | ~2GB   | Moderate | Better  |
-| `mistral`     | ~4GB   | Slower   | Great   |
-| `phi3`        | ~2GB   | Fast     | Good    |
+```bash
+pip install -r requirements.txt
+```
+
+If required, install the spaCy English model:
+
+```bash
+python -m spacy download en_core_web_sm
+```
+
+---
+
+### Install Ollama
+
+Download Ollama from:
+
+https://ollama.com/download
+
+Pull a supported model:
+
+```bash
+ollama pull llama3.2
+```
+
+or
+
+```bash
+ollama pull llama3.2:1b
+```
+
+---
+
+### Run the Application
+
+```bash
+streamlit run app.py
+```
+
+---
+
+## Supported Models
+
+| Model | Approx. Size | Speed | Quality |
+|--------|-------------:|-------|----------|
+| llama3.2:1b | ~700 MB | Fast | Good |
+| llama3.2 | ~2 GB | Moderate | Better |
+| phi3 | ~2 GB | Fast | Good |
+| mistral | ~4 GB | Moderate | Great |
+| gemma2 | Varies | Moderate | Good |
+
+---
+
+## Core Components
+
+### Document Processing
+
+- PDF parsing using PyMuPDF
+- Text preprocessing with spaCy
+- Intelligent document chunking
+
+### Semantic Retrieval
+
+- Sentence embeddings with all-MiniLM-L6-v2
+- FAISS vector similarity search
+- Hybrid relevance filtering
+
+### Local AI Inference
+
+- Multiple Ollama model support
+- Context-aware answer generation
+- Token streaming
+
+### User Experience
+
+- Interactive Streamlit interface
+- Persistent Q&A history
+- Supporting passage visualization
+- Semantic relevance scoring
+
+---
+
+## Advantages
+
+- Runs completely offline
+- No API keys required
+- Privacy-preserving architecture
+- Fast semantic retrieval
+- Multiple local LLM support
+- Modular and extensible codebase
+- Easy deployment
+
+---
+
+## Future Improvements
+
+- Multi-document knowledge base
+- OCR support for scanned PDFs
+- Citation-aware answer generation
+- Conversation memory
+- Document summarization
+- Docker deployment
+- User authentication
+- Advanced reranking models
 
 ---
 
 ## License
 
-MIT License
+This project is licensed under the MIT License.
+
+---
+
+## Author
+
+**Shivangi Dubey**
