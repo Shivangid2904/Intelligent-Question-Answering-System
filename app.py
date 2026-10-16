@@ -5,6 +5,12 @@ import os
 from src.document_processor import DocumentProcessor, get_nlp
 from src.qa_engine import QAEngine, get_embedding_model
 from src.llm_engine import generate_answer
+from src.citation import (
+    format_citation,
+    format_citations,
+    check_evidence_sufficiency,
+    build_abstention_message,
+)
 
 st.set_page_config(
     page_title="IntelliAsk — AI Document QA",
@@ -109,6 +115,36 @@ html, body, [class*="css"] {
     margin-bottom: 1.5rem;
 }
 
+/* ── Citation Pill ── */
+.citation-pill {
+    display: inline-block;
+    background: rgba(52,211,153,0.1);
+    border: 1px solid rgba(52,211,153,0.3);
+    border-radius: 6px;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #34d399;
+    margin-right: 0.4rem;
+    margin-bottom: 0.3rem;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    letter-spacing: 0.02em;
+}
+
+/* ── Abstention Warning Card ── */
+.abstention-card {
+    background: linear-gradient(135deg, #1f1010 0%, #1a0f0f 100%);
+    border: 1px solid rgba(251,191,36,0.35);
+    border-left: 4px solid #fbbf24;
+    border-radius: 0 12px 12px 0;
+    padding: 1.2rem 1.5rem;
+    margin: 1rem 0 1.5rem 0;
+    color: #fde68a;
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+.abstention-card strong { color: #fbbf24; }
+
 /* ── Passage Card ── */
 .passage-card {
     background: #13131f;
@@ -129,6 +165,15 @@ html, body, [class*="css"] {
     border-radius: 10px;
     padding: 0.15rem 0.5rem;
     font-weight: 600;
+}
+.passage-meta {
+    margin-top: 0.6rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.3rem;
 }
 
 /* ── Section Headers ── */
@@ -306,110 +351,146 @@ if query and st.session_state.engine:
     if len(results) == 0:
         st.markdown("<div style='color:#f87171;padding:0.75rem;'>⚠️ No results found in the document.</div>", unsafe_allow_html=True)
     else:
-        import re
-        # Strip punctuation from query words to avoid "smoothing?" not matching "smoothing"
-        query_words = [re.sub(r'[^\w]', '', w) for w in query.lower().split() if re.sub(r'[^\w]', '', w)]
-        # Use only meaningful content words (len > 3) for keyword filtering
-        content_words = [w for w in query_words if len(w) > 3]
-        if not content_words:
-            content_words = query_words  # fallback if all words are short
+        # ── Evidence sufficiency check (Week 2) ──────────────────────────────
+        verdict = check_evidence_sufficiency(
+            results,
+            query=query,
+            score_threshold=0.38,
+            min_content_word_overlap=1,
+            min_sufficient_chunks=1,
+        )
 
-        best = None
-        best_score = -1
+        # Determine best chunk by combined semantic + keyword score
+        import re as _re
+        _query_words = [_re.sub(r'[^\w]', '', w) for w in query.lower().split()
+                        if _re.sub(r'[^\w]', '', w)]
+        _content_words = [w for w in _query_words if len(w) > 3] or _query_words
+
+        best = results[0]
+        best_combined = -1.0
         for r in results:
-            match_count = sum(word in r.text.lower() for word in content_words)
-            combined_score = r.score + (0.15 * match_count)
-            if combined_score > best_score:
-                best_score = combined_score
+            mc = sum(word in r.text.lower() for word in _content_words)
+            cs = r.score + 0.15 * mc
+            if cs > best_combined:
+                best_combined = cs
                 best = r
 
-        SCORE_THRESHOLD = 0.38
-        filtered_passages = []
-        for r in results:
-            if r.score < SCORE_THRESHOLD:
-                continue
-            if not any(word in r.text.lower() for word in content_words):
-                continue
-            filtered_passages.append({"text": r.text, "score": round(float(r.score), 3)})
-        filtered_passages.sort(key=lambda x: x["score"], reverse=True)
+        # ── ABSTENTION PATH ──────────────────────────────────────────────────
+        if verdict.should_abstain:
+            abstention_msg = build_abstention_message(verdict, query)
+            # Render as styled abstention card
+            import html as _html
+            safe_msg = _html.escape(abstention_msg)
+            # Re-apply minimal markdown: **bold** and *italic*
+            safe_msg = _re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', safe_msg)
+            safe_msg = _re.sub(r'\*(.+?)\*', r'<em>\1</em>', safe_msg)
+            safe_msg = safe_msg.replace('\n\n', '<br><br>').replace('\n', '<br>')
+            st.markdown(
+                f"<div class='abstention-card'>{safe_msg}</div>",
+                unsafe_allow_html=True
+            )
+            llm_answer = abstention_msg
+            answer_source = "abstention"
 
-        # ── AI ANSWER ────────────────────────────────────────────────────────
-        if filtered_passages:
-            passages_to_use = filtered_passages
-            use_ollama = True
+        # ── CONFIDENT ANSWER PATH ────────────────────────────────────────────
         else:
-            # Fallback: search ALL results (ignore score threshold) for keyword match
-            keyword_fallback = [
-                {"text": r.text, "score": round(float(r.score), 3)}
-                for r in results
-                if any(word in r.text.lower() for word in content_words)
-            ]
-            keyword_fallback.sort(key=lambda x: x["score"], reverse=True)
+            # Build passage list for LLM (Chunk objects, not dicts, for citation)
+            passages_for_llm = [
+                r for r in results if r.score >= 0.38
+            ] or results[:3]
 
-            if keyword_fallback:
-                passages_to_use = keyword_fallback[:3]
-                use_ollama = True
-            else:
-                passages_to_use = []
-                use_ollama = False
-
-        if use_ollama:
             st.markdown("<p class='section-header'>🦙 AI Answer</p>", unsafe_allow_html=True)
-            st.markdown("<div class='answer-card'><div class='answer-label'>Ollama · " + ollama_model + "</div>", unsafe_allow_html=True)
+            st.markdown(
+                "<div class='answer-card'><div class='answer-label'>Ollama · "
+                + ollama_model + "</div>",
+                unsafe_allow_html=True
+            )
             with st.spinner(f"Thinking with {ollama_model}..."):
-                stream_gen = generate_answer(query, passages_to_use, model=ollama_model)
+                stream_gen = generate_answer(query, passages_for_llm, model=ollama_model)
                 llm_answer = st.write_stream(stream_gen)
             st.markdown("</div>", unsafe_allow_html=True)
             answer_source = "ollama"
-            # Use best keyword-matching chunk for meta info
-            best_passage = passages_to_use[0] if passages_to_use else None
-        else:
-            llm_answer = "This topic doesn't appear to be covered in the uploaded document."
-            answer_source = "not_found"
+
+        # ── META PILLS (always shown when not abstaining) ─────────────────────
+        if not verdict.should_abstain:
+            citation_html = "".join(
+                f"<span class='citation-pill'>📌 {c}</span>"
+                for c in format_citations(results[:3])
+            )
             st.markdown(
-                f"<div class='answer-card'><div class='answer-label'>Not Found</div>"
-                f"⚠️ {llm_answer}</div>",
+                f"<span class='meta-pill'>📊 Score: {round(best.score, 3)}</span>"
+                f"<span class='meta-pill'>📄 {best.source}</span>"
+                f"<br>{citation_html}",
                 unsafe_allow_html=True
             )
 
-        # ── META PILLS ────────────────────────────────────────────────────────
-        st.markdown(
-            f"<span class='meta-pill'>📊 Score: {round(best.score, 3)}</span>"
-            f"<span class='meta-pill'>📄 {best.source}</span>",
-            unsafe_allow_html=True
-        )
-
-        # ── SUPPORTING PASSAGES ───────────────────────────────────────────────
-        if filtered_passages:
+        # ── SUPPORTING PASSAGES WITH PAGE CITATIONS ───────────────────────────
+        above_threshold = [r for r in results if r.score >= 0.38]
+        if above_threshold:
             st.markdown("<p class='section-header'>📚 Supporting Passages</p>", unsafe_allow_html=True)
             seen = set()
             shown = 0
-            for item in filtered_passages:
-                if shown >= 4:
+            for r in above_threshold:
+                if shown >= 5:
                     break
-                p_text = item.get("text", "") if isinstance(item, dict) else item
-                p_score = item.get("score", None) if isinstance(item, dict) else None
-                key = p_text[:100]
+                key = r.text[:100]
                 if key in seen:
                     continue
                 seen.add(key)
-                clean_p = p_text.strip()
+                clean_p = r.text.strip()
                 if len(clean_p) < 30:
                     continue
-                badge = f"<span class='passage-score'>relevance {p_score}</span>" if p_score else ""
-                st.markdown(f"<div class='passage-card'>{badge}{clean_p}</div>", unsafe_allow_html=True)
+                citation = format_citation(r)
+                score_badge = f"<span class='passage-score'>score {round(r.score, 3)}</span>"
+                citation_badge = f"<span class='citation-pill'>📌 {citation}</span>"
+                st.markdown(
+                    f"<div class='passage-card'>"
+                    f"{score_badge}"
+                    f"{clean_p}"
+                    f"<div class='passage-meta'>{citation_badge}</div>"
+                    f"</div>",
+                    unsafe_allow_html=True
+                )
                 shown += 1
-            if shown == 0:
-                st.markdown("<p style='color:#64748b;font-size:0.88rem;'>No highly relevant passages found.</p>", unsafe_allow_html=True)
+
+        # ── SOURCE NAVIGATION EXPANDER ────────────────────────────────────────
+        with st.expander("🗂 Source Navigation — All Retrieved Passages", expanded=False):
+            st.markdown(
+                "<p style='color:#64748b;font-size:0.82rem;margin-bottom:0.75rem;'>"
+                f"Showing all {len(results)} retrieved passages ranked by semantic similarity. "
+                "Page numbers link directly to the physical PDF page."
+                "</p>",
+                unsafe_allow_html=True
+            )
+            for rank, r in enumerate(results, start=1):
+                citation = format_citation(r)
+                excerpt = r.text.strip()[:200].replace("<", "&lt;").replace(">", "&gt;")
+                relevance_color = "#34d399" if r.score >= 0.38 else "#64748b"
+                st.markdown(
+                    f"<div style='background:#0d0d1a;border:1px solid rgba(255,255,255,0.06);"
+                    f"border-radius:8px;padding:0.7rem 1rem;margin-bottom:0.5rem;font-size:0.85rem;'>"
+                    f"<span style='color:{relevance_color};font-weight:600;'>#{rank}</span>"
+                    f" <span class='citation-pill'>📌 {citation}</span>"
+                    f" <span style='color:#475569;font-size:0.78rem;'>score: {round(r.score, 3)}</span>"
+                    f"<br><span style='color:#94a3b8;line-height:1.6;'>{excerpt}…</span>"
+                    f"</div>",
+                    unsafe_allow_html=True
+                )
 
         # ── SAVE TO HISTORY ───────────────────────────────────────────────────
+        # Build serializable filtered_passages for history compatibility
+        filtered_passages = [
+            {"text": r.text, "score": round(float(r.score), 3)}
+            for r in results if r.score >= 0.38
+        ]
         entry = {
             "question": query,
-            "answer": llm_answer,
+            "answer": llm_answer if isinstance(llm_answer, str) else "",
             "answer_source": answer_source,
             "source": best.source,
-            "score": best.score,
-            "passages": filtered_passages
+            "score": float(best.score),
+            "citations": verdict.citations,
+            "passages": filtered_passages,
         }
         st.session_state.history.append(entry)
         with open(HISTORY_FILE, "w", encoding="utf-8") as f:

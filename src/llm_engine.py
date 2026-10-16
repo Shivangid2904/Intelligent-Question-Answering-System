@@ -1,5 +1,7 @@
 import requests
 
+from src.citation import build_grounded_context
+
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 DEFAULT_MODEL = "llama3.2:1b"
@@ -10,34 +12,46 @@ def generate_answer(question: str, passages: list, model: str = DEFAULT_MODEL):
     Use Ollama (local LLM) to generate a synthesized answer from retrieved passages.
     Returns a generator that yields text tokens for streaming.
 
+    Passages may be either Chunk objects (with .text, .source_filename, .page_number)
+    or legacy dicts with 'text' and 'score' keys.
+
     Args:
-        question: The user's question
-        passages:  List of dicts with 'text' and 'score' keys (or plain strings)
-        model:     Ollama model name (default: llama3.2:1b)
+        question: The user's question.
+        passages: List of Chunk objects or dicts with 'text'/'score' keys.
+        model:    Ollama model name (default: llama3.2:1b).
 
     Yields:
-        Text tokens as strings for streaming display
+        Text tokens as strings for streaming display.
     """
     if not passages:
         yield "I could not find any relevant passages in the document to answer this question."
         return
 
-    # Build context from top passages (limit to 3 for good coverage)
-    context_parts = []
-    for i, p in enumerate(passages[:3], 1):
-        text = p["text"] if isinstance(p, dict) else p
-        context_parts.append(f"[Passage {i}]\n{text.strip()[:800]}")
+    # Build grounded context with page-level citations.
+    # Accepts both Chunk objects and legacy dict format from app.py.
+    try:
+        grounded_context = build_grounded_context(
+            passages, max_chunks=5, max_chars_per_chunk=800
+        )
+    except Exception:
+        # Graceful fallback to legacy plain-text context
+        context_parts = []
+        for i, p in enumerate(passages[:3], 1):
+            text = p["text"] if isinstance(p, dict) else getattr(p, "text", str(p))
+            context_parts.append(f"[Passage {i}]\n{text.strip()[:800]}")
+        grounded_context = "\n\n".join(context_parts)
 
-    context = "\n\n".join(context_parts)
-
-    prompt = f"""You are a helpful study assistant. Use the context passages below to answer the question.
-- Start with a clear definition or direct answer
-- Add 1-2 sentences of explanation or examples from the context
-- Be informative but concise (3-5 sentences total)
-- Only use information from the context; do not make things up
+    prompt = f"""You are a research assistant helping analyse scientific literature.
+Use ONLY the cited passages below to answer the question.
+Rules:
+- Start with a clear, direct answer.
+- Reference the specific citation(s) that support each claim, e.g. [paper.pdf, p. 4].
+- Add 1-2 sentences of explanation using evidence from the context.
+- Be informative but concise (3-6 sentences total).
+- If the passages do not contain enough information, say so clearly — do NOT speculate.
 
 Context:
-{context}
+{grounded_context}
 
 Question: {question}
 Answer:"""
