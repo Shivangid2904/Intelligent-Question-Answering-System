@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IntelliAskCorpusManifest",
+  "description": "Corpus manifest specification for IntelliAsk Research evaluation datasets.",
+  "status": "pending_curation",
+  "notes": "Illustrative template only. Real scientific papers will be curated during Week 1.",
+  "schema": {
+    "type": "object",
+    "required": ["document_id", "local_pdf_path", "title"],
+    "properties": {
+      "document_id": {
+        "type": "string",
+        "description": "Stable, unique identifier for the paper."
+      },
+      "local_pdf_path": {
+        "type": "string",
+        "description": "Path to the local PDF file relative to repository root."
+      },
+      "title": {
+        "type": "string",
+        "description": "Full formal title of the scientific publication."
+      },
+      "authors": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "List of paper authors."
+      },
+      "publication_year": {
+        "type": "integer",
+        "description": "Year of publication or preprint release."
+      },
+      "source_url": {
+        "type": "string",
+        "description": "Open-access DOI, arXiv, or publisher URL."
+      },
+      "status": {
+        "type": "string",
+        "enum": ["active", "candidate", "excluded"],
+        "description": "Corpus inclusion status."
+      },
+      "notes": {
+        "type": "string",
+        "description": "Curation notes or subject classification."
+      }
+    }
+  },
+  "papers": [
+    {
+      "document_id": "sample_study_2024",
+      "local_pdf_path": "data/papers/sample_study_2024.pdf",
+      "title": "A Comparative Study of Dense and Lexical Retrieval in Scientific Literature",
+      "authors": ["Jane Doe", "John Smith"],
+      "publication_year": 2024,
+      "source_url": "https://example.org/sample_study_2024",
+      "status": "candidate",
+      "notes": "Illustrative template entry. Replace with verified scientific papers during Week 1."
+    }
+  ]
+}

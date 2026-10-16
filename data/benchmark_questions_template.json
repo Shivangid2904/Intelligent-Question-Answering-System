@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IntelliAskBenchmarkDataset",
+  "description": "Benchmark question and gold evidence schema for IntelliAsk Research evaluation.",
+  "status": "pending_curation",
+  "target_corpus": "5-10 scientific papers",
+  "target_question_count": "20-30 manually curated questions",
+  "notes": "Illustrative template only. Real benchmark QA pairs will be curated during Week 1.",
+  "schema": {
+    "type": "object",
+    "required": [
+      "question_id",
+      "question",
+      "answerable",
+      "query_type",
+      "relevant_document_ids"
+    ],
+    "properties": {
+      "question_id": { "type": "string" },
+      "question": { "type": "string" },
+      "answerable": { "type": "boolean" },
+      "query_type": { "enum": ["factoid", "synthesis", "abstention"] },
+      "relevant_document_ids": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "gold_evidence": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["document_id", "page_number", "evidence_span"],
+          "properties": {
+            "document_id": { "type": "string" },
+            "page_number": {
+              "type": "integer",
+              "description": "1-based physical PDF page index containing supporting evidence."
+            },
+            "evidence_span": {
+              "type": "string",
+              "description": "Exact textual passage or span supporting the factual answer."
+            }
+          }
+        }
+      },
+      "key_facts": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "reference_answer": { "type": "string" },
+      "notes": { "type": "string" }
+    }
+  },
+  "questions": [
+    {
+      "question_id": "q-demo-factoid-01",
+      "question": "What is the primary evaluation metric and reported score for the baseline model on the test split?",
+      "answerable": true,
+      "query_type": "factoid",
+      "relevant_document_ids": ["sample_study_2024"],
+      "gold_evidence": [
+        {
+          "document_id": "sample_study_2024",
+          "page_number": 6,
+          "evidence_span": "On the primary test split, the baseline architecture achieved a mean Average Precision (mAP@0.5) of 68.2% across all evaluation categories."
+        }
+      ],
+      "key_facts": ["mAP@0.5 metric", "score of 68.2%"],
+      "reference_answer": "The baseline model achieves an mAP@0.5 score of 68.2% on the primary test split.",
+      "notes": "Illustrative answerable factoid template."
+    },
+    {
+      "question_id": "q-demo-abstention-02",
+      "question": "What hardware temperature thresholds were recorded during the 72-hour stress test?",
+      "answerable": false,
+      "query_type": "abstention",
+      "relevant_document_ids": ["sample_study_2024"],
+      "gold_evidence": [],
+      "key_facts": [],
+      "reference_answer": "Insufficient evidence in the document collection to answer this inquiry.",
+      "notes": "Illustrative unanswerable negative test template; tests calibrated refusal."
+    }
+  ]
+}
