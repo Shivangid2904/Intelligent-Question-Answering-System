@@ -187,6 +187,32 @@ class TestCheckEvidenceSufficiency:
         assert any("good.pdf" in c for c in verdict.citations)
         assert not any("bad.pdf" in c for c in verdict.citations)
 
+    def test_sufficient_score_without_word_overlap_triggers_abstention(self):
+        """
+        When chunks exceed score_threshold (sufficient_chunks=True) but share no
+        content words with the query (sufficient_words=False), the system must
+        abstain to prevent answering queries that spuriously scored high.
+        """
+        chunks = [
+            _make_chunk(
+                "Photosynthesis is the biological process used by plants to convert light energy.",
+                "biology.pdf",
+                page_number=3,
+                score=0.65,
+            ),
+        ]
+        verdict = check_evidence_sufficiency(
+            chunks,
+            query="What is quantum entanglement and superconducting qubits?",
+            score_threshold=0.38,
+            min_content_word_overlap=1,
+        )
+        assert verdict.sufficient is False
+        assert verdict.should_abstain is True
+        assert verdict.top_score >= 0.38
+        assert "query term(s) matched" in verdict.reason
+
+
 
 # ── build_abstention_message ──────────────────────────────────────────────────
 

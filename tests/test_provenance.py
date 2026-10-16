@@ -226,6 +226,8 @@ class TestEvidenceSufficiencyEndToEnd:
             query="stock market price prediction quarterly earnings",
             score_threshold=0.38,
         )
-        # Top score is expected to be low, so verdict should abstain
-        if verdict.top_score < 0.38:
-            assert verdict.should_abstain is True
+        # For an unrelated query with no topical connection to the PDF text,
+        # the sufficiency gate must unconditionally trigger abstention.
+        assert verdict.should_abstain is True
+        assert verdict.sufficient is False
+        assert len(verdict.citations) == 0

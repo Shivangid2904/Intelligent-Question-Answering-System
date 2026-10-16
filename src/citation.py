@@ -113,12 +113,14 @@ def build_grounded_context(
 @dataclass
 class EvidenceVerdict:
     """
-    Structured verdict from the evidence sufficiency check.
+    Structured verdict from the rule-based evidence sufficiency check.
 
     Attributes:
-        sufficient: True if retrieved evidence meets the confidence threshold.
-        should_abstain: True if the system should refuse to answer.
-        confidence: Aggregate evidence confidence score in [0, 1].
+        sufficient: True if retrieved evidence meets the heuristic sufficiency criteria.
+        should_abstain: True if the system should refuse to answer based on sufficiency rules.
+        confidence: Aggregate heuristic evidence score in [0, 1] (mean cosine similarity of
+                    above-threshold chunks; cosine similarity is a vector ranking/similarity
+                    signal, not a calibrated posterior probability).
         citations: Formatted citation strings for passages used as evidence.
         reason: Human-readable explanation of the verdict.
         top_score: Best individual chunk cosine-similarity score.
@@ -142,12 +144,18 @@ def check_evidence_sufficiency(
 ) -> EvidenceVerdict:
     """
     Evaluate whether retrieved chunks provide sufficient evidence to ground
-    a trustworthy answer for the given query.
+    an answer for the given query using deterministic, rule-based heuristics.
 
     Sufficiency requires ALL of:
       1. At least ``min_sufficient_chunks`` chunks exceed ``score_threshold``.
       2. At least ``min_content_word_overlap`` content words (len > 3) from the
          query appear in the combined text of the top chunks.
+
+    Note:
+        Cosine similarity scores serve as relative semantic proximity and ranking
+        signals; they are not calibrated probabilities of factual correctness.
+        This function implements a rule-based sufficiency safeguard rather than
+        a statistically calibrated probability model.
 
     Args:
         chunks: Retrieved Chunk objects ordered by descending score.
@@ -249,8 +257,9 @@ def check_evidence_sufficiency(
 
 def build_abstention_message(verdict: EvidenceVerdict, query: str = "") -> str:
     """
-    Build a calibrated, informative refusal message for display when the
-    system determines there is insufficient evidence to answer.
+    Build a structured, informative refusal message for display when the
+    heuristic evidence-sufficiency check determines there is insufficient
+    evidence to answer.
 
     Args:
         verdict: EvidenceVerdict from check_evidence_sufficiency.
