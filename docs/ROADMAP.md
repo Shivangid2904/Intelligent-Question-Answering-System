@@ -21,16 +21,17 @@ gantt
     dateFormat  YYYY-MM-DD
     section Week 1: Audit & Foundation
     Repository Audit & Documentation Review  :done,    w1_1, 2026-10-16, 1d
-    Establish Paper Corpus & Manifest        :active,  w1_2, after w1_1, 2d
-    Minimum Page-Aware Ingestion Foundation  :         w1_3, after w1_2, 2d
-    Curate Benchmark & Gold Evidence (20-30 Qs):      w1_4, after w1_2, 2d
-    Establish Dense Retrieval Baseline       :         w1_5, after w1_4, 1d
+    Page-Aware Ingestion (Chunk + provenance) :done,    w1_2, after w1_1, 1d
+    Dense Retrieval Baseline (FAISS)         :done,    w1_3, after w1_2, 1d
+    Evaluation Framework & Test Suite        :done,    w1_4, after w1_3, 1d
+    Benchmark Schema & Corpus Templates      :done,    w1_5, after w1_4, 1d
     section Week 2: Traceability & Validation
-    Page-Level Citations & Source Navigation :         w2_1, after w1_5, 3d
-    Validate Evidence Provenance             :         w2_2, after w2_1, 1d
-    Evidence Sufficiency Checks & Abstention :         w2_3, after w2_2, 2d
+    src/citation.py (citations + abstention) :done,    w2_1, 2026-10-17, 1d
+    Grounded LLM Prompt with Citations       :done,    w2_2, after w2_1, 1d
+    app.py Evidence Verdict & UI             :done,    w2_3, after w2_2, 1d
+    Provenance Validation Tests              :done,    w2_4, after w2_3, 1d
     section Week 3: Retrieval Improvements
-    BM25 Sparse Lexical Retrieval            :         w3_1, after w2_3, 2d
+    BM25 Sparse Lexical Retrieval            :         w3_1, after w2_4, 2d
     Reciprocal Rank Fusion (RRF) Integration :         w3_2, after w3_1, 1d
     Optional Cross-Encoder Reranker Eval     :         w3_3, after w3_2, 2d
     Comparative Benchmark against Baseline   :         w3_4, after w3_3, 2d
@@ -49,23 +50,22 @@ gantt
 ### Detailed Milestone Breakdown
 
 #### Week 1 — Repository Audit and Evaluation Foundation
-- **Status**: Audit and documentation review complete; corpus setup, page-aware ingestion, and baseline tooling planned.
-- **Objectives**:
-  - Audit the current implementation and document known architectural limitations (`done`).
-  - Establish the initial paper corpus manifest (approximately 5–10 carefully selected open-access papers) (`planned`).
-  - Implement the minimum page-aware ingestion foundation to preserve physical PDF page numbers (`planned`).
-  - Define the benchmark schema and curate the initial 20–30 questions with gold evidence (page numbers and supporting passages) (`planned`).
-  - Establish the dense-retrieval baseline (`all-MiniLM-L6-v2` + FAISS `IndexFlatIP`) once benchmark data is available (`planned`).
-- **Deliverables**: Verified repository audit log, paper manifest, benchmark JSON dataset, page-preserving chunking prototype, and baseline retrieval metrics log.
+- **Status**: ✅ Complete (commit `f05ca60`).
+- **Delivered**:
+  - `src/document_processor.py` — `Chunk` class with 1-based page provenance, sentence-overlap chunking, and deterministic `document_id` hashing.
+  - `src/qa_engine.py` — `QAEngine` with FAISS `IndexFlatIP` (cosine similarity via L2-normalised embeddings), bounded k-search, and `chunk.score` population.
+  - `evaluation/` — `DenseRetrievalEvaluator`, `metrics.py` (Recall@k, Precision@k, MRR, nDCG@k, latency stats), `run_evaluation.py` CLI runner.
+  - `tests/` — 13 unit tests covering ingestion, retrieval provenance, evaluator integration, and metrics correctness.
+  - `data/` — `benchmark_questions_template.json` (schema + 2 illustrative QA pairs) and `corpus_manifest_template.json`.
 
 #### Week 2 — Evidence Traceability and Answer Validation
-- **Status**: Planned for V1.
-- **Objectives**:
-  - Implement page-level citations (`[Paper, p. X]`) and interactive source navigation.
-  - Validate evidence provenance between retrieved chunks and cited pages.
-  - Introduce evidence sufficiency checks and calibrated abstention behavior when relevant evidence is absent.
-  - Evaluate system behavior on both answerable and unanswerable benchmark questions.
-- **Deliverables**: Page citation metadata in chunks, grounded citation prompt template, calibrated abstention handler in `app.py`, and provenance validation tests.
+- **Status**: ✅ Complete (commit `4b5dc2b`).
+- **Delivered**:
+  - `src/citation.py` — `format_citation()` / `format_citations()` producing `[Filename, p. X]` strings; `build_grounded_context()` for citation-prefixed LLM context; `EvidenceVerdict` dataclass; `check_evidence_sufficiency()` (score-threshold + keyword-overlap policy); `build_abstention_message()` for structured refusal.
+  - `src/llm_engine.py` — Updated prompt injects grounded citations; instructs model to reference `[source, p. X]` per claim; anti-hallucination guard when context is insufficient.
+  - `app.py` — Evidence verdict routing: abstention path shows styled amber warning card; confident path generates LLM answer with green citation pills; source navigation expander shows all 10 retrieved passages with rank, citation, and score.
+  - `tests/test_citation.py` — 14 unit tests across all citation module functions.
+  - `tests/test_provenance.py` — 8 end-to-end tests tracing page provenance from ingestion through retrieval into citation formatting.
 
 #### Week 3 — Retrieval Improvements
 - **Status**: Planned for V1.
