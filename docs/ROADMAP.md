@@ -31,10 +31,10 @@ gantt
     app.py Evidence Verdict & UI             :done,    w2_3, after w2_2, 1d
     Provenance Validation Tests              :done,    w2_4, after w2_3, 1d
     section Week 3: Retrieval Improvements
-    BM25 Sparse Lexical Retrieval            :         w3_1, after w2_4, 2d
-    Reciprocal Rank Fusion (RRF) Integration :         w3_2, after w3_1, 1d
-    Optional Cross-Encoder Reranker Eval     :         w3_3, after w3_2, 2d
-    Comparative Benchmark against Baseline   :         w3_4, after w3_3, 2d
+    BM25 Sparse Lexical Retrieval            :done,    w3_1, after w2_4, 2d
+    Reciprocal Rank Fusion (RRF) Integration :done,    w3_2, after w3_1, 1d
+    Optional Cross-Encoder Reranker Eval     :done,    w3_3, after w3_2, 2d
+    Comparative Benchmark against Baseline   :done,    w3_4, after w3_3, 2d
     section Week 4: Structured Extraction
     Pydantic Schemas for Paper Extraction    :         w4_1, after w3_4, 2d
     SQLite Document & Research Metadata Store:         w4_2, after w4_1, 3d
@@ -68,13 +68,13 @@ gantt
   - `tests/test_provenance.py` — 8 end-to-end tests tracing page provenance from ingestion through retrieval into citation formatting.
 
 #### Week 3 — Retrieval Improvements
-- **Status**: Planned for V1.
-- **Objectives**:
-  - Add BM25 lexical retrieval (`rank-bm25`) for keyword precision.
-  - Combine dense FAISS vectors and lexical BM25 results using Reciprocal Rank Fusion (RRF).
-  - Evaluate an optional cross-encoder reranker (`cross-encoder/ms-marco-MiniLM-L-6-v2`) over top fused candidates ($k=15$).
-  - Compare retrieval quality (Recall@k, MRR, nDCG) and latency against the Week 1 baseline using the same benchmark.
-- **Deliverables**: Modular hybrid retrieval service and comparative benchmark evaluation report.
+- **Status**: ✅ Complete (validated via comparative benchmark report `reports/week3_comparative_benchmark_report.md`).
+- **Delivered**:
+  - `src/lexical_retriever.py` — Standalone BM25 lexical retriever (`rank-bm25` / BM25Okapi) with corpus tokenization and score normalization.
+  - `src/qa_engine.py` — Reciprocal Rank Fusion (`search_hybrid`), dense cosine score preservation for lexical chunks via embedding dot-product, and source-aware candidate retrieval (`search_source_aware`).
+  - `src/citation.py` — Dual-score gating, document scoping, required source coverage, and cross-chunk entity validation.
+  - `app.py` — Production evidence-gate integration routing user queries through hybrid retrieval with defensive score extraction, recency bypass prompt instructions, and authoritative abstention handling.
+  - `reports/week3_comparative_benchmark_report.md` — 18-question comparative evaluation report demonstrating 100.0% Document Recall@10, 86.7% Supporting Page Recall@10, 100.0% correct abstention on negative queries, and documented evaluation of cross-encoder reranker deferral.
 
 #### Week 4 — Structured Research Extraction
 - **Status**: Planned for V1.
