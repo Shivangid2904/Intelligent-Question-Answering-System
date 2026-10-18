@@ -42,13 +42,14 @@ def generate_answer(question: str, passages: list, model: str = DEFAULT_MODEL):
         grounded_context = "\n\n".join(context_parts)
 
     prompt = f"""You are a research assistant helping analyse scientific literature.
-Use ONLY the cited passages below to answer the question.
+Answer using only the supplied passages. Do not refuse solely because a cited paper's publication date is newer than your training data. If the passages directly support the answer, answer from them. If they do not provide sufficient evidence, state that the information is unavailable.
+
 Rules:
 - Start with a clear, direct answer.
 - Reference the specific citation(s) that support each claim, e.g. [paper.pdf, p. 4].
 - Add 1-2 sentences of explanation using evidence from the context.
 - Be informative but concise (3-6 sentences total).
-- If the passages do not contain enough information, say so clearly — do NOT speculate.
+- Do NOT speculate, extrapolate, or assume information beyond the provided text.
 
 Context:
 {grounded_context}

@@ -1,6 +1,8 @@
 import streamlit as st
 import json
+import math
 import os
+from typing import Any, Optional
 
 from src.document_processor import DocumentProcessor, get_nlp
 from src.qa_engine import QAEngine, get_embedding_model
@@ -11,6 +13,37 @@ from src.citation import (
     check_evidence_sufficiency,
     build_abstention_message,
 )
+
+
+def _extract_dense_score(chunk: Any) -> Optional[float]:
+    """
+    Safely extract the dense cosine similarity score from a chunk.
+    Returns float strictly if numeric, finite (not NaN, +inf, -inf), and > -1.0
+    (filtering out sentinel values). Returns None for missing, None, NaN,
+    infinities, non-numeric values, or uncomputable sentinels (<= -1.0).
+    """
+    ds = getattr(chunk, "dense_score", None) if not isinstance(chunk, dict) else chunk.get("dense_score")
+    if ds is None:
+        return None
+    try:
+        val = float(ds)
+        if not math.isfinite(val) or val <= -1.0:
+            return None
+        return val
+    except (TypeError, ValueError):
+        return None
+
+
+def _is_qualifying_chunk(chunk: Any, threshold: float = 0.38) -> bool:
+    """Return True strictly if chunk has a valid, finite numeric dense_score >= threshold."""
+    score = _extract_dense_score(chunk)
+    return score is not None and score >= threshold
+
+
+def _get_display_score(chunk: Any) -> float:
+    """Return valid dense score for display/history, or 0.0 if missing, non-finite, or invalid."""
+    score = _extract_dense_score(chunk)
+    return score if score is not None else 0.0
 
 st.set_page_config(
     page_title="IntelliAsk — AI Document QA",
@@ -346,37 +379,44 @@ query = st.text_input("question_input", placeholder="e.g. What is perplexity? Ho
 
 # ── SEARCH + GENERATE ─────────────────────────────────────────────────────────
 if query and st.session_state.engine:
-    results = st.session_state.engine.search(query, k=10)
+    results = st.session_state.engine.search_hybrid(query, k=10)
 
     if len(results) == 0:
         st.markdown("<div style='color:#f87171;padding:0.75rem;'>⚠️ No results found in the document.</div>", unsafe_allow_html=True)
     else:
-        # ── Evidence sufficiency check (Week 2) ──────────────────────────────
+        # ── Evidence sufficiency check (Week 2 & 3) ──────────────────────────
         verdict = check_evidence_sufficiency(
             results,
             query=query,
             score_threshold=0.38,
             min_content_word_overlap=1,
             min_sufficient_chunks=1,
+            use_dense_score=True,
         )
 
-        # Determine best chunk by combined semantic + keyword score
+        qualifying_chunks = [r for r in results if _is_qualifying_chunk(r, 0.38)]
+        has_supporting_evidence = not verdict.should_abstain and bool(qualifying_chunks)
+
+        # Determine best chunk strictly from qualifying evidence
         import re as _re
         _query_words = [_re.sub(r'[^\w]', '', w) for w in query.lower().split()
                         if _re.sub(r'[^\w]', '', w)]
         _content_words = [w for w in _query_words if len(w) > 3] or _query_words
 
-        best = results[0]
-        best_combined = -1.0
-        for r in results:
-            mc = sum(word in r.text.lower() for word in _content_words)
-            cs = r.score + 0.15 * mc
-            if cs > best_combined:
-                best_combined = cs
-                best = r
+        if has_supporting_evidence:
+            best = qualifying_chunks[0]
+            best_combined = -1.0
+            for r in qualifying_chunks:
+                mc = sum(word in r.text.lower() for word in _content_words)
+                cs = _get_display_score(r) + 0.15 * mc
+                if cs > best_combined:
+                    best_combined = cs
+                    best = r
+        else:
+            best = None
 
         # ── ABSTENTION PATH ──────────────────────────────────────────────────
-        if verdict.should_abstain:
+        if not has_supporting_evidence:
             abstention_msg = build_abstention_message(verdict, query)
             # Render as styled abstention card
             import html as _html
@@ -394,10 +434,8 @@ if query and st.session_state.engine:
 
         # ── CONFIDENT ANSWER PATH ────────────────────────────────────────────
         else:
-            # Build passage list for LLM (Chunk objects, not dicts, for citation)
-            passages_for_llm = [
-                r for r in results if r.score >= 0.38
-            ] or results[:3]
+            # Build passage list strictly from qualifying chunks (dense_score >= 0.38)
+            passages_for_llm = qualifying_chunks
 
             st.markdown("<p class='section-header'>🦙 AI Answer</p>", unsafe_allow_html=True)
             st.markdown(
@@ -411,22 +449,22 @@ if query and st.session_state.engine:
             st.markdown("</div>", unsafe_allow_html=True)
             answer_source = "ollama"
 
-        # ── META PILLS (always shown when not abstaining) ─────────────────────
-        if not verdict.should_abstain:
+        # ── META PILLS (only shown when supporting evidence is verified) ──────
+        if has_supporting_evidence and best is not None:
             citation_html = "".join(
                 f"<span class='citation-pill'>📌 {c}</span>"
-                for c in format_citations(results[:3])
+                for c in format_citations(qualifying_chunks[:3])
             )
             st.markdown(
-                f"<span class='meta-pill'>📊 Score: {round(best.score, 3)}</span>"
+                f"<span class='meta-pill'>📊 Score: {round(_get_display_score(best), 3)}</span>"
                 f"<span class='meta-pill'>📄 {best.source}</span>"
                 f"<br>{citation_html}",
                 unsafe_allow_html=True
             )
 
         # ── SUPPORTING PASSAGES WITH PAGE CITATIONS ───────────────────────────
-        above_threshold = [r for r in results if r.score >= 0.38]
-        if above_threshold:
+        if has_supporting_evidence:
+            above_threshold = qualifying_chunks
             st.markdown("<p class='section-header'>📚 Supporting Passages</p>", unsafe_allow_html=True)
             seen = set()
             shown = 0
@@ -441,7 +479,7 @@ if query and st.session_state.engine:
                 if len(clean_p) < 30:
                     continue
                 citation = format_citation(r)
-                score_badge = f"<span class='passage-score'>score {round(r.score, 3)}</span>"
+                score_badge = f"<span class='passage-score'>score {round(_get_display_score(r), 3)}</span>"
                 citation_badge = f"<span class='citation-pill'>📌 {citation}</span>"
                 st.markdown(
                     f"<div class='passage-card'>"
@@ -457,39 +495,48 @@ if query and st.session_state.engine:
         with st.expander("🗂 Source Navigation — All Retrieved Passages", expanded=False):
             st.markdown(
                 "<p style='color:#64748b;font-size:0.82rem;margin-bottom:0.75rem;'>"
-                f"Showing all {len(results)} retrieved passages ranked by semantic similarity. "
-                "Page numbers link directly to the physical PDF page."
+                f"Showing all {len(results)} retrieved passages ranked by hybrid RRF. "
+                "These are raw candidate passages and do not represent verified supporting evidence unless qualified."
                 "</p>",
                 unsafe_allow_html=True
             )
             for rank, r in enumerate(results, start=1):
                 citation = format_citation(r)
                 excerpt = r.text.strip()[:200].replace("<", "&lt;").replace(">", "&gt;")
-                relevance_color = "#34d399" if r.score >= 0.38 else "#64748b"
+                relevance_color = "#34d399" if _is_qualifying_chunk(r, 0.38) else "#64748b"
                 st.markdown(
                     f"<div style='background:#0d0d1a;border:1px solid rgba(255,255,255,0.06);"
                     f"border-radius:8px;padding:0.7rem 1rem;margin-bottom:0.5rem;font-size:0.85rem;'>"
                     f"<span style='color:{relevance_color};font-weight:600;'>#{rank}</span>"
                     f" <span class='citation-pill'>📌 {citation}</span>"
-                    f" <span style='color:#475569;font-size:0.78rem;'>score: {round(r.score, 3)}</span>"
+                    f" <span style='color:#475569;font-size:0.78rem;'>score: {round(_get_display_score(r), 3)}</span>"
                     f"<br><span style='color:#94a3b8;line-height:1.6;'>{excerpt}…</span>"
                     f"</div>",
                     unsafe_allow_html=True
                 )
 
         # ── SAVE TO HISTORY ───────────────────────────────────────────────────
-        # Build serializable filtered_passages for history compatibility
-        filtered_passages = [
-            {"text": r.text, "score": round(float(r.score), 3)}
-            for r in results if r.score >= 0.38
-        ]
+        if has_supporting_evidence and best is not None:
+            filtered_passages = [
+                {"text": r.text, "score": round(_get_display_score(r), 3)}
+                for r in qualifying_chunks
+            ]
+            source_val = best.source
+            score_val = float(_get_display_score(best))
+            citations_val = verdict.citations
+        else:
+            filtered_passages = []
+            source_val = ""
+            score_val = 0.0
+            citations_val = []
+
         entry = {
             "question": query,
             "answer": llm_answer if isinstance(llm_answer, str) else "",
             "answer_source": answer_source,
-            "source": best.source,
-            "score": float(best.score),
-            "citations": verdict.citations,
+            "source": source_val,
+            "score": score_val,
+            "citations": citations_val,
             "passages": filtered_passages,
         }
         st.session_state.history.append(entry)
