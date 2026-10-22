@@ -13,6 +13,8 @@ from src.citation import (
     check_evidence_sufficiency,
     build_abstention_message,
 )
+from src.storage.db import SQLiteManager
+from src.matrix.exporter import build_matrix_from_db, export_db_to_csv
 
 
 def _extract_dense_score(chunk: Any) -> Optional[float]:
@@ -308,267 +310,408 @@ with st.sidebar:
     st.markdown("<p style='color:#64748b;font-size:0.78rem;'>Pull a model:</p>", unsafe_allow_html=True)
     st.code(f"ollama pull {ollama_model}", language="bash")
 
-# ── SESSION STATE ─────────────────────────────────────────────────────────────
-if "processor" not in st.session_state:
-    st.session_state.processor = DocumentProcessor()
-    st.session_state.engine = None
-    st.session_state.file_name = None
+# ── PAGE NAVIGATION ─────────────────────────────────────────────────────────────
+page = st.sidebar.radio(
+    "Navigate",
+    ["📝 Ask Questions", "📊 Literature Matrix"],
+    label_visibility="collapsed"
+)
 
-if "history" not in st.session_state:
+# ── LITERATURE MATRIX PAGE ─────────────────────────────────────────────────────
+if page == "📊 Literature Matrix":
+    st.markdown("""
+    <div class="app-header">
+        <div class="app-title">📊 Literature Review Matrix</div>
+        <p class="app-subtitle">Structured comparison of extracted research papers</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Initialize database
+    db_path = "data/papers.db"
+    db = None
     try:
-        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
-            content = f.read().strip()
-            st.session_state.history = json.loads(content) if content else []
-    except Exception:
-        st.session_state.history = []
+        db = SQLiteManager(db_path)
+        db.initialize_schema()
 
-# ── CACHED MODEL LOADERS ───────────────────────────────────────────────────────
-@st.cache_resource(show_spinner="🔤 Loading spaCy language model...")
-def load_nlp():
-    return get_nlp()
+        # Get all documents and extractions
+        all_docs = db.get_all_documents()
+        all_extractions = db.get_all_extractions()
 
-@st.cache_resource(show_spinner="🧠 Loading embedding model (first time only)...")
-def load_embedding_model():
-    return get_embedding_model()
-
-@st.cache_resource(show_spinner="⚙️ Building search index...")
-def build_engine(_chunks, _model):
-    return QAEngine(_chunks, _model)
-
-nlp = load_nlp()
-embedding_model = load_embedding_model()
-
-# ── HEADER ────────────────────────────────────────────────────────────────────
-st.markdown("""
-<div class="app-header">
-    <div class="app-title">🧠 IntelliAsk</div>
-    <p class="app-subtitle">Ask questions about any PDF — answered by a local AI, entirely on your machine.</p>
-</div>
-""", unsafe_allow_html=True)
-
-# ── FILE UPLOAD ───────────────────────────────────────────────────────────────
-st.markdown("<p class='section-header'>📄 Document</p>", unsafe_allow_html=True)
-uploaded_file = st.file_uploader("Upload a PDF to get started", type="pdf", label_visibility="collapsed")
-
-if uploaded_file:
-    if st.session_state.file_name != uploaded_file.name:
-        with st.spinner("📖 Reading and indexing document..."):
-            st.session_state.processor = DocumentProcessor()
-            st.session_state.processor.process_file(uploaded_file, nlp)
-            st.session_state.engine = build_engine(
-                tuple(st.session_state.processor.chunks),
-                embedding_model
-            )
-            st.session_state.file_name = uploaded_file.name
-
-        st.markdown(f"""
-        <div style='background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.25);
-        border-radius:8px;padding:0.6rem 1rem;margin:0.5rem 0 1rem 0;font-size:0.88rem;color:#34d399;'>
-            ✅ <strong>{uploaded_file.name}</strong> indexed successfully
-        </div>""", unsafe_allow_html=True)
-    else:
-        st.markdown(f"""
-        <div style='background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.2);
-        border-radius:8px;padding:0.5rem 1rem;margin-bottom:1rem;font-size:0.85rem;color:#93c5fd;'>
-            📄 <strong>{uploaded_file.name}</strong> — ready
-        </div>""", unsafe_allow_html=True)
-
-# ── QUESTION INPUT ─────────────────────────────────────────────────────────────
-st.markdown("<p class='section-header'>💬 Ask a Question</p>", unsafe_allow_html=True)
-query = st.text_input("question_input", placeholder="e.g. What is perplexity? How do N-grams work?", label_visibility="collapsed")
-
-# ── SEARCH + GENERATE ─────────────────────────────────────────────────────────
-if query and st.session_state.engine:
-    results = st.session_state.engine.search_hybrid(query, k=10)
-
-    if len(results) == 0:
-        st.markdown("<div style='color:#f87171;padding:0.75rem;'>⚠️ No results found in the document.</div>", unsafe_allow_html=True)
-    else:
-        # ── Evidence sufficiency check (Week 2 & 3) ──────────────────────────
-        verdict = check_evidence_sufficiency(
-            results,
-            query=query,
-            score_threshold=0.38,
-            min_content_word_overlap=1,
-            min_sufficient_chunks=1,
-            use_dense_score=True,
-        )
-
-        qualifying_chunks = [r for r in results if _is_qualifying_chunk(r, 0.38)]
-        has_supporting_evidence = not verdict.should_abstain and bool(qualifying_chunks)
-
-        # Determine best chunk strictly from qualifying evidence
-        import re as _re
-        _query_words = [_re.sub(r'[^\w]', '', w) for w in query.lower().split()
-                        if _re.sub(r'[^\w]', '', w)]
-        _content_words = [w for w in _query_words if len(w) > 3] or _query_words
-
-        if has_supporting_evidence:
-            best = qualifying_chunks[0]
-            best_combined = -1.0
-            for r in qualifying_chunks:
-                mc = sum(word in r.text.lower() for word in _content_words)
-                cs = _get_display_score(r) + 0.15 * mc
-                if cs > best_combined:
-                    best_combined = cs
-                    best = r
+        if not all_docs:
+            st.markdown("""
+            <div style='background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);
+            border-radius:8px;padding:1rem 1.5rem;margin:1rem 0;font-size:0.9rem;color:#fde68a;'>
+                📭 <strong>No documents in database</strong><br>
+                Upload PDFs in the "Ask Questions" tab to extract structured information.
+            </div>
+            """, unsafe_allow_html=True)
         else:
-            best = None
+            # Build matrix
+            matrix = build_matrix_from_db(db)
 
-        # ── ABSTENTION PATH ──────────────────────────────────────────────────
-        if not has_supporting_evidence:
-            abstention_msg = build_abstention_message(verdict, query)
-            # Render as styled abstention card
-            import html as _html
-            safe_msg = _html.escape(abstention_msg)
-            # Re-apply minimal markdown: **bold** and *italic*
-            safe_msg = _re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', safe_msg)
-            safe_msg = _re.sub(r'\*(.+?)\*', r'<em>\1</em>', safe_msg)
-            safe_msg = safe_msg.replace('\n\n', '<br><br>').replace('\n', '<br>')
-            st.markdown(
-                f"<div class='abstention-card'>{safe_msg}</div>",
-                unsafe_allow_html=True
-            )
-            llm_answer = abstention_msg
-            answer_source = "abstention"
+            if not matrix:
+                st.markdown("""
+                <div style='background:rgba(96,165,250,0.1);border:1px solid rgba(96,165,250,0.3);
+                border-radius:8px;padding:1rem 1.5rem;margin:1rem 0;font-size:0.9rem;color:#93c5fd;'>
+                    📋 <strong>Documents registered but not yet extracted</strong><br>
+                    Documents exist in the database but lack structured extractions.
+                    Extract papers to populate the literature matrix.
+                </div>
+                """, unsafe_allow_html=True)
+            else:
+                # Display matrix
+                st.markdown(f"<p class='section-header'>📊 {len(matrix)} Extracted Papers</p>", unsafe_allow_html=True)
 
-        # ── CONFIDENT ANSWER PATH ────────────────────────────────────────────
-        else:
-            # Build passage list strictly from qualifying chunks (dense_score >= 0.38)
-            passages_for_llm = qualifying_chunks
+                # Convert to dataframe
+                import pandas as pd
+                df = pd.DataFrame(matrix)
 
-            st.markdown("<p class='section-header'>🦙 AI Answer</p>", unsafe_allow_html=True)
-            st.markdown(
-                "<div class='answer-card'><div class='answer-label'>Ollama · "
-                + ollama_model + "</div>",
-                unsafe_allow_html=True
-            )
-            with st.spinner(f"Thinking with {ollama_model}..."):
-                stream_gen = generate_answer(query, passages_for_llm, model=ollama_model)
-                llm_answer = st.write_stream(stream_gen)
-            st.markdown("</div>", unsafe_allow_html=True)
-            answer_source = "ollama"
-
-        # ── META PILLS (only shown when supporting evidence is verified) ──────
-        if has_supporting_evidence and best is not None:
-            citation_html = "".join(
-                f"<span class='citation-pill'>📌 {c}</span>"
-                for c in format_citations(qualifying_chunks[:3])
-            )
-            st.markdown(
-                f"<span class='meta-pill'>📊 Score: {round(_get_display_score(best), 3)}</span>"
-                f"<span class='meta-pill'>📄 {best.source}</span>"
-                f"<br>{citation_html}",
-                unsafe_allow_html=True
-            )
-
-        # ── SUPPORTING PASSAGES WITH PAGE CITATIONS ───────────────────────────
-        if has_supporting_evidence:
-            above_threshold = qualifying_chunks
-            st.markdown("<p class='section-header'>📚 Supporting Passages</p>", unsafe_allow_html=True)
-            seen = set()
-            shown = 0
-            for r in above_threshold:
-                if shown >= 5:
-                    break
-                key = r.text[:100]
-                if key in seen:
-                    continue
-                seen.add(key)
-                clean_p = r.text.strip()
-                if len(clean_p) < 30:
-                    continue
-                citation = format_citation(r)
-                score_badge = f"<span class='passage-score'>score {round(_get_display_score(r), 3)}</span>"
-                citation_badge = f"<span class='citation-pill'>📌 {citation}</span>"
-                st.markdown(
-                    f"<div class='passage-card'>"
-                    f"{score_badge}"
-                    f"{clean_p}"
-                    f"<div class='passage-meta'>{citation_badge}</div>"
-                    f"</div>",
-                    unsafe_allow_html=True
-                )
-                shown += 1
-
-        # ── SOURCE NAVIGATION EXPANDER ────────────────────────────────────────
-        with st.expander("🗂 Source Navigation — All Retrieved Passages", expanded=False):
-            st.markdown(
-                "<p style='color:#64748b;font-size:0.82rem;margin-bottom:0.75rem;'>"
-                f"Showing all {len(results)} retrieved passages ranked by hybrid RRF. "
-                "These are raw candidate passages and do not represent verified supporting evidence unless qualified."
-                "</p>",
-                unsafe_allow_html=True
-            )
-            for rank, r in enumerate(results, start=1):
-                citation = format_citation(r)
-                excerpt = r.text.strip()[:200].replace("<", "&lt;").replace(">", "&gt;")
-                relevance_color = "#34d399" if _is_qualifying_chunk(r, 0.38) else "#64748b"
-                st.markdown(
-                    f"<div style='background:#0d0d1a;border:1px solid rgba(255,255,255,0.06);"
-                    f"border-radius:8px;padding:0.7rem 1rem;margin-bottom:0.5rem;font-size:0.85rem;'>"
-                    f"<span style='color:{relevance_color};font-weight:600;'>#{rank}</span>"
-                    f" <span class='citation-pill'>📌 {citation}</span>"
-                    f" <span style='color:#475569;font-size:0.78rem;'>score: {round(_get_display_score(r), 3)}</span>"
-                    f"<br><span style='color:#94a3b8;line-height:1.6;'>{excerpt}…</span>"
-                    f"</div>",
-                    unsafe_allow_html=True
+                # Display interactive table
+                st.dataframe(
+                    df,
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config={
+                        "Document": st.column_config.TextColumn("Document", width="medium"),
+                        "Title": st.column_config.TextColumn("Title", width="large"),
+                        "Key Metrics": st.column_config.TextColumn("Key Metrics", width="large"),
+                    }
                 )
 
-        # ── SAVE TO HISTORY ───────────────────────────────────────────────────
-        if has_supporting_evidence and best is not None:
-            filtered_passages = [
-                {"text": r.text, "score": round(_get_display_score(r), 3)}
-                for r in qualifying_chunks
-            ]
-            source_val = best.source
-            score_val = float(_get_display_score(best))
-            citations_val = verdict.citations
-        else:
-            filtered_passages = []
-            source_val = ""
-            score_val = 0.0
-            citations_val = []
+                # CSV download
+                csv_data = export_db_to_csv(db)
+                st.download_button(
+                    label="📥 Download Literature Matrix (CSV)",
+                    data=csv_data,
+                    file_name="literature_matrix.csv",
+                    mime="text/csv",
+                    type="primary"
+                )
 
-        entry = {
-            "question": query,
-            "answer": llm_answer if isinstance(llm_answer, str) else "",
-            "answer_source": answer_source,
-            "source": source_val,
-            "score": score_val,
-            "citations": citations_val,
-            "passages": filtered_passages,
-        }
-        st.session_state.history.append(entry)
-        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
-            json.dump(st.session_state.history, f, indent=2)
+                # Provenance detail section
+                st.markdown("<p class='section-header'>🔍 Provenance Details</p>", unsafe_allow_html=True)
 
-elif query and not st.session_state.engine:
-    st.markdown("<div style='color:#fbbf24;padding:0.75rem;font-size:0.9rem;'>⚠️ Please upload a PDF first.</div>", unsafe_allow_html=True)
+                selected_doc = st.selectbox(
+                    "Select paper to view provenance",
+                    options=[row["Document"] for row in matrix],
+                    label_visibility="collapsed"
+                )
 
-# ── HISTORY ───────────────────────────────────────────────────────────────────
-history_to_show = st.session_state.history[:-1] if (
-    query and st.session_state.history and
-    st.session_state.history[-1].get("question") == query
-) else st.session_state.history
+                if selected_doc:
+                    # Find extraction for selected document
+                    selected_extraction = None
+                    for extraction in all_extractions:
+                        doc = db.get_document(extraction.paper_id)
+                        if doc and doc["filename"] == selected_doc:
+                            selected_extraction = extraction
+                            break
 
-if history_to_show:
-    st.markdown("<p class='section-header'>🕘 History</p>", unsafe_allow_html=True)
+                    if selected_extraction:
+                        # Show field-level provenance
+                        field_mappings = {
+                            "Title": selected_extraction.title,
+                            "Authors": selected_extraction.authors,
+                            "Year": selected_extraction.year,
+                            "Research Objective": selected_extraction.research_objective,
+                            "Methodology": selected_extraction.proposed_methodology,
+                            "Dataset": selected_extraction.dataset_used,
+                            "Hardware/Sensors": selected_extraction.hardware_or_sensors,
+                            "Limitations": selected_extraction.acknowledged_limitations,
+                        }
 
-    col_h, col_btn = st.columns([6, 1])
-    with col_btn:
-        if st.button("🗑 Clear"):
+                        for field_name, field in field_mappings.items():
+                            if field.provenance:
+                                with st.expander(f"📌 {field_name} Provenance"):
+                                    for span in field.provenance:
+                                        quote_html = f"<br><em>\"{span.verbatim_quote}\"</em>" if span.verbatim_quote else ""
+                                        st.markdown(f"""
+                                        <div style='background:#0d0d1a;border:1px solid rgba(124,58,237,0.2);
+                                        border-radius:6px;padding:0.6rem 1rem;margin-bottom:0.5rem;font-size:0.85rem;'>
+                                            <span style='color:#a78bfa;font-weight:600;'>Page {span.page_number}</span>
+                                            {quote_html}
+                                        </div>
+                                        """, unsafe_allow_html=True)
+                            else:
+                                st.markdown(f"""
+                                <div style='color:#64748b;font-size:0.82rem;margin:0.25rem 0;'>
+                                    • {field_name}: No provenance recorded
+                                </div>
+                                """, unsafe_allow_html=True)
+
+    except Exception as e:
+        st.markdown(f"""
+        <div style='background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);
+        border-radius:8px;padding:1rem 1.5rem;margin:1rem 0;font-size:0.9rem;color:#fca5a5;'>
+            ⚠️ <strong>Database error</strong><br>
+            {str(e)}
+        </div>
+        """, unsafe_allow_html=True)
+    finally:
+        if db:
+            db.close()
+
+else:  # Ask Questions page
+    # ── SESSION STATE ─────────────────────────────────────────────────────────────
+    if "processor" not in st.session_state:
+        st.session_state.processor = DocumentProcessor()
+        st.session_state.engine = None
+        st.session_state.file_name = None
+
+    if "history" not in st.session_state:
+        try:
+            with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+                content = f.read().strip()
+                st.session_state.history = json.loads(content) if content else []
+        except Exception:
             st.session_state.history = []
-            with open(HISTORY_FILE, "w", encoding="utf-8") as f:
-                json.dump([], f)
-            st.rerun()
 
-    for item in reversed(history_to_show):
-        q = item.get("question", "")
-        a = item.get("answer", "")
-        short_a = a[:180] + "..." if len(a) > 180 else a
-        st.markdown(f"""
-        <div class='history-card'>
-            <div class='history-question'>❓ {q}</div>
-            <div class='history-answer'>{short_a}</div>
-        </div>""", unsafe_allow_html=True)
+    # ── CACHED MODEL LOADERS ───────────────────────────────────────────────────────
+    @st.cache_resource(show_spinner="🔤 Loading spaCy language model...")
+    def load_nlp():
+        return get_nlp()
+
+    @st.cache_resource(show_spinner="🧠 Loading embedding model (first time only)...")
+    def load_embedding_model():
+        return get_embedding_model()
+
+    @st.cache_resource(show_spinner="⚙️ Building search index...")
+    def build_engine(_chunks, _model):
+        return QAEngine(_chunks, _model)
+
+    nlp = load_nlp()
+    embedding_model = load_embedding_model()
+
+    # ── HEADER ────────────────────────────────────────────────────────────────────
+    st.markdown("""
+    <div class="app-header">
+        <div class="app-title">🧠 IntelliAsk</div>
+        <p class="app-subtitle">Ask questions about any PDF — answered by a local AI, entirely on your machine.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ── FILE UPLOAD ───────────────────────────────────────────────────────────────
+    st.markdown("<p class='section-header'>📄 Document</p>", unsafe_allow_html=True)
+    uploaded_file = st.file_uploader("Upload a PDF to get started", type="pdf", label_visibility="collapsed")
+
+    if uploaded_file:
+        if st.session_state.file_name != uploaded_file.name:
+            with st.spinner("📖 Reading and indexing document..."):
+                st.session_state.processor = DocumentProcessor()
+                st.session_state.processor.process_file(uploaded_file, nlp)
+                st.session_state.engine = build_engine(
+                    tuple(st.session_state.processor.chunks),
+                    embedding_model
+                )
+                st.session_state.file_name = uploaded_file.name
+
+            st.markdown(f"""
+            <div style='background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.25);
+            border-radius:8px;padding:0.6rem 1rem;margin:0.5rem 0 1rem 0;font-size:0.88rem;color:#34d399;'>
+                ✅ <strong>{uploaded_file.name}</strong> indexed successfully
+            </div>""", unsafe_allow_html=True)
+        else:
+            st.markdown(f"""
+            <div style='background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.2);
+            border-radius:8px;padding:0.5rem 1rem;margin-bottom:1rem;font-size:0.85rem;color:#93c5fd;'>
+                📄 <strong>{uploaded_file.name}</strong> — ready
+            </div>""", unsafe_allow_html=True)
+
+    # ── QUESTION INPUT ─────────────────────────────────────────────────────────────
+    st.markdown("<p class='section-header'>💬 Ask a Question</p>", unsafe_allow_html=True)
+    query = st.text_input("question_input", placeholder="e.g. What is perplexity? How do N-grams work?", label_visibility="collapsed")
+
+    # ── SEARCH + GENERATE ─────────────────────────────────────────────────────────
+    if query and st.session_state.engine:
+        results = st.session_state.engine.search_hybrid(query, k=10)
+
+        if len(results) == 0:
+            st.markdown("<div style='color:#f87171;padding:0.75rem;'>⚠️ No results found in the document.</div>", unsafe_allow_html=True)
+        else:
+            # ── Evidence sufficiency check (Week 2 & 3) ──────────────────────────
+            verdict = check_evidence_sufficiency(
+                results,
+                query=query,
+                score_threshold=0.38,
+                min_content_word_overlap=1,
+                min_sufficient_chunks=1,
+                use_dense_score=True,
+            )
+
+            qualifying_chunks = [r for r in results if _is_qualifying_chunk(r, 0.38)]
+            has_supporting_evidence = not verdict.should_abstain and bool(qualifying_chunks)
+
+            # Determine best chunk strictly from qualifying evidence
+            import re as _re
+            _query_words = [_re.sub(r'[^\w]', '', w) for w in query.lower().split()
+                            if _re.sub(r'[^\w]', '', w)]
+            _content_words = [w for w in _query_words if len(w) > 3] or _query_words
+
+            if has_supporting_evidence:
+                best = qualifying_chunks[0]
+                best_combined = -1.0
+                for r in qualifying_chunks:
+                    mc = sum(word in r.text.lower() for word in _content_words)
+                    cs = _get_display_score(r) + 0.15 * mc
+                    if cs > best_combined:
+                        best_combined = cs
+                        best = r
+            else:
+                best = None
+
+            # ── ABSTENTION PATH ──────────────────────────────────────────────────
+            if not has_supporting_evidence:
+                abstention_msg = build_abstention_message(verdict, query)
+                # Render as styled abstention card
+                import html as _html
+                safe_msg = _html.escape(abstention_msg)
+                # Re-apply minimal markdown: **bold** and *italic*
+                safe_msg = _re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', safe_msg)
+                safe_msg = _re.sub(r'\*(.+?)\*', r'<em>\1</em>', safe_msg)
+                safe_msg = safe_msg.replace('\n\n', '<br><br>').replace('\n', '<br>')
+                st.markdown(
+                    f"<div class='abstention-card'>{safe_msg}</div>",
+                    unsafe_allow_html=True
+                )
+                llm_answer = abstention_msg
+                answer_source = "abstention"
+
+            # ── CONFIDENT ANSWER PATH ────────────────────────────────────────────
+            else:
+                # Build passage list strictly from qualifying chunks (dense_score >= 0.38)
+                passages_for_llm = qualifying_chunks
+
+                st.markdown("<p class='section-header'>🦙 AI Answer</p>", unsafe_allow_html=True)
+                st.markdown(
+                    "<div class='answer-card'><div class='answer-label'>Ollama · "
+                    + ollama_model + "</div>",
+                    unsafe_allow_html=True
+                )
+                with st.spinner(f"Thinking with {ollama_model}..."):
+                    stream_gen = generate_answer(query, passages_for_llm, model=ollama_model)
+                    llm_answer = st.write_stream(stream_gen)
+                st.markdown("</div>", unsafe_allow_html=True)
+                answer_source = "ollama"
+
+            # ── META PILLS (only shown when supporting evidence is verified) ──────
+            if has_supporting_evidence and best is not None:
+                citation_html = "".join(
+                    f"<span class='citation-pill'>📌 {c}</span>"
+                    for c in format_citations(qualifying_chunks[:3])
+                )
+                st.markdown(
+                    f"<span class='meta-pill'>📊 Score: {round(_get_display_score(best), 3)}</span>"
+                    f"<span class='meta-pill'>📄 {best.source}</span>"
+                    f"<br>{citation_html}",
+                    unsafe_allow_html=True
+                )
+
+            # ── SUPPORTING PASSAGES WITH PAGE CITATIONS ───────────────────────────
+            if has_supporting_evidence:
+                above_threshold = qualifying_chunks
+                st.markdown("<p class='section-header'>📚 Supporting Passages</p>", unsafe_allow_html=True)
+                seen = set()
+                shown = 0
+                for r in above_threshold:
+                    if shown >= 5:
+                        break
+                    key = r.text[:100]
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    clean_p = r.text.strip()
+                    if len(clean_p) < 30:
+                        continue
+                    citation = format_citation(r)
+                    score_badge = f"<span class='passage-score'>score {round(_get_display_score(r), 3)}</span>"
+                    citation_badge = f"<span class='citation-pill'>📌 {citation}</span>"
+                    st.markdown(
+                        f"<div class='passage-card'>"
+                        f"{score_badge}"
+                        f"{clean_p}"
+                        f"<div class='passage-meta'>{citation_badge}</div>"
+                        f"</div>",
+                        unsafe_allow_html=True
+                    )
+                    shown += 1
+
+            # ── SOURCE NAVIGATION EXPANDER ────────────────────────────────────────
+            with st.expander("🗂 Source Navigation — All Retrieved Passages", expanded=False):
+                st.markdown(
+                    "<p style='color:#64748b;font-size:0.82rem;margin-bottom:0.75rem;'>"
+                    f"Showing all {len(results)} retrieved passages ranked by hybrid RRF. "
+                    "These are raw candidate passages and do not represent verified supporting evidence unless qualified."
+                    "</p>",
+                    unsafe_allow_html=True
+                )
+                for rank, r in enumerate(results, start=1):
+                    citation = format_citation(r)
+                    excerpt = r.text.strip()[:200].replace("<", "&lt;").replace(">", "&gt;")
+                    relevance_color = "#34d399" if _is_qualifying_chunk(r, 0.38) else "#64748b"
+                    st.markdown(
+                        f"<div style='background:#0d0d1a;border:1px solid rgba(255,255,255,0.06);"
+                        f"border-radius:8px;padding:0.7rem 1rem;margin-bottom:0.5rem;font-size:0.85rem;'>"
+                        f"<span style='color:{relevance_color};font-weight:600;'>#{rank}</span>"
+                        f" <span class='citation-pill'>📌 {citation}</span>"
+                        f" <span style='color:#475569;font-size:0.78rem;'>score: {round(_get_display_score(r), 3)}</span>"
+                        f"<br><span style='color:#94a3b8;line-height:1.6;'>{excerpt}…</span>"
+                        f"</div>",
+                        unsafe_allow_html=True
+                    )
+
+            # ── SAVE TO HISTORY ───────────────────────────────────────────────────
+            if has_supporting_evidence and best is not None:
+                filtered_passages = [
+                    {"text": r.text, "score": round(_get_display_score(r), 3)}
+                    for r in qualifying_chunks
+                ]
+                source_val = best.source
+                score_val = float(_get_display_score(best))
+                citations_val = verdict.citations
+            else:
+                filtered_passages = []
+                source_val = ""
+                score_val = 0.0
+                citations_val = []
+
+            entry = {
+                "question": query,
+                "answer": llm_answer if isinstance(llm_answer, str) else "",
+                "answer_source": answer_source,
+                "source": source_val,
+                "score": score_val,
+                "citations": citations_val,
+                "passages": filtered_passages,
+            }
+            st.session_state.history.append(entry)
+            with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+                json.dump(st.session_state.history, f, indent=2)
+
+    elif query and not st.session_state.engine:
+        st.markdown("<div style='color:#fbbf24;padding:0.75rem;font-size:0.9rem;'>⚠️ Please upload a PDF first.</div>", unsafe_allow_html=True)
+
+    # ── HISTORY ───────────────────────────────────────────────────────────────────
+    history_to_show = st.session_state.history[:-1] if (
+        query and st.session_state.history and
+        st.session_state.history[-1].get("question") == query
+    ) else st.session_state.history
+
+    if history_to_show:
+        st.markdown("<p class='section-header'>🕘 History</p>", unsafe_allow_html=True)
+
+        col_h, col_btn = st.columns([6, 1])
+        with col_btn:
+            if st.button("🗑 Clear"):
+                st.session_state.history = []
+                with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+                    json.dump([], f)
+                st.rerun()
+
+        for item in reversed(history_to_show):
+            q = item.get("question", "")
+            a = item.get("answer", "")
+            short_a = a[:180] + "..." if len(a) > 180 else a
+            st.markdown(f"""
+            <div class='history-card'>
+                <div class='history-question'>❓ {q}</div>
+                <div class='history-answer'>{short_a}</div>
+            </div>""", unsafe_allow_html=True)
