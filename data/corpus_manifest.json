@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IntelliAskCorpusManifest",
+  "description": "Corpus manifest for IntelliAsk pothole depth estimation scientific evaluation papers.",
+  "status": "active",
+  "notes": "Curated scientific evaluation corpus comprising 7 verified research papers in data/papers/.",
+  "papers": [
+    {
+      "document_id": "journal_pone_0344604",
+      "local_pdf_path": "data/papers/journal.pone.0344604.pdf",
+      "title": "Smartphone-based accurate pothole depth estimation using monocular RGB and LiDAR-guided deep learning",
+      "authors": [
+        "Waqas Rauf Butt",
+        "Muhammad Farooq",
+        "Sohail Jabbar",
+        "Muhammad Murtaza Iqbal",
+        "Usman Raza",
+        "Ali E. S. Ahmed"
+      ],
+      "publication_year": 2026,
+      "identifier": "DOI: 10.1371/journal.pone.0344604",
+      "source_url": "https://doi.org/10.1371/journal.pone.0344604",
+      "status": "active",
+      "page_count": 17,
+      "physical_pages": "1-17",
+      "printed_pages": "1-17",
+      "pagination_offset": "Identical (header prints 'X / 17')",
+      "metadata_verification_status": "verified",
+      "notes": "Published May 8, 2026 in PLOS ONE 21(5): e0344604. Open-access Creative Commons CC BY 4.0. Dataset on Zenodo (DOI: 10.5281/zenodo.15773442). Monocular RGB depth prediction (MiDaS DPT) with iPhone 14 Pro integrated LiDAR ground-truth guidance."
+    },
+    {
+      "document_id": "arxiv_2505_21049",
+      "local_pdf_path": "data/papers/2505.21049.pdf",
+      "title": "Robust Video-Based Pothole Detection and Area Estimation for Intelligent Vehicles with Depth Map and Kalman Smoothing",
+      "authors": [
+        "Dehao Wang",
+        "Haohang Zhu",
+        "Yiwen Xu",
+        "Kaiqi Liu"
+      ],
+      "publication_year": 2025,
+      "identifier": "arXiv:2505.21049v1",
+      "source_url": "https://arxiv.org/abs/2505.21049",
+      "status": "active",
+      "page_count": 15,
+      "physical_pages": "1-15",
+      "printed_pages": "1-15",
+      "pagination_offset": "Identical (IEEE class template pagination 1-15)",
+      "metadata_verification_status": "verified",
+      "notes": "arXiv preprint [cs.CV] submitted May 27, 2025. Proposes ACSH-YOLOv8 + DepthAnything V2 + MBTP (Minimum Bounding Triangulated Pixel) area estimation with CDKF Kalman filtering on Clear Road and Dark Road datasets."
+    },
+    {
+      "document_id": "isprs_archives_2025_291",
+      "local_pdf_path": "data/papers/isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+      "title": "High-Precision 3D Recognition of Road Potholes Based on Binocular Vision and Cross-Modal Feature Fusion",
+      "authors": [
+        "Hanzheng Wang",
+        "Shishuo Xu",
+        "Danyang Hu",
+        "Zheng Wen",
+        "Jianxi Ou"
+      ],
+      "publication_year": 2025,
+      "identifier": "DOI: 10.5194/isprs-archives-XLVIII-4-W14-2025-291-2025",
+      "source_url": "https://doi.org/10.5194/isprs-archives-XLVIII-4-W14-2025-291-2025",
+      "status": "active",
+      "page_count": 6,
+      "physical_pages": "1-6",
+      "printed_pages": "291-296",
+      "pagination_offset": "Printed = Physical + 290 (footer prints '291' to '296')",
+      "metadata_verification_status": "verified",
+      "notes": "Published in The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences, Volume XLVIII-4/W14-2025, pp. 291-296. Peer-reviewed open access CC BY 4.0. ZED 2i binocular camera + Mask R-CNN + dynamic mesh density."
+    },
+    {
+      "document_id": "meas_sens_102002",
+      "local_pdf_path": "data/papers/1-s2.0-S2665917426000206-main.pdf",
+      "title": "3D vision and depth sensing for intelligent pothole detection using time-of-flight imaging",
+      "authors": [
+        "Baskar Ponnusamy"
+      ],
+      "publication_year": 2026,
+      "identifier": "DOI: 10.1016/j.measen.2026.102002",
+      "source_url": "https://doi.org/10.1016/j.measen.2026.102002",
+      "status": "active",
+      "page_count": 13,
+      "physical_pages": "1-13",
+      "printed_pages": "1-13",
+      "pagination_offset": "Identical (ScienceDirect template pagination 1-13)",
+      "metadata_verification_status": "verified",
+      "notes": "Published in Measurement: Sensors 45 (2026) 102002 (available online April 18, 2026). Elsevier open access CC BY-NC-ND 4.0. Evaluates Basler Time-of-Flight Camera (Sony DepthSense, 940 nm) on 5 geometric pothole morphologies."
+    },
+    {
+      "document_id": "arxiv_2012_10802v2",
+      "local_pdf_path": "data/papers/2012.10802v2.pdf",
+      "title": "Rethinking Road Surface 3D Reconstruction and Pothole Detection: From Perspective Transformation to Disparity Map Segmentation",
+      "authors": [
+        "Rui Fan",
+        "Umar Ozgunalp",
+        "Yuan Wang",
+        "Ming Liu",
+        "Ioannis Pitas"
+      ],
+      "publication_year": 2020,
+      "identifier": "arXiv:2012.10802v2",
+      "source_url": "https://arxiv.org/abs/2012.10802",
+      "status": "active",
+      "page_count": 10,
+      "physical_pages": "1-10",
+      "printed_pages": "1-10",
+      "pagination_offset": "Identical (arXiv preprint pagination 1-10)",
+      "metadata_verification_status": "verified",
+      "notes": "arXiv:2012.10802v2 [cs.CV] preprint submitted Dec 31, 2020. Journal version published in IEEE Transactions on Cybernetics, Vol. 52, No. 7, pp. 5799-5808, July 2022 (DOI: 10.1109/TCYB.2021.3060461). SGM disparity transformation with roll angle formulation and SLIC superpixel segmentation."
+    },
+    {
+      "document_id": "ieee_access_3512783",
+      "local_pdf_path": "data/papers/Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+      "title": "Deep Learning Enhanced Feature Extraction of Potholes Using Vision and LiDAR Data for Road Maintenance",
+      "authors": [
+        "Abhiram Karukayil",
+        "Christopher Quail",
+        "Fernando Auat Cheein"
+      ],
+      "publication_year": 2024,
+      "identifier": "DOI: 10.1109/ACCESS.2024.3512783",
+      "source_url": "https://doi.org/10.1109/ACCESS.2024.3512783",
+      "status": "active",
+      "page_count": 9,
+      "physical_pages": "1-9",
+      "printed_pages": "184541-184549",
+      "pagination_offset": "Printed = Physical + 184540 (footer prints '184541' to '184549')",
+      "metadata_verification_status": "verified",
+      "notes": "Published in IEEE Access, Vol. 12, pp. 184541-184549, Dec 2024. IEEE open access CC BY-NC-ND 4.0. Integrates Ouster OS1-32 LiDAR with RGB camera and YOLOv5-v8 models, producing interactive HTML pothole severity maps."
+    },
+    {
+      "document_id": "bmvc_2025_lam",
+      "local_pdf_path": "data/papers/paper.pdf",
+      "title": "Robust Pothole Detection through dual-pass RGB and Depth Fusion",
+      "authors": [
+        "Percy Lam",
+        "Weiwei Chen",
+        "Lavindra de Silva",
+        "Ioannis Brilakis"
+      ],
+      "publication_year": 2025,
+      "identifier": "BMVC 2025 Workshop (source-attributed, no embedded DOI)",
+      "source_url": "https://bmva-archive.org.uk/bmvc/2025/papers/paper.pdf",
+      "status": "active",
+      "page_count": 12,
+      "physical_pages": "1-12",
+      "printed_pages": "1-12",
+      "pagination_offset": "Identical (header prints '1' to '12')",
+      "metadata_verification_status": "partially_verified",
+      "notes": "Attributed to BMVC 2025 Workshop based on download source from BMVA archive; PDF carries author copyright notice but no embedded DOI or publisher pagination. Proposes dual-pass YOLOv11x-seg and DINOv2 fusion on West Road and Tennis Court Road datasets."
+    }
+  ]
+}

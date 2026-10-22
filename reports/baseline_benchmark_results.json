@@ -1,0 +1,1480 @@
+[
+  {
+    "id": "Q01",
+    "category": "Direct Factual Retrieval",
+    "question": "Which smartphone model and integrated sensor were used to collect the RGB-D dataset in Rauf Butt et al. (2026), and in which city was the data gathered?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "journal.pone.0344604.pdf"
+    ],
+    "target_pages": {
+      "journal.pone.0344604.pdf": [
+        2,
+        5,
+        7,
+        8
+      ]
+    },
+    "printed_pages": {
+      "journal.pone.0344604.pdf": [
+        2,
+        5,
+        7,
+        8
+      ]
+    },
+    "expected_answer": "iPhone 14 Pro equipped with an integrated LiDAR sensor; collected in Lahore, Pakistan (specifically Walton Road, Airport Road, and Manawan).",
+    "retrieval_latency_ms": 17.39,
+    "top_chunk_score": 0.5126445889472961,
+    "top_chunk_source": "journal.pone.0344604.pdf",
+    "top_chunk_page": 14,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": false,
+    "hit_target_page_top10": true,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.4416,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 12/17 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "I cannot provide the specific information you're looking for based on the text. The text does not contain enough information about the smartphone model and integrated sensor used to collect the RGB-D dataset in Rauf Butt et al. (2026).",
+    "citations": [
+      "[journal.pone.0344604.pdf, p. 14]",
+      "[Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf, p. 5]",
+      "[journal.pone.0344604.pdf, p. 17]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": true,
+    "abstention_correct": true,
+    "score": 0.0,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "journal.pone.0344604.pdf",
+        "page": 14,
+        "score": 0.5126,
+        "text_snippet": "The absence of samples from rural highways, mountainous terrains, and  international urban environments may limit the model\u2019s generalizabili"
+      },
+      {
+        "rank": 2,
+        "source": "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+        "page": 5,
+        "score": 0.4836,
+        "text_snippet": "Sensor communication and data collection were performed using ROS Noetic. The data processing onboard system is using an Intel i7 12th gener"
+      },
+      {
+        "rank": 3,
+        "source": "journal.pone.0344604.pdf",
+        "page": 17,
+        "score": 0.4511,
+        "text_snippet": "Sensors. 2024;24(3):456\u201379. https:// doi.org/10.3390/s24030456 \t30."
+      },
+      {
+        "rank": 4,
+        "source": "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+        "page": 8,
+        "score": 0.4407,
+        "text_snippet": "192\u2013205, 2020. [2] E. M. Thompson, A. Ranieri, S. Biasotti, M. Chicchon, I. Sipiran, M.-K. Pham, T.-L. Nguyen-Ho, H.-D. Nguyen, and M.-T. Tr"
+      },
+      {
+        "rank": 5,
+        "source": "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+        "page": 9,
+        "score": 0.4312,
+        "text_snippet": "[24] M. Vel\u2019as, M. \u0160pan\u011bl, Z. Materna, and A. Herout, \u2018\u2018Calibration of RGB camera with velodyne lidar,\u2019\u2019 in Proc. 22nd Int. Conf."
+      }
+    ]
+  },
+  {
+    "id": "Q02",
+    "category": "Direct Factual Retrieval",
+    "question": "In Dehao Wang et al. (2025), what method is proposed for pothole area estimation from bounding boxes, and what geometric shape does it assume for the pothole?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "2505.21049.pdf"
+    ],
+    "target_pages": {
+      "2505.21049.pdf": [
+        5,
+        6,
+        7
+      ]
+    },
+    "printed_pages": {
+      "2505.21049.pdf": [
+        5,
+        6,
+        7
+      ]
+    },
+    "expected_answer": "The Minimum Bounding Triangulated Pixel (MBTP) method. It assumes an elliptical shape for the pothole, approximating final area by multiplying bounding rectangle area by pi/4.",
+    "retrieval_latency_ms": 26.09,
+    "top_chunk_score": 0.7156623005867004,
+    "top_chunk_source": "2505.21049.pdf",
+    "top_chunk_page": 2,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": false,
+    "hit_target_page_top10": true,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.67,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 10/18 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "According to the cited passage [2505.21049.pdf, p. 5], the proposed method for pothole area estimation is the MBTP method, which combines the 3D minimum bounding rectangle and the pixel-based triangular area accumulation. The MBTP method assumes a triangular shape for the pothole.\n\nExplanation: The MBTP method is a vision-based approach that uses object detection bounding boxes and monocular metric depth estimation maps to estimate pothole areas. The triangular assumption for the pothole shape is likely chosen due to its simplicity and effectiveness in representing the complex geometry of potholes.\n\nNote: There is no information on Dehao Wang et al. (2025) in the provided passage, as it only discusses the authors' work up to 2021.",
+    "citations": [
+      "[2505.21049.pdf, p. 2]",
+      "[2505.21049.pdf, p. 9]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": false,
+    "abstention_correct": true,
+    "score": 0.0,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "2505.21049.pdf",
+        "page": 2,
+        "score": 0.7157,
+        "text_snippet": "III. METHOD The proposed framework for pothole detection and area estimation is illustrated in Fig. 1."
+      },
+      {
+        "rank": 2,
+        "source": "2505.21049.pdf",
+        "page": 9,
+        "score": 0.7067,
+        "text_snippet": "JOURNAL OF LATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 9 C. Evaluation of Pothole Area Estimation and Optimization 1) Pothole Area Estima"
+      },
+      {
+        "rank": 3,
+        "source": "2505.21049.pdf",
+        "page": 2,
+        "score": 0.6917,
+        "text_snippet": "The remainder of the paper is organized as follows. Section II provides a review of related work on pothole detection and pothole area estim"
+      },
+      {
+        "rank": 4,
+        "source": "2505.21049.pdf",
+        "page": 5,
+        "score": 0.6765,
+        "text_snippet": "4. D. Potholes Area Estimation To estimate the pothole area based on the previously ob- tained object detection bounding boxes and monocular"
+      },
+      {
+        "rank": 5,
+        "source": "2505.21049.pdf",
+        "page": 1,
+        "score": 0.6633,
+        "text_snippet": "Research on pothole area estimation generally follows two main approaches. The first involves using LiDAR or similar sensors to obtain 3D po"
+      }
+    ]
+  },
+  {
+    "id": "Q03",
+    "category": "Direct Factual Retrieval",
+    "question": "What specific Time-of-Flight (ToF) camera model, sensor technology, and operating optical wavelength are employed in Ponnusamy (2026)?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "1-s2.0-S2665917426000206-main.pdf"
+    ],
+    "target_pages": {
+      "1-s2.0-S2665917426000206-main.pdf": [
+        3
+      ]
+    },
+    "printed_pages": {
+      "1-s2.0-S2665917426000206-main.pdf": [
+        3
+      ]
+    },
+    "expected_answer": "Basler Time-of-Flight Camera incorporating Sony DepthSense sensor technology, operating at a near-infrared wavelength of 940 nm.",
+    "retrieval_latency_ms": 29.09,
+    "top_chunk_score": 0.6117966175079346,
+    "top_chunk_source": "1-s2.0-S2665917426000206-main.pdf",
+    "top_chunk_page": 3,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": true,
+    "hit_target_page_top10": true,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.505,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 7/13 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "The specific Time-of-Flight (ToF) camera model employed in Ponnusamy (2026) is the Basler Time-of-Flight Camera, which utilizes integrated Sony DepthSense sensor technology.\n\n[1-s2.0-S2665917426000206-main.pdf, p. 3]\n\nThe Basler Time-of-Flight Camera operates at a near-infrared wavelength of 940 nm, which is specified as the operating optical wavelength in the study.\n\n[1-s2.0-S2665917426000206-main.pdf, p. 3]\n\nThere is no information provided about the specific model of the Basler Time-of-Flight Camera used in Ponnusamy (2026).",
+    "citations": [
+      "[1-s2.0-S2665917426000206-main.pdf, p. 3]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": true,
+    "abstention_correct": true,
+    "score": 1.0,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 3,
+        "score": 0.6118,
+        "text_snippet": "Each  module transforms the sensor output into interpretable geometric and  performance metrics used in the Results and Discussion section. "
+      },
+      {
+        "rank": 2,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 3,
+        "score": 0.6031,
+        "text_snippet": "Table 1 describes the functional architecture of  the ToF camera used for this study, showing the role and operating  principle of each subs"
+      },
+      {
+        "rank": 3,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 3,
+        "score": 0.5555,
+        "text_snippet": "The system consists of five integrated  subsystems: illumination unit, optical lens assembly with band-pass  filter, time-resolved image sen"
+      },
+      {
+        "rank": 4,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 1,
+        "score": 0.5174,
+        "text_snippet": "Time-of-Flight cameras offer a compelling sensing modality for real-  time depth acquisition in mobile systems, leveraging active infrared  "
+      },
+      {
+        "rank": 5,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 3,
+        "score": 0.4899,
+        "text_snippet": "Optical  Assembly Directs and filters  incoming light Lens focuses reflected light; optical  band-pass filter transmits only the  emitter wa"
+      }
+    ]
+  },
+  {
+    "id": "Q04",
+    "category": "Direct Factual Retrieval",
+    "question": "In Karukayil et al. (2024), what specific LiDAR sensor model is integrated with the RGB camera, and in what file format is the final interactive map of detected potholes saved?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf"
+    ],
+    "target_pages": {
+      "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf": [
+        5
+      ]
+    },
+    "printed_pages": {
+      "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf": [
+        184545
+      ]
+    },
+    "expected_answer": "Ouster OS1-32 LiDAR (resolution 2048 x 32); final interactive pothole map is saved in HTML format.",
+    "retrieval_latency_ms": 56.31,
+    "top_chunk_score": 0.6891008615493774,
+    "top_chunk_source": "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+    "top_chunk_page": 3,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": false,
+    "hit_target_page_top10": false,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.6432,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/18 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "I couldn't find any information on a specific LiDAR sensor model integrated with the RGB camera in Karukayil et al. (2024). The cited passages only discuss the general concept of LiDAR-camera fusion for pothole detection, but do not provide details on a specific sensor model or file format for the final interactive map.\n\nThe cited passages also do not mention Karukayil et al. (2024) at all, as it seems to be a different paper. The passages refer to the authors and their previous work on LiDAR-camera fusion for pothole detection, but the specific details about the sensor model and file format for the final interactive map are not mentioned.",
+    "citations": [
+      "[Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf, p. 3]",
+      "[Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf, p. 4]",
+      "[journal.pone.0344604.pdf, p. 5]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": true,
+    "abstention_correct": true,
+    "score": 0.0,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+        "page": 3,
+        "score": 0.6891,
+        "text_snippet": "III. DATA ACQUISITION This section outlines the process of collecting pothole images from online resources and preparing the data to train t"
+      },
+      {
+        "rank": 2,
+        "source": "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+        "page": 4,
+        "score": 0.6707,
+        "text_snippet": "Once this common field of view is achieved, the depth information from the LiDAR can be precisely aligned with the pixel data from the camer"
+      },
+      {
+        "rank": 3,
+        "source": "journal.pone.0344604.pdf",
+        "page": 5,
+        "score": 0.6683,
+        "text_snippet": "For each RGB image, the iPhone\u2019s LiDAR sensor simultaneously recorded a corresponding depth map, providing  accurate ground truth depth data"
+      },
+      {
+        "rank": 4,
+        "source": "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+        "page": 4,
+        "score": 0.6374,
+        "text_snippet": "For effective depth extraction of potholes, it is critical to synchronise the data captured by both the camera and the LiDAR. This involves "
+      },
+      {
+        "rank": 5,
+        "source": "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+        "page": 9,
+        "score": 0.6356,
+        "text_snippet": "no. 2057978. [18] S. A. Talha, M. A. Karasneh, D. Manasreh, A. Al Oide, and M. D. Nazzal, \u2018\u2018A LiDAR-camera fusion approach for automated det"
+      }
+    ]
+  },
+  {
+    "id": "Q05",
+    "category": "Cross-Paper Comparison",
+    "question": "Compare the depth acquisition modalities across Rauf Butt et al. (2026), Hanzheng Wang et al. (2025), and Ponnusamy (2026). What primary sensor technology does each paper employ to estimate road surface depth?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "journal.pone.0344604.pdf",
+      "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+      "1-s2.0-S2665917426000206-main.pdf"
+    ],
+    "target_pages": {
+      "journal.pone.0344604.pdf": [
+        2,
+        7
+      ],
+      "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf": [
+        1,
+        2
+      ],
+      "1-s2.0-S2665917426000206-main.pdf": [
+        1,
+        3
+      ]
+    },
+    "printed_pages": {
+      "journal.pone.0344604.pdf": [
+        2,
+        7
+      ],
+      "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf": [
+        291,
+        292
+      ],
+      "1-s2.0-S2665917426000206-main.pdf": [
+        1,
+        3
+      ]
+    },
+    "expected_answer": "Rauf Butt et al. performs monocular depth prediction from a single RGB image (MiDaS DPT) with iPhone 14 Pro LiDAR for ground-truth reference; Hanzheng Wang et al. uses binocular stereo vision (ZED 2i); Ponnusamy uses active Time-of-Flight (Basler ToF).",
+    "retrieval_latency_ms": 47.53,
+    "top_chunk_score": 0.5556899309158325,
+    "top_chunk_source": "1-s2.0-S2665917426000206-main.pdf",
+    "top_chunk_page": 5,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": false,
+    "hit_target_page_top10": false,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.5385,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/25 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "I cannot provide a comparison of the depth acquisition modalities across Rauf Butt et al. (2026), Hanzheng Wang et al. (2025), and Ponnusamy (2026) without additional information. \n\nHowever, based on the provided passages, I can tell you that Ponnusamy (2026) employed Time-of-Flight (ToF) depth technology. \n\nUnfortunately, the other two papers' primary sensor technology is not explicitly stated in the provided passages.",
+    "citations": [
+      "[1-s2.0-S2665917426000206-main.pdf, p. 5]",
+      "[2012.10802v2.pdf, p. 5]",
+      "[1-s2.0-S2665917426000206-main.pdf, p. 9]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": false,
+    "abstention_correct": true,
+    "score": 0.5,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 5,
+        "score": 0.5557,
+        "text_snippet": "5. Central Deep Pothole (left) and ToF depth image (right). B. Ponnusamy                                                                    "
+      },
+      {
+        "rank": 2,
+        "source": "2012.10802v2.pdf",
+        "page": 5,
+        "score": 0.545,
+        "text_snippet": "The following two subsections discuss the performances of road surface 3D reconstruction and road pothole detection, respectively."
+      },
+      {
+        "rank": 3,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 9,
+        "score": 0.5439,
+        "text_snippet": "Asymetric left side pothole (left) - ToF depth map (right). B. Ponnusamy                                                                    "
+      },
+      {
+        "rank": 4,
+        "source": "journal.pone.0344604.pdf",
+        "page": 6,
+        "score": 0.5408,
+        "text_snippet": "PLOS One | https://doi.org/10.1371/journal.pone.0344604\u2003 May 8, 2026 6 / 17 Table 1. Limitations of related work in depth estimation and pot"
+      },
+      {
+        "rank": 5,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 4,
+        "score": 0.537,
+        "text_snippet": "Sensitivity analyses examined the influence of (a)  camera height and incidence angle, (b) ambient illumination, and (c)  surface reflectanc"
+      }
+    ]
+  },
+  {
+    "id": "Q06",
+    "category": "Cross-Paper Comparison",
+    "question": "How do Rauf Butt et al. (2026), Ponnusamy (2026), and Rui Fan et al. (arXiv:2012.10802v2) obtain physical ground truth for pothole depth and geometry?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "journal.pone.0344604.pdf",
+      "1-s2.0-S2665917426000206-main.pdf",
+      "2012.10802v2.pdf"
+    ],
+    "target_pages": {
+      "journal.pone.0344604.pdf": [
+        9
+      ],
+      "1-s2.0-S2665917426000206-main.pdf": [
+        4
+      ],
+      "2012.10802v2.pdf": [
+        6
+      ]
+    },
+    "printed_pages": {
+      "journal.pone.0344604.pdf": [
+        9
+      ],
+      "1-s2.0-S2665917426000206-main.pdf": [
+        4
+      ],
+      "2012.10802v2.pdf": [
+        6
+      ]
+    },
+    "expected_answer": "Rauf Butt et al.: handheld laser rangefinder (+/-1 mm); Ponnusamy: calibrated graduated steel scale (+/-1 mm) and straight-edge reference bar (+/-3 mm expanded uncertainty); Rui Fan et al.: 3D laser scanner (BQ Ciclop) on gypsum molds registered with ICP.",
+    "retrieval_latency_ms": 36.56,
+    "top_chunk_score": 0.6712890267372131,
+    "top_chunk_source": "journal.pone.0344604.pdf",
+    "top_chunk_page": 9,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": true,
+    "hit_target_page_top10": true,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.6055,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 11/13 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "Rauff Butt et al. (2026) and Ponnusamy (2026) use a laser rangefinder to measure pothole depths with a precision of \u00b11 mm. [journal.pone.0344604.pdf, p. 9] \n\nRui Fan et al. (not found in the provided papers, but mentioned in the reference list) are not cited in the provided passages, so no information is available on their method.\n\n[1-s2.0-S2665917426000206-main.pdf, p. 5] does not mention the method used for physical ground truth.",
+    "citations": [
+      "[journal.pone.0344604.pdf, p. 9]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": true,
+    "abstention_correct": true,
+    "score": 0.0,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "journal.pone.0344604.pdf",
+        "page": 9,
+        "score": 0.6713,
+        "text_snippet": "We selected 500 representative potholes and took measurements at five key points on each pothole surface: the  center, top-left, top-right, "
+      },
+      {
+        "rank": 2,
+        "source": "journal.pone.0344604.pdf",
+        "page": 9,
+        "score": 0.6373,
+        "text_snippet": "Triangular representation used for ground truth validation. The hypotenuse (D) was physically measured to verify pothole depth estimates,  w"
+      },
+      {
+        "rank": 3,
+        "source": "journal.pone.0344604.pdf",
+        "page": 9,
+        "score": 0.6353,
+        "text_snippet": "Ground truth validation To confirm the accuracy and robustness of the depth information in our dataset, we designed a dual-stage validation "
+      },
+      {
+        "rank": 4,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 5,
+        "score": 0.6024,
+        "text_snippet": "5. Central Deep Pothole (left) and ToF depth image (right). B. Ponnusamy                                                                    "
+      },
+      {
+        "rank": 5,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 4,
+        "score": 0.5982,
+        "text_snippet": "Ground-truth measurement uncertainty analysis Ground-truth depth measurements were obtained using a calibrated  graduated steel scale (resol"
+      }
+    ]
+  },
+  {
+    "id": "Q07",
+    "category": "Cross-Paper Comparison",
+    "question": "Which YOLO family variants are evaluated or utilized for pothole detection in Dehao Wang et al. (2025), Karukayil et al. (2024), and Percy Lam et al.?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "2505.21049.pdf",
+      "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+      "paper.pdf"
+    ],
+    "target_pages": {
+      "2505.21049.pdf": [
+        3,
+        10
+      ],
+      "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf": [
+        5,
+        6
+      ],
+      "paper.pdf": [
+        4
+      ]
+    },
+    "printed_pages": {
+      "2505.21049.pdf": [
+        3,
+        10
+      ],
+      "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf": [
+        184545,
+        184546
+      ],
+      "paper.pdf": [
+        4
+      ]
+    },
+    "expected_answer": "Dehao Wang et al.: ACSH-YOLOv8 (specifically ACSH-YOLOv8n) vs YOLOv8/YOLOv8s; Karukayil et al.: YOLOv5, YOLOv6, YOLOv7, and YOLOv8; Percy Lam et al.: YOLOv11x-seg.",
+    "retrieval_latency_ms": 31.31,
+    "top_chunk_score": 0.694003701210022,
+    "top_chunk_source": "2505.21049.pdf",
+    "top_chunk_page": 15,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": false,
+    "hit_target_page_top10": true,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.6541,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 6/14 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "I cannot help you with this request as the passages do not contain enough information to provide a specific answer.",
+    "citations": [
+      "[2505.21049.pdf, p. 15]",
+      "[paper.pdf, p. 9]",
+      "[Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf, p. 8]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": false,
+    "abstention_correct": true,
+    "score": 0.0,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "2505.21049.pdf",
+        "page": 15,
+        "score": 0.694,
+        "text_snippet": "Springer, 2024. [39] Sudhakar Ajmera, C Ashok Kumar, P Yakaiah, Bittu Kumar, and K Yashwanth Chowdary. Real-time pothole detection using yol"
+      },
+      {
+        "rank": 2,
+        "source": "paper.pdf",
+        "page": 9,
+        "score": 0.6798,
+        "text_snippet": "Pothole Detection: A Performance Comparison Between YOLOv7 and YOLOv8. In 2023 9th"
+      },
+      {
+        "rank": 3,
+        "source": "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+        "page": 8,
+        "score": 0.6764,
+        "text_snippet": "[3] S.-S. Park, V.-T. Tran, and D.-E. Lee, \u2018\u2018Application of various Yolo models for computer vision-based real-time pothole detection,\u2019\u2019 App"
+      },
+      {
+        "rank": 4,
+        "source": "2505.21049.pdf",
+        "page": 10,
+        "score": 0.6556,
+        "text_snippet": "JOURNAL OF LATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 10 TABLE I COMPARISON OF DIFFERENT MODELS RESULTS FOR POTHOLE DETECTION."
+      },
+      {
+        "rank": 5,
+        "source": "journal.pone.0344604.pdf",
+        "page": 16,
+        "score": 0.6537,
+        "text_snippet": "108\u201325. 23. Yurdakul M, Tasdemir \u00c5. An Enhanced YOLOv8 Model for Real Time and Accurate Pothole Detection and Measurement."
+      }
+    ]
+  },
+  {
+    "id": "Q08",
+    "category": "Cross-Paper Comparison",
+    "question": "What GPU hardware was used for training or executing algorithms in Hanzheng Wang et al. (2025) and Rui Fan et al. (arXiv:2012.10802v2)?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+      "2012.10802v2.pdf"
+    ],
+    "target_pages": {
+      "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf": [
+        5
+      ],
+      "2012.10802v2.pdf": [
+        5
+      ]
+    },
+    "printed_pages": {
+      "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf": [
+        295
+      ],
+      "2012.10802v2.pdf": [
+        5
+      ]
+    },
+    "expected_answer": "Hanzheng Wang et al.: NVIDIA GeForce RTX 3090 GPU (batch size 8); Rui Fan et al.: NVIDIA GeForce RTX 2080 Ti GPU (CUDA implementation).",
+    "retrieval_latency_ms": 35.34,
+    "top_chunk_score": 0.5422346591949463,
+    "top_chunk_source": "journal.pone.0344604.pdf",
+    "top_chunk_page": 11,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": false,
+    "hit_target_page_top10": true,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.452,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 3/10 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "The GPU hardware used for training or executing algorithms in Hanzheng Wang et al. (2025) and Rui Fan et al. (arXiv:2012.10802v2) was an NVIDIA RTX 4060 GPU for Hanzheng Wang et al., and an NVIDIA RTX 2080 Ti GPU for Rui Fan et al., respectively.\n\n[Russian translation] \n\nRTX 4060 was used in  journal.pone.0344604.pdf for training.\nRTX 2080 Ti was used in [2505.21049.pdf] and [2012.10802v2.pdf].",
+    "citations": [
+      "[journal.pone.0344604.pdf, p. 11]",
+      "[2505.21049.pdf, p. 8]",
+      "[2012.10802v2.pdf, p. 8]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": false,
+    "abstention_correct": true,
+    "score": 0.5,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "journal.pone.0344604.pdf",
+        "page": 11,
+        "score": 0.5422,
+        "text_snippet": "Training used PyTorch on an NVIDIA RTX 4060 GPU with Adam (learning rate  1\u2009\u00d7\u200910\u22124), batch size 8, and early stopping. Data augmentation inc"
+      },
+      {
+        "rank": 2,
+        "source": "2505.21049.pdf",
+        "page": 8,
+        "score": 0.5262,
+        "text_snippet": "The hardware setup includes an RTX 4090 GPU with 24GB of VRAM and 16 vCPU Intel Xeon Gold 6430 processor."
+      },
+      {
+        "rank": 3,
+        "source": "2012.10802v2.pdf",
+        "page": 8,
+        "score": 0.4833,
+        "text_snippet": "Also, we provide the runtime of [27], [29], [30] and our pro- posed method on the NVIDIA RTX 2080 Ti GPU in Table II. It can be seen that th"
+      },
+      {
+        "rank": 4,
+        "source": "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+        "page": 5,
+        "score": 0.4704,
+        "text_snippet": "The entire training process was carried out on an NVIDIA RTX 3090 GPU with a batch size of 8, ultimately achieving a detection accuracy of 9"
+      },
+      {
+        "rank": 5,
+        "source": "2012.10802v2.pdf",
+        "page": 6,
+        "score": 0.4516,
+        "text_snippet": "Additionally, GPT-SGM achieves the lowest er value (approximately 0.4079 pixels). Therefore, the overall performance of GPT-SGM is better th"
+      }
+    ]
+  },
+  {
+    "id": "Q09",
+    "category": "Numerical Results & Methodology",
+    "question": "In Rauf Butt et al. (2026), what are the reported Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and threshold accuracy delta_1 (delta < 1.25) of the proposed MiDaS-DPT model on the test dataset?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "journal.pone.0344604.pdf"
+    ],
+    "target_pages": {
+      "journal.pone.0344604.pdf": [
+        12
+      ]
+    },
+    "printed_pages": {
+      "journal.pone.0344604.pdf": [
+        12
+      ]
+    },
+    "expected_answer": "MAE = 0.089 (m), RMSE = 0.301 (m), and delta_1 = 0.912 (91.2%).",
+    "retrieval_latency_ms": 35.78,
+    "top_chunk_score": 0.6396870017051697,
+    "top_chunk_source": "journal.pone.0344604.pdf",
+    "top_chunk_page": 12,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": true,
+    "hit_target_page_top10": true,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.5172,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 13/22 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "The reported Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and threshold accuracy delta_1 (delta < 1.25) of the proposed MiDaS-DPT model on the test dataset are:\n\n- MAE: 0.089 [1]\n- RMSE: 0.301 [1]\n- \u03b41 (delta < 1.25): 0.912 [1]\n\nThese values indicate that the proposed MiDaS-DPT model achieves low error rates and high accuracy in pothole depth estimation.\n\n[1] journal.pone.0344604.t002\n\nThe values also suggest that the model performs well on nearby regions, as the authors note that the inverse RMSE (iRMSE) metric is sensitive to errors in these regions.",
+    "citations": [
+      "[journal.pone.0344604.pdf, p. 12]",
+      "[journal.pone.0344604.pdf, p. 11]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": true,
+    "abstention_correct": true,
+    "score": 1.0,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "journal.pone.0344604.pdf",
+        "page": 12,
+        "score": 0.6397,
+        "text_snippet": "Table 2. Performance of the proposed MiDaS (DPT) model on pothole depth estimation. Metric MiDaS (DPT) (ours) MAE \u2193 0.089 RMSE \u2193 0.301 \u03b41 \u2191 "
+      },
+      {
+        "rank": 2,
+        "source": "journal.pone.0344604.pdf",
+        "page": 12,
+        "score": 0.5904,
+        "text_snippet": "Performance of the proposed MiDaS (DPT) model in estimating pothole depth, showing results for MAE, RMSE, and \u03b4 accuracy met\u00ad rics. The mode"
+      },
+      {
+        "rank": 3,
+        "source": "journal.pone.0344604.pdf",
+        "page": 11,
+        "score": 0.5715,
+        "text_snippet": "\u2022\t Inverse RMSE (iRMSE) \u2013 RMSE computed on inverse depth values, sensitive to errors in nearby regions. \u2022\t Delta accuracy metrics (\u03b41, \u03b42, \u03b4"
+      },
+      {
+        "rank": 4,
+        "source": "journal.pone.0344604.pdf",
+        "page": 13,
+        "score": 0.5561,
+        "text_snippet": "PLOS One | https://doi.org/10.1371/journal.pone.0344604\u2003 May 8, 2026 13 / 17 Table 3. Performance comparison of the proposed MiDaS-DPT model"
+      },
+      {
+        "rank": 5,
+        "source": "journal.pone.0344604.pdf",
+        "page": 11,
+        "score": 0.5559,
+        "text_snippet": "The evaluation metrics demonstrate  that the model achieves low error rates (MAE and RMSE) while maintaining high accuracy across multiple t"
+      }
+    ]
+  },
+  {
+    "id": "Q10",
+    "category": "Numerical Results & Methodology",
+    "question": "According to Table III in Dehao Wang et al. (2025), what are the individual execution times for detection, depth estimation, and MBTP calculation, and what is the total parallel runtime per frame?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "2505.21049.pdf"
+    ],
+    "target_pages": {
+      "2505.21049.pdf": [
+        14
+      ]
+    },
+    "printed_pages": {
+      "2505.21049.pdf": [
+        14
+      ]
+    },
+    "expected_answer": "Detection: 23.4 ms; Depth estimation: 104 ms; Area estimation (MBTP JIT): 6.2 ms (non-JIT MBTP: 135 ms); Total parallel pipeline: 110.2 ms / frame.",
+    "retrieval_latency_ms": 36.1,
+    "top_chunk_score": 0.5877079963684082,
+    "top_chunk_source": "1-s2.0-S2665917426000206-main.pdf",
+    "top_chunk_page": 11,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": false,
+    "hit_target_page_top10": false,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.4609,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 11/19 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "The individual execution times for detection, depth estimation, and MBTP calculation are:\n\n- Detection (ACSH-YOLOv8): 23.4 ms\n- Depth estimation: 104 ms\n- MBTP calculation: 6.2 ms\n\nThe total parallel runtime per frame is 110.2 ms.",
+    "citations": [
+      "[1-s2.0-S2665917426000206-main.pdf, p. 11]",
+      "[2505.21049.pdf, p. 13]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": false,
+    "abstention_correct": true,
+    "score": 1.0,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 11,
+        "score": 0.5877,
+        "text_snippet": "Depth frames of resolution 640 \u00d7 480 pixels were processed sequentially  without GPU acceleration. Runtime profiling was conducted over 500 "
+      },
+      {
+        "rank": 2,
+        "source": "2505.21049.pdf",
+        "page": 13,
+        "score": 0.5049,
+        "text_snippet": "Results show that parallelization reduces the overall processing time by 24.5 ms compared to the serial execution, reaching 110.2 ms for eac"
+      },
+      {
+        "rank": 3,
+        "source": "2505.21049.pdf",
+        "page": 13,
+        "score": 0.4918,
+        "text_snippet": "All three exhibit low processing times, with ACSH-YOLOv8 taking 23.4 ms, MBTP taking 6.2 ms, and CDKF requiring less than 0.1 ms per frame. "
+      },
+      {
+        "rank": 4,
+        "source": "2505.21049.pdf",
+        "page": 13,
+        "score": 0.4663,
+        "text_snippet": "It is expected that with future advances in monocular depth estimation algorithms, further improvements in overall runtime can be achieved. "
+      },
+      {
+        "rank": 5,
+        "source": "2505.21049.pdf",
+        "page": 13,
+        "score": 0.4494,
+        "text_snippet": "III. The framework consists of five main steps, each timed separately. Among these components, the detection module (ACSH-YOLOv8), the area "
+      }
+    ]
+  },
+  {
+    "id": "Q11",
+    "category": "Numerical Results & Methodology",
+    "question": "In Hanzheng Wang et al. (2025), what relative errors are achieved for pothole depth and surface area measurement at vehicle speeds of 40 km/h, and what percentage cost reduction is claimed compared to traditional laser sensors?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf"
+    ],
+    "target_pages": {
+      "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf": [
+        1,
+        2
+      ]
+    },
+    "printed_pages": {
+      "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf": [
+        291,
+        292
+      ]
+    },
+    "expected_answer": "Depth relative error: 12.53%; Surface area relative error: 18.19% (82% DR accuracy); Hardware cost reduced by 90% compared to laser sensors (and 85% compared to Pathway inspection vehicles).",
+    "retrieval_latency_ms": 35.06,
+    "top_chunk_score": 0.6291515827178955,
+    "top_chunk_source": "1-s2.0-S2665917426000206-main.pdf",
+    "top_chunk_page": 4,
+    "hit_target_paper_top3": false,
+    "hit_target_paper_top10": false,
+    "hit_target_page_top3": false,
+    "hit_target_page_top10": false,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.6024,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 10/23 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "I couldn't find any information on relative errors achieved for pothole depth and surface area measurement at vehicle speeds of 40 km/h in Hanzheng Wang et al. (2025) or any claimed percentage cost reduction compared to traditional laser sensors. The cited passages only discuss the limitations and evaluation metrics of a mobile real-time road inspection system, but do not provide specific details on the performance of Hanzheng Wang et al.'s (2025) work.",
+    "citations": [
+      "[1-s2.0-S2665917426000206-main.pdf, p. 4]",
+      "[journal.pone.0344604.pdf, p. 6]",
+      "[journal.pone.0344604.pdf, p. 11]"
+    ],
+    "cited_correct_doc": false,
+    "cited_correct_page": false,
+    "abstention_correct": true,
+    "score": 0.0,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 4,
+        "score": 0.6292,
+        "text_snippet": "calibration coefficients were stored and applied automatically to all  subsequent captures. This calibration step ensured that depth maps us"
+      },
+      {
+        "rank": 2,
+        "source": "journal.pone.0344604.pdf",
+        "page": 6,
+        "score": 0.618,
+        "text_snippet": "2024) Mobile real-time road  inspection Fast, but may lose depth accuracy on complex or degraded  road surfaces. Observed  research gaps Cro"
+      },
+      {
+        "rank": 3,
+        "source": "journal.pone.0344604.pdf",
+        "page": 11,
+        "score": 0.6114,
+        "text_snippet": "The evaluation metrics demonstrate  that the model achieves low error rates (MAE and RMSE) while maintaining high accuracy across multiple t"
+      },
+      {
+        "rank": 4,
+        "source": "journal.pone.0344604.pdf",
+        "page": 9,
+        "score": 0.6074,
+        "text_snippet": "Each measurement was modelled as a right-angled triangle, where the camera-to-road vertical distance  represented the vertical distance (AB)"
+      },
+      {
+        "rank": 5,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 4,
+        "score": 0.6006,
+        "text_snippet": "Ground-truth measurement uncertainty analysis Ground-truth depth measurements were obtained using a calibrated  graduated steel scale (resol"
+      }
+    ]
+  },
+  {
+    "id": "Q12",
+    "category": "Numerical Results & Methodology",
+    "question": "In Table 1 of Hanzheng Wang et al. (2025), what PSNR and SSIM values are achieved by the Multi-Scale Retinex with Color Restoration (MSRCP) algorithm, and by what percentages do they improve over Histogram Equalization?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf"
+    ],
+    "target_pages": {
+      "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf": [
+        3
+      ]
+    },
+    "printed_pages": {
+      "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf": [
+        293
+      ]
+    },
+    "expected_answer": "PSNR = 32.5 dB, SSIM = 0.91 (NIQE = 3.2); improvement of 14.8% in PSNR (over 28.3 dB) and 15.2% in SSIM (over 0.79) compared to Histogram Equalization.",
+    "retrieval_latency_ms": 40.56,
+    "top_chunk_score": 0.555048406124115,
+    "top_chunk_source": "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+    "top_chunk_page": 3,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": true,
+    "hit_target_page_top10": true,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.5327,
+    "verdict_reason": "2 passage(s) exceed the relevance threshold (score \u2265 0.38); 12/23 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "The Multi-Scale Retinex with Color Preservation (MSRCP) algorithm achieves PSNR and SSIM values of 32.5 dB and 0.91, respectively, as compared to Histogram Equalization, with improvements of 14.8% in PSNR and 15.2% in SSIM. \n\n[isprs-archives-XLVIII-4-W14-2025-291-2025.pdf, p. 3]\n\nThese improvements suggest that MSRCP effectively enhances image quality while preserving color authenticity.",
+    "citations": [
+      "[isprs-archives-XLVIII-4-W14-2025-291-2025.pdf, p. 3]",
+      "[2012.10802v2.pdf, p. 6]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": true,
+    "abstention_correct": true,
+    "score": 1.0,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+        "page": 3,
+        "score": 0.555,
+        "text_snippet": "motion blur during dynamic acquisition, an image enhancement method based on Multi-Scale Retinex with Color Preservation (MSRCP) was employe"
+      },
+      {
+        "rank": 2,
+        "source": "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+        "page": 3,
+        "score": 0.5103,
+        "text_snippet": "Evaluation Metrics MSRCP Algorithm Traditional Histogram Equalization Performance Improvement PSNR (dB) 32.5 28.3 14.8% SSIM 0.91 0.79 15.2%"
+      },
+      {
+        "rank": 3,
+        "source": "2012.10802v2.pdf",
+        "page": 6,
+        "score": 0.3441,
+        "text_snippet": "Algorithm ep (%) er \u03b5 = 1 \u03b5 = 2 \u03b5 = 3 PT-SRP [4] 5.0143 0.3913 0.0588 0.4237 PT-FBS [36] 4.5979 0.2174 0.0227 0.4092 Proposed 4.6069 0.1859 "
+      },
+      {
+        "rank": 4,
+        "source": "2505.21049.pdf",
+        "page": 13,
+        "score": 0.3412,
+        "text_snippet": "10. The blue dashed line represents the CP method, which exhibits significant fluctuations and poor stability. The yellow line corresponds t"
+      },
+      {
+        "rank": 5,
+        "source": "2012.10802v2.pdf",
+        "page": 6,
+        "score": 0.3407,
+        "text_snippet": "The experimental results are given in Fig. 7. Comparisons among these algorithms in terms of ep and er are shown in Table."
+      }
+    ]
+  },
+  {
+    "id": "Q13",
+    "category": "Page-Level Evidence & Citation",
+    "question": "On which page and in which table do Rauf Butt et al. (2026) report the ablation study comparing different loss function combinations, and which combination yields the lowest MAE?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "journal.pone.0344604.pdf"
+    ],
+    "target_pages": {
+      "journal.pone.0344604.pdf": [
+        14
+      ]
+    },
+    "printed_pages": {
+      "journal.pone.0344604.pdf": [
+        14
+      ]
+    },
+    "expected_answer": "Page 14, Table 4. Full SILog + Gradient loss yields the lowest MAE of 0.089 (compared to standard MSE at MAE = 0.140).",
+    "retrieval_latency_ms": 33.7,
+    "top_chunk_score": 0.5208762884140015,
+    "top_chunk_source": "journal.pone.0344604.pdf",
+    "top_chunk_page": 14,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": true,
+    "hit_target_page_top10": true,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.4488,
+    "verdict_reason": "3 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/19 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "The ablation study comparing different loss function combinations is reported in Table 2 (p. 12) and Figure 5 of the paper [journal.pone.0344604.pdf].\n\nThe Full SILog loss with gradient matching yields the lowest MAE, with a value of 0.089. This is because the full SILog loss with gradient matching achieves the best accuracy in the ablation study, while removing gradient or shift invariance, or replacing SILog with standard MSE, reduces performance.",
+    "citations": [
+      "[journal.pone.0344604.pdf, p. 14]",
+      "[2505.21049.pdf, p. 9]",
+      "[journal.pone.0344604.pdf, p. 12]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": true,
+    "abstention_correct": true,
+    "score": 0.5,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "journal.pone.0344604.pdf",
+        "page": 14,
+        "score": 0.5209,
+        "text_snippet": "Ablation study results of different loss functions for the MiDaS model in pothole depth estimation. The Full SILog loss with gra\u00ad dient matc"
+      },
+      {
+        "rank": 2,
+        "source": "2505.21049.pdf",
+        "page": 9,
+        "score": 0.4344,
+        "text_snippet": "The calculation methods for MAE, CV, AFD, and NIS are described in the previous section. Since MAE has a relatively small magnitude compared"
+      },
+      {
+        "rank": 3,
+        "source": "journal.pone.0344604.pdf",
+        "page": 12,
+        "score": 0.391,
+        "text_snippet": "Table 2. Performance of the proposed MiDaS (DPT) model on pothole depth estimation. Metric MiDaS (DPT) (ours) MAE \u2193 0.089 RMSE \u2193 0.301 \u03b41 \u2191 "
+      },
+      {
+        "rank": 4,
+        "source": "2505.21049.pdf",
+        "page": 15,
+        "score": 0.3548,
+        "text_snippet": "JOURNAL OF LATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 15 Eleni Mangina."
+      },
+      {
+        "rank": 5,
+        "source": "2505.21049.pdf",
+        "page": 8,
+        "score": 0.3522,
+        "text_snippet": "JOURNAL OF LATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 8 Fig."
+      }
+    ]
+  },
+  {
+    "id": "Q14",
+    "category": "Page-Level Evidence & Citation",
+    "question": "On which page and in which section of Rui Fan et al. (arXiv:2012.10802v2) is the stereo rig roll angle phi formally integrated into the disparity transformation, and why is this roll angle considered critical?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "2012.10802v2.pdf"
+    ],
+    "target_pages": {
+      "2012.10802v2.pdf": [
+        4
+      ]
+    },
+    "printed_pages": {
+      "2012.10802v2.pdf": [
+        4
+      ]
+    },
+    "expected_answer": "Page 4, Section II.C (Disparity Transformation). Incorporating roll angle phi prevents disparity profile tilting caused by road roll, enabling accurate planar disparity projection and pothole segmentation.",
+    "retrieval_latency_ms": 36.67,
+    "top_chunk_score": 0.6038222312927246,
+    "top_chunk_source": "2012.10802v2.pdf",
+    "top_chunk_page": 3,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": false,
+    "hit_target_page_top10": true,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.4589,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 13/18 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "The stereo rig roll angle \u03c6 is formally integrated into the disparity transformation on page 3 of Rui Fan et al. (arXiv:2012.10802v2) in section 2, titled \"Generalized perspective transformation and disparity estimation\".\n\nAccording to the text, \u03c6 is considered critical because when neglected, it results in gradual disparity change in the horizontal direction, as shown in Fig. 2(d).",
+    "citations": [
+      "[2012.10802v2.pdf, p. 3]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": false,
+    "abstention_correct": true,
+    "score": 0.5,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "2012.10802v2.pdf",
+        "page": 3,
+        "score": 0.6038,
+        "text_snippet": "Referring to the u-v-disparity analysis provided in [33], when the stereo rig roll angle \u03c6 is neglected, the road disparity projections in t"
+      },
+      {
+        "rank": 2,
+        "source": "2012.10802v2.pdf",
+        "page": 3,
+        "score": 0.5373,
+        "text_snippet": "This leads to gradual disparity change in the horizontal direction, as shown in Fig. 2(d). Applying an inverse rotation by \u03c6 on the original"
+      },
+      {
+        "rank": 3,
+        "source": "2012.10802v2.pdf",
+        "page": 3,
+        "score": 0.4676,
+        "text_snippet": "3 generalize the perspective transformation (PT) proposed in [4], by incorporating the stereo rig roll angle into the PT process, which not "
+      },
+      {
+        "rank": 4,
+        "source": "2012.10802v2.pdf",
+        "page": 4,
+        "score": 0.4642,
+        "text_snippet": "4 v-disparity maps Fig. 3. E0min with respect to different \u03c6."
+      },
+      {
+        "rank": 5,
+        "source": "2012.10802v2.pdf",
+        "page": 3,
+        "score": 0.442,
+        "text_snippet": "2. Generalized perspective transformation and disparity estimation: (a) original left image; (b) transformed right image; (c) the disparity "
+      }
+    ]
+  },
+  {
+    "id": "Q15",
+    "category": "Page-Level Evidence & Citation",
+    "question": "In Percy Lam et al., what overall range of F1 score improvement do the authors report when fusing RGB and depth detectors under out-of-context testing conditions?",
+    "is_unanswerable": false,
+    "target_papers": [
+      "paper.pdf"
+    ],
+    "target_pages": {
+      "paper.pdf": [
+        1,
+        8
+      ]
+    },
+    "printed_pages": {
+      "paper.pdf": [
+        1,
+        8
+      ]
+    },
+    "expected_answer": "Fusing RGB and depth detectors improves out-of-context F1 scores by an absolute range of 0.05 to 0.13, corresponding to a relative improvement of 16% to 81%.",
+    "retrieval_latency_ms": 39.71,
+    "top_chunk_score": 0.714433491230011,
+    "top_chunk_source": "paper.pdf",
+    "top_chunk_page": 7,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": true,
+    "hit_target_page_top10": true,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.5797,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/16 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "The authors report an F1 score improvement range of 16% to 81% when fusing RGB and depth detectors under out-of-context testing conditions.\n\nThis improvement is attributed to the use of weighted bounding box fusion and the depth estimator, which enhance the robustness of detection in challenging environmental conditions. Specifically, the depth estimator improves precision, as seen in Table 2, and the fusion of predictions from both models leads to better overall performance.",
+    "citations": [
+      "[paper.pdf, p. 7]",
+      "[paper.pdf, p. 1]"
+    ],
+    "cited_correct_doc": true,
+    "cited_correct_page": true,
+    "abstention_correct": true,
+    "score": 0.5,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "paper.pdf",
+        "page": 7,
+        "score": 0.7144,
+        "text_snippet": "When fused, the F1 score improved predominantly when RGB-trained models performed poorly out of context. This was mainly achieved by having "
+      },
+      {
+        "rank": 2,
+        "source": "paper.pdf",
+        "page": 1,
+        "score": 0.6087,
+        "text_snippet": "These predictions are subsequently fused by weighted bounding box fusion and have masks predicted by Segment Anything. Whereas RGB-trained d"
+      },
+      {
+        "rank": 3,
+        "source": "paper.pdf",
+        "page": 7,
+        "score": 0.6055,
+        "text_snippet": "Cells in beige show combinations in different geolocations and road scenes. Pothole only (F1_50, M) Trained Test WR TCR Camb- still Pothole-"
+      },
+      {
+        "rank": 4,
+        "source": "paper.pdf",
+        "page": 8,
+        "score": 0.5831,
+        "text_snippet": "The predictions by RGB-trained models and depth are fused with weighted bounding box fusion. Experimental results reveal that while the dept"
+      },
+      {
+        "rank": 5,
+        "source": "paper.pdf",
+        "page": 7,
+        "score": 0.5711,
+        "text_snippet": "LAM ET AL.: ROBUST POTHOLE DETECTION THROUGH DUAL-PASS RGB AND DEPTH 7 of 0.25 and fused with those from the depth detector with WBF. 4 Resu"
+      }
+    ]
+  },
+  {
+    "id": "Q16",
+    "category": "Unanswerable (Abstention)",
+    "question": "What flight altitude and gimbal pitch angle were used for UAV/drone aerial imagery collection in the dataset presented by Ponnusamy (2026)?",
+    "is_unanswerable": true,
+    "target_papers": [
+      "1-s2.0-S2665917426000206-main.pdf"
+    ],
+    "target_pages": {},
+    "printed_pages": {},
+    "expected_answer": "Abstain / State insufficient evidence. Ponnusamy (2026) does not use UAV/drone aerial imagery; the setup uses a ground tripod mounted at 0.8-1.2 m.",
+    "retrieval_latency_ms": 39.02,
+    "top_chunk_score": 0.46339815855026245,
+    "top_chunk_source": "1-s2.0-S2665917426000206-main.pdf",
+    "top_chunk_page": 13,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": false,
+    "hit_target_page_top10": false,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.4445,
+    "verdict_reason": "7 passage(s) exceed the relevance threshold (score \u2265 0.38); 5/16 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "The flight altitude and gimbal pitch angle used for UAV/drone aerial imagery collection in the dataset presented by Ponnusamy (2026) are not explicitly stated in the provided passages. \n\nHowever, it is mentioned that the pitch angle was adjusted from 15\u00b0 to 75\u00b0, allowing coverage of both close-range surfaces and distant road features (Ponnusamy, 2026, p. 7). The flight altitude is not mentioned in the provided passages.",
+    "citations": [
+      "[1-s2.0-S2665917426000206-main.pdf, p. 13]",
+      "[1-s2.0-S2665917426000206-main.pdf, p. 7]",
+      "[journal.pone.0344604.pdf, p. 7]"
+    ],
+    "cited_correct_doc": false,
+    "cited_correct_page": false,
+    "abstention_correct": true,
+    "score": 1.0,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 13,
+        "score": 0.4634,
+        "text_snippet": "B. Ponnusamy                                                                                                                                "
+      },
+      {
+        "rank": 2,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 7,
+        "score": 0.4523,
+        "text_snippet": "B. Ponnusamy                                                                                                                                "
+      },
+      {
+        "rank": 3,
+        "source": "journal.pone.0344604.pdf",
+        "page": 7,
+        "score": 0.4492,
+        "text_snippet": "The pitch angle was adjusted from 15\u00b0 to 75\u00b0, allowing coverage of both close-range  surfaces and distant road features. In terms of geograp"
+      },
+      {
+        "rank": 4,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 12,
+        "score": 0.4488,
+        "text_snippet": "autcon.2021.103935. B. Ponnusamy                                                                                                            "
+      },
+      {
+        "rank": 5,
+        "source": "1-s2.0-S2665917426000206-main.pdf",
+        "page": 2,
+        "score": 0.4445,
+        "text_snippet": "B. Ponnusamy                                                                                                                                "
+      }
+    ]
+  },
+  {
+    "id": "Q17",
+    "category": "Unanswerable (Abstention)",
+    "question": "What ResNet-50 backbone classification accuracy does Rui Fan et al. (arXiv:2012.10802v2) achieve when classifying potholes versus patches on the KITTI dataset?",
+    "is_unanswerable": true,
+    "target_papers": [
+      "2012.10802v2.pdf"
+    ],
+    "target_pages": {},
+    "printed_pages": {},
+    "expected_answer": "Abstain / State insufficient evidence. Rui Fan et al. does not use a ResNet-50 classifier or perform pothole vs patch classification on KITTI.",
+    "retrieval_latency_ms": 44.5,
+    "top_chunk_score": 0.5465741157531738,
+    "top_chunk_source": "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+    "top_chunk_page": 2,
+    "hit_target_paper_top3": false,
+    "hit_target_paper_top10": false,
+    "hit_target_page_top3": false,
+    "hit_target_page_top10": false,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.5279,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 4/15 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "There is not enough information provided in the cited passages to answer the question about Rui Fan et al.'s (arXiv:2012.10802v2) classification accuracy using ResNet-50 backbone on the KITTI dataset for potholes versus patches. The passages only discuss the performance of YOLOv4, YOLOv4-tiny, and YOLOv5s for real-time pothole detection, as well as the performance of YOLOv3 and YOLO-v3 with SPP, and Mask R-CNN for pothole detection and risk assessment, but do not mention ResNet-50 or the KITTI dataset.",
+    "citations": [
+      "[Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf, p. 2]",
+      "[2505.21049.pdf, p. 14]",
+      "[Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf, p. 6]"
+    ],
+    "cited_correct_doc": false,
+    "cited_correct_page": false,
+    "abstention_correct": true,
+    "score": 1.0,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+        "page": 2,
+        "score": 0.5466,
+        "text_snippet": "The authors of [3] evaluated custom trained neural networks, YOLOv4, YOLOv4-tiny, and YOLOv5s, for real-time pothole detec- tion. They used "
+      },
+      {
+        "rank": 2,
+        "source": "2505.21049.pdf",
+        "page": 14,
+        "score": 0.5435,
+        "text_snippet": "[20] Anas Al Shaghouri, Rami Alkhatib, and Samir Berjaoui. Real-time pothole detection using deep learning. arXiv preprint arXiv:2107.06356,"
+      },
+      {
+        "rank": 3,
+        "source": "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+        "page": 6,
+        "score": 0.5406,
+        "text_snippet": "A. Karukayil et al.: Deep Learning Enhanced Feature Extraction of Potholes 76.0% followed by YOLOv8 and YOLOv6 with 72.5% and 72.0% respecti"
+      },
+      {
+        "rank": 4,
+        "source": "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+        "page": 2,
+        "score": 0.5317,
+        "text_snippet": "YOLOv3\u2019s mAP@0.5 dropped from 74.7% on a clear day to 7.01% at night, while YOLO-v3 with SPP achieved 79.1% on clear days. Sparse R-CNN perf"
+      },
+      {
+        "rank": 5,
+        "source": "journal.pone.0344604.pdf",
+        "page": 14,
+        "score": 0.5244,
+        "text_snippet": "The results in Table 4 highlight that the combination of SILog and gradient loss achieves the optimal trade-off between  global scale invari"
+      }
+    ]
+  },
+  {
+    "id": "Q18",
+    "category": "Unanswerable (Abstention)",
+    "question": "According to the seven papers in the corpus, how does the pothole detection mAP of ACSH-YOLOv8 compare against the YOLOv10-X model on the COCO 2017 test-dev benchmark?",
+    "is_unanswerable": true,
+    "target_papers": [
+      "2505.21049.pdf"
+    ],
+    "target_pages": {},
+    "printed_pages": {},
+    "expected_answer": "Abstain / State insufficient evidence. None of the papers evaluate YOLOv10-X or report benchmarks on COCO 2017 test-dev.",
+    "retrieval_latency_ms": 49.2,
+    "top_chunk_score": 0.7567892074584961,
+    "top_chunk_source": "2505.21049.pdf",
+    "top_chunk_page": 10,
+    "hit_target_paper_top3": true,
+    "hit_target_paper_top10": true,
+    "hit_target_page_top3": false,
+    "hit_target_page_top10": false,
+    "verdict_sufficient": true,
+    "verdict_should_abstain": false,
+    "verdict_confidence": 0.679,
+    "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 4/16 query term(s) matched.",
+    "answer_mode": "llm_answer",
+    "actual_answer": "I couldn't find any information on the pothole detection mAP of ACSH-YOLOv8 or YOLOv10-X model on the COCO 2017 test-dev benchmark. The provided passages do not mention the YOLOv10-X model, and there is no comparison between ACSH-YOLOv8 and YOLOv10-X in the cited passages.",
+    "citations": [
+      "[2505.21049.pdf, p. 10]",
+      "[2505.21049.pdf, p. 8]",
+      "[paper.pdf, p. 9]"
+    ],
+    "cited_correct_doc": false,
+    "cited_correct_page": false,
+    "abstention_correct": true,
+    "score": 1.0,
+    "top_chunks": [
+      {
+        "rank": 1,
+        "source": "2505.21049.pdf",
+        "page": 10,
+        "score": 0.7568,
+        "text_snippet": "Additionally, in the second, third, and fourth images, it fails to detect several potholes, particularly small ones. In contrast, ACSH-YOLOv"
+      },
+      {
+        "rank": 2,
+        "source": "2505.21049.pdf",
+        "page": 8,
+        "score": 0.7053,
+        "text_snippet": "B. Training and Evaluation of Pothole Detection 1) Pothole Detection Evaluation Metrics: To evaluate the performance of pothole detection an"
+      },
+      {
+        "rank": 3,
+        "source": "paper.pdf",
+        "page": 9,
+        "score": 0.694,
+        "text_snippet": "Pothole Detection: A Performance Comparison Between YOLOv7 and YOLOv8. In 2023 9th"
+      },
+      {
+        "rank": 4,
+        "source": "2505.21049.pdf",
+        "page": 10,
+        "score": 0.6898,
+        "text_snippet": "In Fig. 9, both YOLOv5n and YOLOv8n miss detections in the first three images. In the fourth image, YOLOv5n detects the same pothole three t"
+      },
+      {
+        "rank": 5,
+        "source": "journal.pone.0344604.pdf",
+        "page": 16,
+        "score": 0.6711,
+        "text_snippet": "108\u201325. 23. Yurdakul M, Tasdemir \u00c5. An Enhanced YOLOv8 Model for Real Time and Accurate Pothole Detection and Measurement."
+      }
+    ]
+  }
+]

@@ -1,0 +1,5663 @@
+{
+  "summary": {
+    "dense": {
+      "doc_recall_3": 0.9333,
+      "doc_recall_5": 0.9333,
+      "doc_recall_10": 0.9333,
+      "page_recall_3": 0.4,
+      "page_recall_5": 0.6667,
+      "page_recall_10": 0.7333,
+      "gold_page_proportion_10": 0.5933,
+      "all_target_docs_top10": 0.8,
+      "mean_mrr": 0.4444,
+      "mean_ndcg_10": 0.5295,
+      "answerable_sufficient_count": 11,
+      "answerable_sufficient_rate": 0.7333,
+      "false_abstentions_count": 4,
+      "unanswerable_abstention_accuracy": 1.0,
+      "unsafe_passes_count": 0,
+      "latency_mean_ms": 17.79,
+      "latency_p50_ms": 17.82,
+      "latency_max_ms": 22.46
+    },
+    "lexical": {
+      "doc_recall_3": 1.0,
+      "doc_recall_5": 1.0,
+      "doc_recall_10": 1.0,
+      "page_recall_3": 0.6,
+      "page_recall_5": 0.6667,
+      "page_recall_10": 0.8,
+      "gold_page_proportion_10": 0.6222,
+      "all_target_docs_top10": 0.8,
+      "mean_mrr": 0.5324,
+      "mean_ndcg_10": 0.5593,
+      "answerable_sufficient_count": 10,
+      "answerable_sufficient_rate": 0.6667,
+      "false_abstentions_count": 5,
+      "unanswerable_abstention_accuracy": 1.0,
+      "unsafe_passes_count": 0,
+      "latency_mean_ms": 4.98,
+      "latency_p50_ms": 4.92,
+      "latency_max_ms": 6.62
+    },
+    "hybrid": {
+      "doc_recall_3": 0.9333,
+      "doc_recall_5": 0.9333,
+      "doc_recall_10": 1.0,
+      "page_recall_3": 0.5333,
+      "page_recall_5": 0.6,
+      "page_recall_10": 0.8667,
+      "gold_page_proportion_10": 0.6378,
+      "all_target_docs_top10": 0.8667,
+      "mean_mrr": 0.4717,
+      "mean_ndcg_10": 0.5428,
+      "answerable_sufficient_count": 11,
+      "answerable_sufficient_rate": 0.7333,
+      "false_abstentions_count": 4,
+      "unanswerable_abstention_accuracy": 1.0,
+      "unsafe_passes_count": 0,
+      "latency_mean_ms": 23.44,
+      "latency_p50_ms": 23.53,
+      "latency_max_ms": 31.42
+    },
+    "source_aware": {
+      "doc_recall_3": 0.9333,
+      "doc_recall_5": 0.9333,
+      "doc_recall_10": 1.0,
+      "page_recall_3": 0.5333,
+      "page_recall_5": 0.7333,
+      "page_recall_10": 0.8667,
+      "gold_page_proportion_10": 0.6711,
+      "all_target_docs_top10": 1.0,
+      "mean_mrr": 0.4423,
+      "mean_ndcg_10": 0.5414,
+      "answerable_sufficient_count": 13,
+      "answerable_sufficient_rate": 0.8667,
+      "false_abstentions_count": 2,
+      "unanswerable_abstention_accuracy": 1.0,
+      "unsafe_passes_count": 0,
+      "latency_mean_ms": 1347.94,
+      "latency_p50_ms": 23.89,
+      "latency_max_ms": 7349.42
+    }
+  },
+  "mode_results": {
+    "dense": [
+      {
+        "id": "Q01",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.45047083497047424,
+          "verdict_reason": "4 passage(s) exceed the relevance threshold (score \u2265 0.38); 11/17 query term(s) matched. All 2 required entity/entities confirmed present.",
+          "top_score": 0.5126445889472961,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.5,
+          "all_target_docs_top10": true,
+          "mrr": 0.16666666666666666,
+          "ndcg_10": 0.40298313359773236,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "paper.pdf",
+            "journal.pone.0344604.pdf",
+            "paper.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              17
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              8
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              5
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              2
+            ],
+            [
+              "paper.pdf",
+              2
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              5
+            ]
+          ],
+          "latency_ms": 18.293799948878586
+        }
+      },
+      {
+        "id": "Q02",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.6729314790831672,
+          "verdict_reason": "9 passage(s) exceed the relevance threshold (score \u2265 0.38); 10/18 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 0.7156623005867004,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.3333333333333333,
+          "all_target_docs_top10": true,
+          "mrr": 0.25,
+          "ndcg_10": 0.43067655807339306,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              2
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "2505.21049.pdf",
+              2
+            ],
+            [
+              "2505.21049.pdf",
+              5
+            ],
+            [
+              "2505.21049.pdf",
+              1
+            ],
+            [
+              "2505.21049.pdf",
+              12
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              10
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              3
+            ],
+            [
+              "2505.21049.pdf",
+              15
+            ]
+          ],
+          "latency_ms": 16.96099992841482
+        }
+      },
+      {
+        "id": "Q03",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5049548149108887,
+          "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 7/13 query term(s) matched. All 2 required entity/entities confirmed present.",
+          "top_score": 0.6117966175079346,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 0.9643632283499571,
+          "retrieved_docs": [
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              1
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              11
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ]
+          ],
+          "latency_ms": 16.847799997776747
+        }
+      },
+      {
+        "id": "Q04",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 0.6439623534679413,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['OS1-32']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 0.6891008615493774,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": false,
+          "gold_page_proportion_10": 0.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              3
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              5
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              9
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              1
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              7
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              3
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              3
+            ]
+          ],
+          "latency_ms": 17.385500017553568
+        }
+      },
+      {
+        "id": "Q05",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 0.5378362403975593,
+          "verdict_reason": "Required source document(s) missing from retrieved evidence: ['isprs-archives-XLVIII-4-W14-2025-291-2025.pdf']. Cross-document synthesis requires supporting evidence from each specified paper.",
+          "top_score": 0.5556899309158325,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": false,
+          "gold_page_proportion_10": 0.0,
+          "all_target_docs_top10": false,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "1-s2.0-S2665917426000206-main.pdf",
+            "2012.10802v2.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              5
+            ],
+            [
+              "2012.10802v2.pdf",
+              5
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ]
+          ],
+          "latency_ms": 21.085900021716952
+        }
+      },
+      {
+        "id": "Q06",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 0.6083168917232089,
+          "verdict_reason": "Required source document(s) missing from retrieved evidence: ['2012.10802v2.pdf']. Cross-document synthesis requires supporting evidence from each specified paper.",
+          "top_score": 0.6712890267372131,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.6666666666666666,
+          "all_target_docs_top10": false,
+          "mrr": 1.0,
+          "ndcg_10": 0.9828920819566879,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              9
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              5
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              15
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              9
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              7
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              1
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              10
+            ]
+          ],
+          "latency_ms": 17.818300053477287
+        }
+      },
+      {
+        "id": "Q07",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.6541670494609408,
+          "verdict_reason": "9 passage(s) exceed the relevance threshold (score \u2265 0.38); 6/14 query term(s) matched. All 3 required source(s) represented.",
+          "top_score": 0.694003701210022,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.4,
+          "all_target_docs_top10": true,
+          "mrr": 0.25,
+          "ndcg_10": 0.5431800515011934,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "paper.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              15
+            ],
+            [
+              "paper.pdf",
+              9
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              8
+            ],
+            [
+              "2505.21049.pdf",
+              10
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              16
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "2505.21049.pdf",
+              2
+            ],
+            [
+              "2505.21049.pdf",
+              10
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              7
+            ],
+            [
+              "2505.21049.pdf",
+              10
+            ]
+          ],
+          "latency_ms": 15.599400037899613
+        }
+      },
+      {
+        "id": "Q08",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.4476480782032013,
+          "verdict_reason": "4 passage(s) exceed the relevance threshold (score \u2265 0.38); 1/10 query term(s) matched. All 2 required source(s) represented.",
+          "top_score": 0.483325719833374,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.25,
+          "ndcg_10": 0.44130740935663865,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "2012.10802v2.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "2012.10802v2.pdf",
+            "paper.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2012.10802v2.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              8
+            ],
+            [
+              "2012.10802v2.pdf",
+              8
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              5
+            ],
+            [
+              "2012.10802v2.pdf",
+              6
+            ],
+            [
+              "paper.pdf",
+              4
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              11
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "2012.10802v2.pdf",
+              5
+            ]
+          ],
+          "latency_ms": 22.45819999370724
+        }
+      },
+      {
+        "id": "Q09",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5293546728789806,
+          "verdict_reason": "8 passage(s) exceed the relevance threshold (score \u2265 0.38); 10/22 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 0.6396870017051697,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 1.0,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              12
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              12
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              13
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ]
+          ],
+          "latency_ms": 18.32729997113347
+        }
+      },
+      {
+        "id": "Q10",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.454179619039808,
+          "verdict_reason": "7 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/19 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 0.504886269569397,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": false,
+          "gold_page_proportion_10": 0.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "1-s2.0-S2665917426000206-main.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "1-s2.0-S2665917426000206-main.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              13
+            ]
+          ],
+          "latency_ms": 21.030499949119985
+        }
+      },
+      {
+        "id": "Q11",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 0.0,
+          "verdict_reason": "Document scoping is active for [isprs-archives-XLVIII-4-W14-2025-291-2025.pdf] but none of the retrieved passages originated from the requested document(s). The corpus may not contain the relevant section.",
+          "top_score": 0.0,
+          "doc_hit_3": false,
+          "doc_hit_5": false,
+          "doc_hit_10": false,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": false,
+          "gold_page_proportion_10": 0.0,
+          "all_target_docs_top10": false,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              9
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              7
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              3
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              3
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ]
+          ],
+          "latency_ms": 21.213899948634207
+        }
+      },
+      {
+        "id": "Q12",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5326857566833496,
+          "verdict_reason": "2 passage(s) exceed the relevance threshold (score \u2265 0.38); 12/23 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 0.555048406124115,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 1.0,
+          "retrieved_docs": [
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "2012.10802v2.pdf",
+            "2505.21049.pdf",
+            "2012.10802v2.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "2505.21049.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              3
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              6
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2012.10802v2.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              9
+            ],
+            [
+              "2505.21049.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              10
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              6
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ]
+          ],
+          "latency_ms": 19.39280005171895
+        }
+      },
+      {
+        "id": "Q13",
+        "category": "Page-Level Evidence & Citation",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.45594918727874756,
+          "verdict_reason": "2 passage(s) exceed the relevance threshold (score \u2265 0.38); 6/19 query term(s) matched.",
+          "top_score": 0.5208762884140015,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 1.0,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              12
+            ],
+            [
+              "2505.21049.pdf",
+              15
+            ],
+            [
+              "2505.21049.pdf",
+              8
+            ],
+            [
+              "2505.21049.pdf",
+              12
+            ],
+            [
+              "2505.21049.pdf",
+              4
+            ],
+            [
+              "2505.21049.pdf",
+              3
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ]
+          ],
+          "latency_ms": 14.418200007639825
+        }
+      },
+      {
+        "id": "Q14",
+        "category": "Page-Level Evidence & Citation",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.46597880787319607,
+          "verdict_reason": "9 passage(s) exceed the relevance threshold (score \u2265 0.38); 13/18 query term(s) matched.",
+          "top_score": 0.6038222312927246,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.25,
+          "ndcg_10": 0.5256940434743352,
+          "retrieved_docs": [
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2012.10802v2.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              4
+            ],
+            [
+              "2012.10802v2.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              4
+            ],
+            [
+              "2012.10802v2.pdf",
+              4
+            ],
+            [
+              "2012.10802v2.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              6
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              6
+            ]
+          ],
+          "latency_ms": 16.677999985404313
+        }
+      },
+      {
+        "id": "Q15",
+        "category": "Page-Level Evidence & Citation",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.583205607202318,
+          "verdict_reason": "9 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/16 query term(s) matched.",
+          "top_score": 0.714433491230011,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.5,
+          "ndcg_10": 0.6509209298071326,
+          "retrieved_docs": [
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              1
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              11
+            ],
+            [
+              "paper.pdf",
+              6
+            ],
+            [
+              "paper.pdf",
+              5
+            ],
+            [
+              "paper.pdf",
+              6
+            ]
+          ],
+          "latency_ms": 14.308399986475706
+        }
+      },
+      {
+        "id": "Q16",
+        "category": "Unanswerable (Abstention)",
+        "eval": {
+          "is_answerable": false,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": true,
+          "verdict_confidence": 0.44674608707427976,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['UAV', 'drone']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 0.46339815855026245,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              13
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              7
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              7
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              12
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              16
+            ]
+          ],
+          "latency_ms": 13.265400077216327
+        }
+      },
+      {
+        "id": "Q17",
+        "category": "Unanswerable (Abstention)",
+        "eval": {
+          "is_answerable": false,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": true,
+          "verdict_confidence": 0.0,
+          "verdict_reason": "Document scoping is active for [2012.10802v2.pdf] but none of the retrieved passages originated from the requested document(s). The corpus may not contain the relevant section.",
+          "top_score": 0.0,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              2
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              6
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              2
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ],
+            [
+              "2505.21049.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              6
+            ],
+            [
+              "paper.pdf",
+              11
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              17
+            ],
+            [
+              "2505.21049.pdf",
+              15
+            ]
+          ],
+          "latency_ms": 17.880800063721836
+        }
+      },
+      {
+        "id": "Q18",
+        "category": "Unanswerable (Abstention)",
+        "eval": {
+          "is_answerable": false,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": true,
+          "verdict_confidence": 0.6781005859375,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['YOLOv10-X', 'COCO 2017']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 0.7567892074584961,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "paper.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              10
+            ],
+            [
+              "2505.21049.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              9
+            ],
+            [
+              "2505.21049.pdf",
+              10
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              16
+            ],
+            [
+              "2505.21049.pdf",
+              10
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              12
+            ],
+            [
+              "2505.21049.pdf",
+              3
+            ]
+          ],
+          "latency_ms": 17.323300009593368
+        }
+      }
+    ],
+    "lexical": [
+      {
+        "id": "Q01",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "3 passage(s) exceed the relevance threshold (score \u2265 0.38); 13/17 query term(s) matched. All 2 required entity/entities confirmed present.",
+          "top_score": 29.590182358658485,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.5,
+          "all_target_docs_top10": true,
+          "mrr": 0.5,
+          "ndcg_10": 0.5640920940185894,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "paper.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              1
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              5
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              1
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              3
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              6
+            ],
+            [
+              "paper.pdf",
+              2
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              1
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              7
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              8
+            ]
+          ],
+          "latency_ms": 5.048399907536805
+        }
+      },
+      {
+        "id": "Q02",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/18 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 24.472170926236394,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.3333333333333333,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 1.0,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              5
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              12
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              2
+            ],
+            [
+              "2505.21049.pdf",
+              1
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ],
+            [
+              "2505.21049.pdf",
+              2
+            ]
+          ],
+          "latency_ms": 4.91739995777607
+        }
+      },
+      {
+        "id": "Q03",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/13 query term(s) matched. All 2 required entity/entities confirmed present.",
+          "top_score": 21.731453053581074,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 1.0,
+          "retrieved_docs": [
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              5
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              1
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              9
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              11
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              11
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ]
+          ],
+          "latency_ms": 3.6483999574556947
+        }
+      },
+      {
+        "id": "Q04",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['OS1-32']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 28.35703975316086,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.5,
+          "ndcg_10": 0.5714285040141098,
+          "retrieved_docs": [
+            "2012.10802v2.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2012.10802v2.pdf",
+              7
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              7
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              8
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              6
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              8
+            ]
+          ],
+          "latency_ms": 5.840099998749793
+        }
+      },
+      {
+        "id": "Q05",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "Required source document(s) missing from retrieved evidence: ['isprs-archives-XLVIII-4-W14-2025-291-2025.pdf']. Cross-document synthesis requires supporting evidence from each specified paper.",
+          "top_score": 31.196035867099944,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.16666666666666666,
+          "all_target_docs_top10": false,
+          "mrr": 0.5,
+          "ndcg_10": 0.6309297535714575,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              1
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              1
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              1
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              16
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ]
+          ],
+          "latency_ms": 5.146199953742325
+        }
+      },
+      {
+        "id": "Q06",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "Required source document(s) missing from retrieved evidence: ['2012.10802v2.pdf']. Cross-document synthesis requires supporting evidence from each specified paper.",
+          "top_score": 28.14669897975985,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.3333333333333333,
+          "all_target_docs_top10": false,
+          "mrr": 0.14285714285714285,
+          "ndcg_10": 0.3333333333333333,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "paper.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              1
+            ],
+            [
+              "paper.pdf",
+              2
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              1
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              1
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              1
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              5
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              16
+            ]
+          ],
+          "latency_ms": 4.281100002117455
+        }
+      },
+      {
+        "id": "Q07",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "Required source document(s) missing from retrieved evidence: ['2505.21049.pdf']. Cross-document synthesis requires supporting evidence from each specified paper.",
+          "top_score": 29.595045839528627,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": false,
+          "gold_page_proportion_10": 0.0,
+          "all_target_docs_top10": false,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              1
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "paper.pdf",
+              2
+            ],
+            [
+              "paper.pdf",
+              8
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              7
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              6
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ]
+          ],
+          "latency_ms": 4.399799974635243
+        }
+      },
+      {
+        "id": "Q08",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "5 passage(s) exceed the relevance threshold (score \u2265 0.38); 3/10 query term(s) matched. All 2 required source(s) represented.",
+          "top_score": 26.394492928118694,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": false,
+          "gold_page_proportion_10": 0.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2505.21049.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "2505.21049.pdf",
+            "2012.10802v2.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2012.10802v2.pdf",
+              1
+            ],
+            [
+              "2012.10802v2.pdf",
+              10
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              1
+            ],
+            [
+              "2505.21049.pdf",
+              15
+            ],
+            [
+              "2012.10802v2.pdf",
+              10
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              6
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              6
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ]
+          ],
+          "latency_ms": 4.348300048150122
+        }
+      },
+      {
+        "id": "Q09",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "5 passage(s) exceed the relevance threshold (score \u2265 0.38); 14/22 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 60.695001736046834,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.14285714285714285,
+          "ndcg_10": 0.3333333333333333,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "2012.10802v2.pdf",
+              7
+            ],
+            [
+              "2012.10802v2.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              12
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              13
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ]
+          ],
+          "latency_ms": 6.430999957956374
+        }
+      },
+      {
+        "id": "Q10",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "7 passage(s) exceed the relevance threshold (score \u2265 0.38); 10/19 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 29.87284582786164,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.2,
+          "ndcg_10": 0.38685280723454163,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "2012.10802v2.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              2
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              1
+            ],
+            [
+              "2012.10802v2.pdf",
+              7
+            ]
+          ],
+          "latency_ms": 5.237800069153309
+        }
+      },
+      {
+        "id": "Q11",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['ZED 2i']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 31.75357340798484,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 0.8070380459557518,
+          "retrieved_docs": [
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2012.10802v2.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              1
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              7
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              2
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              3
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "2505.21049.pdf",
+              1
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              2
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              1
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              1
+            ]
+          ],
+          "latency_ms": 6.619599997065961
+        }
+      },
+      {
+        "id": "Q12",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "3 passage(s) exceed the relevance threshold (score \u2265 0.38); 14/23 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 46.5545200567049,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 1.0,
+          "retrieved_docs": [
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "2012.10802v2.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "paper.pdf",
+            "paper.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              3
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              7
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              6
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              5
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              6
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              2
+            ]
+          ],
+          "latency_ms": 5.458600004203618
+        }
+      },
+      {
+        "id": "Q13",
+        "category": "Page-Level Evidence & Citation",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "4 passage(s) exceed the relevance threshold (score \u2265 0.38); 14/19 query term(s) matched.",
+          "top_score": 37.00507330751562,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 0.9197207891481876,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "paper.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              1
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              4
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              5
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              6
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "paper.pdf",
+              7
+            ]
+          ],
+          "latency_ms": 4.752199980430305
+        }
+      },
+      {
+        "id": "Q14",
+        "category": "Page-Level Evidence & Citation",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "7 passage(s) exceed the relevance threshold (score \u2265 0.38); 11/18 query term(s) matched.",
+          "top_score": 56.00735810175094,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": false,
+          "gold_page_proportion_10": 0.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2012.10802v2.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              1
+            ],
+            [
+              "2012.10802v2.pdf",
+              9
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "2012.10802v2.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              7
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "2012.10802v2.pdf",
+              1
+            ],
+            [
+              "2012.10802v2.pdf",
+              10
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              6
+            ]
+          ],
+          "latency_ms": 5.810600006952882
+        }
+      },
+      {
+        "id": "Q15",
+        "category": "Page-Level Evidence & Citation",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 10/16 query term(s) matched.",
+          "top_score": 27.7064858297156,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 0.8421423592553552,
+          "retrieved_docs": [
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "paper.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              5
+            ],
+            [
+              "paper.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              2
+            ],
+            [
+              "paper.pdf",
+              6
+            ],
+            [
+              "paper.pdf",
+              1
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              5
+            ],
+            [
+              "paper.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              4
+            ]
+          ],
+          "latency_ms": 4.426599945873022
+        }
+      },
+      {
+        "id": "Q16",
+        "category": "Unanswerable (Abstention)",
+        "eval": {
+          "is_answerable": false,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": true,
+          "verdict_confidence": 0.0,
+          "verdict_reason": "Document scoping is active for [1-s2.0-S2665917426000206-main.pdf] but none of the retrieved passages originated from the requested document(s). The corpus may not contain the relevant section.",
+          "top_score": 0.0,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "paper.pdf",
+            "2012.10802v2.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              7
+            ],
+            [
+              "2505.21049.pdf",
+              7
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              3
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "2505.21049.pdf",
+              7
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "paper.pdf",
+              10
+            ],
+            [
+              "2012.10802v2.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              5
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              5
+            ]
+          ],
+          "latency_ms": 4.6412000665441155
+        }
+      },
+      {
+        "id": "Q17",
+        "category": "Unanswerable (Abstention)",
+        "eval": {
+          "is_answerable": false,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": true,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['ResNet-50']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 17.60339762290652,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "2012.10802v2.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "journal.pone.0344604.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "paper.pdf",
+            "1-s2.0-S2665917426000206-main.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2012.10802v2.pdf",
+              1
+            ],
+            [
+              "2505.21049.pdf",
+              15
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              4
+            ],
+            [
+              "2012.10802v2.pdf",
+              10
+            ],
+            [
+              "2012.10802v2.pdf",
+              10
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              4
+            ],
+            [
+              "2012.10802v2.pdf",
+              10
+            ],
+            [
+              "2012.10802v2.pdf",
+              1
+            ],
+            [
+              "paper.pdf",
+              8
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ]
+          ],
+          "latency_ms": 4.154499969445169
+        }
+      },
+      {
+        "id": "Q18",
+        "category": "Unanswerable (Abstention)",
+        "eval": {
+          "is_answerable": false,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": true,
+          "verdict_confidence": 1.0,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['YOLOv10-X', 'COCO 2017']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 25.00552544195183,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "paper.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2012.10802v2.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              3
+            ],
+            [
+              "2505.21049.pdf",
+              3
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              12
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              6
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "2012.10802v2.pdf",
+              7
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              7
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ]
+          ],
+          "latency_ms": 4.529800033196807
+        }
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "Q01",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.44054553906122845,
+          "verdict_reason": "3 passage(s) exceed the relevance threshold (score \u2265 0.38); 11/17 query term(s) matched. All 2 required entity/entities confirmed present.",
+          "top_score": 0.5126445889472961,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.5,
+          "all_target_docs_top10": true,
+          "mrr": 0.5,
+          "ndcg_10": 0.5802792108518124,
+          "retrieved_docs": [
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "paper.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "paper.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              5
+            ],
+            [
+              "paper.pdf",
+              2
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              2
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ]
+          ],
+          "latency_ms": 23.595400038175285
+        }
+      },
+      {
+        "id": "Q02",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.6385760188102723,
+          "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/18 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 0.7156623005867004,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.3333333333333333,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 1.0,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              5
+            ],
+            [
+              "2505.21049.pdf",
+              2
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              12
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              10
+            ],
+            [
+              "2505.21049.pdf",
+              2
+            ],
+            [
+              "2505.21049.pdf",
+              3
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ]
+          ],
+          "latency_ms": 22.891800035722554
+        }
+      },
+      {
+        "id": "Q03",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.4802732765674591,
+          "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/13 query term(s) matched. All 2 required entity/entities confirmed present.",
+          "top_score": 0.6117966175079346,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 1.0,
+          "retrieved_docs": [
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              7
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              12
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              13
+            ]
+          ],
+          "latency_ms": 22.43900008033961
+        }
+      },
+      {
+        "id": "Q04",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 0.6275662846035428,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['OS1-32']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 0.6891008615493774,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": false,
+          "gold_page_proportion_10": 0.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              5
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              7
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              1
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              7
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              3
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              8
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              3
+            ]
+          ],
+          "latency_ms": 23.814599961042404
+        }
+      },
+      {
+        "id": "Q05",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 0.5176661640405655,
+          "verdict_reason": "Required source document(s) missing from retrieved evidence: ['isprs-archives-XLVIII-4-W14-2025-291-2025.pdf']. Cross-document synthesis requires supporting evidence from each specified paper.",
+          "top_score": 0.5556899309158325,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": false,
+          "gold_page_proportion_10": 0.0,
+          "all_target_docs_top10": false,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              5
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              1
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              12
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              4
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ]
+          ],
+          "latency_ms": 26.065299985930324
+        }
+      },
+      {
+        "id": "Q06",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 0.6046049509729657,
+          "verdict_reason": "Required source document(s) missing from retrieved evidence: ['2012.10802v2.pdf']. Cross-document synthesis requires supporting evidence from each specified paper.",
+          "top_score": 0.6712890267372131,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.3333333333333333,
+          "all_target_docs_top10": false,
+          "mrr": 0.125,
+          "ndcg_10": 0.3706656904013186,
+          "retrieved_docs": [
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "paper.pdf",
+            "2505.21049.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              5
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              1
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              15
+            ],
+            [
+              "paper.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              1
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              9
+            ]
+          ],
+          "latency_ms": 29.042000067420304
+        }
+      },
+      {
+        "id": "Q07",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.6273392538229624,
+          "verdict_reason": "6 passage(s) exceed the relevance threshold (score \u2265 0.38); 5/14 query term(s) matched. All 3 required source(s) represented.",
+          "top_score": 0.694003701210022,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.4,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 0.7903864795495061,
+          "retrieved_docs": [
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "2505.21049.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "paper.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "paper.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "2505.21049.pdf",
+              15
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              1
+            ],
+            [
+              "paper.pdf",
+              9
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              2
+            ],
+            [
+              "2505.21049.pdf",
+              10
+            ]
+          ],
+          "latency_ms": 23.54099997319281
+        }
+      },
+      {
+        "id": "Q08",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.47684210538864136,
+          "verdict_reason": "2 passage(s) exceed the relevance threshold (score \u2265 0.38); 1/10 query term(s) matched. All 2 required source(s) represented.",
+          "top_score": 0.483325719833374,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.5,
+          "all_target_docs_top10": true,
+          "mrr": 0.1,
+          "ndcg_10": 0.2890648263178879,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "2012.10802v2.pdf",
+            "2505.21049.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2505.21049.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              6
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              6
+            ],
+            [
+              "2012.10802v2.pdf",
+              1
+            ],
+            [
+              "2505.21049.pdf",
+              8
+            ],
+            [
+              "2012.10802v2.pdf",
+              10
+            ],
+            [
+              "2012.10802v2.pdf",
+              8
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              5
+            ]
+          ],
+          "latency_ms": 21.636300021782517
+        }
+      },
+      {
+        "id": "Q09",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5684818476438522,
+          "verdict_reason": "4 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/22 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 0.5904194116592407,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.3333333333333333,
+          "ndcg_10": 0.5,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "2012.10802v2.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              12
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              13
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "2012.10802v2.pdf",
+              6
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "2505.21049.pdf",
+              12
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ]
+          ],
+          "latency_ms": 31.416199984960258
+        }
+      },
+      {
+        "id": "Q10",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.45001727768353056,
+          "verdict_reason": "7 passage(s) exceed the relevance threshold (score \u2265 0.38); 10/19 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 0.504886269569397,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.125,
+          "ndcg_10": 0.37800210039683896,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ]
+          ],
+          "latency_ms": 24.499500053934753
+        }
+      },
+      {
+        "id": "Q11",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 0.4868772029876709,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['ZED 2i']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 0.4868772029876709,
+          "doc_hit_3": false,
+          "doc_hit_5": false,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.5,
+          "all_target_docs_top10": true,
+          "mrr": 0.14285714285714285,
+          "ndcg_10": 0.3333333333333333,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              1
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              2
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              11
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              1
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              3
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ]
+          ],
+          "latency_ms": 24.99890001490712
+        }
+      },
+      {
+        "id": "Q12",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5326857566833496,
+          "verdict_reason": "2 passage(s) exceed the relevance threshold (score \u2265 0.38); 12/23 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 0.555048406124115,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 1.0,
+          "retrieved_docs": [
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "2012.10802v2.pdf",
+            "paper.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2505.21049.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "2012.10802v2.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              3
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "2012.10802v2.pdf",
+              6
+            ],
+            [
+              "2012.10802v2.pdf",
+              7
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              6
+            ],
+            [
+              "2012.10802v2.pdf",
+              6
+            ]
+          ],
+          "latency_ms": 23.534599924460053
+        }
+      },
+      {
+        "id": "Q13",
+        "category": "Page-Level Evidence & Citation",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5208762884140015,
+          "verdict_reason": "1 passage(s) exceed the relevance threshold (score \u2265 0.38); 5/19 query term(s) matched.",
+          "top_score": 0.5208762884140015,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.5,
+          "ndcg_10": 0.6240505200038379,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "2012.10802v2.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ],
+            [
+              "2012.10802v2.pdf",
+              8
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              15
+            ]
+          ],
+          "latency_ms": 18.517500022426248
+        }
+      },
+      {
+        "id": "Q14",
+        "category": "Page-Level Evidence & Citation",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.4835771471261978,
+          "verdict_reason": "4 passage(s) exceed the relevance threshold (score \u2265 0.38); 11/18 query term(s) matched.",
+          "top_score": 0.6038222312927246,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.25,
+          "ndcg_10": 0.46845052016107697,
+          "retrieved_docs": [
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2012.10802v2.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              1
+            ],
+            [
+              "2012.10802v2.pdf",
+              4
+            ],
+            [
+              "2012.10802v2.pdf",
+              10
+            ],
+            [
+              "2012.10802v2.pdf",
+              9
+            ],
+            [
+              "2012.10802v2.pdf",
+              4
+            ],
+            [
+              "2012.10802v2.pdf",
+              5
+            ],
+            [
+              "2012.10802v2.pdf",
+              6
+            ],
+            [
+              "2012.10802v2.pdf",
+              7
+            ]
+          ],
+          "latency_ms": 22.937099914997816
+        }
+      },
+      {
+        "id": "Q15",
+        "category": "Page-Level Evidence & Citation",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5709581315517426,
+          "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 10/16 query term(s) matched.",
+          "top_score": 0.714433491230011,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 0.8072467605676945,
+          "retrieved_docs": [
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "paper.pdf",
+              1
+            ],
+            [
+              "paper.pdf",
+              5
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              6
+            ],
+            [
+              "paper.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              5
+            ]
+          ],
+          "latency_ms": 21.479299990460277
+        }
+      },
+      {
+        "id": "Q16",
+        "category": "Unanswerable (Abstention)",
+        "eval": {
+          "is_answerable": false,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": true,
+          "verdict_confidence": 0.44674608707427976,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['UAV', 'drone']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 0.46339815855026245,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "paper.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              7
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              13
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              7
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              12
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "paper.pdf",
+              10
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              5
+            ],
+            [
+              "2505.21049.pdf",
+              7
+            ]
+          ],
+          "latency_ms": 19.001199980266392
+        }
+      },
+      {
+        "id": "Q17",
+        "category": "Unanswerable (Abstention)",
+        "eval": {
+          "is_answerable": false,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": true,
+          "verdict_confidence": 0.473590612411499,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['ResNet-50']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 0.473590612411499,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2012.10802v2.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2012.10802v2.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              14
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              8
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              2
+            ],
+            [
+              "2012.10802v2.pdf",
+              1
+            ],
+            [
+              "2505.21049.pdf",
+              15
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              2
+            ],
+            [
+              "2012.10802v2.pdf",
+              10
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ]
+          ],
+          "latency_ms": 21.52060007210821
+        }
+      },
+      {
+        "id": "Q18",
+        "category": "Unanswerable (Abstention)",
+        "eval": {
+          "is_answerable": false,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5959486067295074,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['YOLOv10-X', 'COCO 2017']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 0.7052747011184692,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              3
+            ],
+            [
+              "2505.21049.pdf",
+              8
+            ],
+            [
+              "2505.21049.pdf",
+              3
+            ],
+            [
+              "2505.21049.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "2505.21049.pdf",
+              1
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "2505.21049.pdf",
+              2
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              6
+            ],
+            [
+              "2505.21049.pdf",
+              2
+            ]
+          ],
+          "latency_ms": 20.986499963328242
+        }
+      }
+    ],
+    "source_aware": [
+      {
+        "id": "Q01",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.44054553906122845,
+          "verdict_reason": "3 passage(s) exceed the relevance threshold (score \u2265 0.38); 11/17 query term(s) matched. All 2 required entity/entities confirmed present.",
+          "top_score": 0.5126445889472961,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.5,
+          "all_target_docs_top10": true,
+          "mrr": 0.5,
+          "ndcg_10": 0.5802792108518124,
+          "retrieved_docs": [
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "paper.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "paper.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              5
+            ],
+            [
+              "paper.pdf",
+              2
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              2
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ]
+          ],
+          "latency_ms": 22.426299983635545
+        }
+      },
+      {
+        "id": "Q02",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.6385760188102723,
+          "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/18 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 0.7156623005867004,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.3333333333333333,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 1.0,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              5
+            ],
+            [
+              "2505.21049.pdf",
+              2
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              12
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              10
+            ],
+            [
+              "2505.21049.pdf",
+              2
+            ],
+            [
+              "2505.21049.pdf",
+              3
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ]
+          ],
+          "latency_ms": 22.668799967505038
+        }
+      },
+      {
+        "id": "Q03",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.4802732765674591,
+          "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/13 query term(s) matched. All 2 required entity/entities confirmed present.",
+          "top_score": 0.6117966175079346,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 1.0,
+          "retrieved_docs": [
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              7
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              12
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              13
+            ]
+          ],
+          "latency_ms": 20.09790006559342
+        }
+      },
+      {
+        "id": "Q04",
+        "category": "Direct Factual Retrieval",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 0.6275662846035428,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['OS1-32']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 0.6891008615493774,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": false,
+          "gold_page_proportion_10": 0.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              5
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              7
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              1
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              7
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              3
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              8
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              3
+            ]
+          ],
+          "latency_ms": 23.994000046513975
+        }
+      },
+      {
+        "id": "Q05",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5184982291289738,
+          "verdict_reason": "7 passage(s) exceed the relevance threshold (score \u2265 0.38); 7/25 query term(s) matched. All 3 required source(s) represented.",
+          "top_score": 0.5556899309158325,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": false,
+          "gold_page_proportion_10": 0.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              5
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              9
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              6
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              4
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              5
+            ]
+          ],
+          "latency_ms": 6131.665599998087
+        }
+      },
+      {
+        "id": "Q06",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5755495892630683,
+          "verdict_reason": "9 passage(s) exceed the relevance threshold (score \u2265 0.38); 11/13 query term(s) matched. All 3 required source(s) represented.",
+          "top_score": 0.6353426575660706,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.3333333333333333,
+          "all_target_docs_top10": true,
+          "mrr": 0.25,
+          "ndcg_10": 0.43067655807339306,
+          "retrieved_docs": [
+            "1-s2.0-S2665917426000206-main.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "2012.10802v2.pdf",
+            "1-s2.0-S2665917426000206-main.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              5
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              1
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              9
+            ],
+            [
+              "2012.10802v2.pdf",
+              9
+            ],
+            [
+              "2012.10802v2.pdf",
+              7
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              9
+            ],
+            [
+              "2012.10802v2.pdf",
+              1
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              13
+            ]
+          ],
+          "latency_ms": 7349.421499995515
+        }
+      },
+      {
+        "id": "Q07",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5867768658532037,
+          "verdict_reason": "9 passage(s) exceed the relevance threshold (score \u2265 0.38); 7/14 query term(s) matched. All 3 required source(s) represented.",
+          "top_score": 0.694003701210022,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.4,
+          "all_target_docs_top10": true,
+          "mrr": 0.2,
+          "ndcg_10": 0.45560514958746035,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              2
+            ],
+            [
+              "paper.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              2
+            ],
+            [
+              "paper.pdf",
+              6
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              6
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              8
+            ],
+            [
+              "2505.21049.pdf",
+              15
+            ]
+          ],
+          "latency_ms": 6685.051699983887
+        }
+      },
+      {
+        "id": "Q08",
+        "category": "Cross-Paper Comparison",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.4278438985347748,
+          "verdict_reason": "2 passage(s) exceed the relevance threshold (score \u2265 0.38); 1/10 query term(s) matched. All 2 required source(s) represented.",
+          "top_score": 0.4703584909439087,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.3333333333333333,
+          "ndcg_10": 0.5437713091520254,
+          "retrieved_docs": [
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              6
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              6
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              5
+            ],
+            [
+              "2012.10802v2.pdf",
+              2
+            ],
+            [
+              "2012.10802v2.pdf",
+              5
+            ],
+            [
+              "2012.10802v2.pdf",
+              1
+            ]
+          ],
+          "latency_ms": 3778.357599978335
+        }
+      },
+      {
+        "id": "Q09",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5684818476438522,
+          "verdict_reason": "4 passage(s) exceed the relevance threshold (score \u2265 0.38); 9/22 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 0.5904194116592407,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.3333333333333333,
+          "ndcg_10": 0.5,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "2012.10802v2.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              12
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              13
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "2012.10802v2.pdf",
+              6
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "2505.21049.pdf",
+              12
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              4
+            ]
+          ],
+          "latency_ms": 29.35480000451207
+        }
+      },
+      {
+        "id": "Q10",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.45001727768353056,
+          "verdict_reason": "7 passage(s) exceed the relevance threshold (score \u2265 0.38); 10/19 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 0.504886269569397,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.125,
+          "ndcg_10": 0.37800210039683896,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ],
+            [
+              "2505.21049.pdf",
+              14
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ]
+          ],
+          "latency_ms": 21.815799991600215
+        }
+      },
+      {
+        "id": "Q11",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": false,
+          "verdict_confidence": 0.4868772029876709,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['ZED 2i']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 0.4868772029876709,
+          "doc_hit_3": false,
+          "doc_hit_5": false,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": false,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 0.5,
+          "all_target_docs_top10": true,
+          "mrr": 0.14285714285714285,
+          "ndcg_10": 0.3333333333333333,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              1
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              2
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              11
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              1
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              6
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              3
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ]
+          ],
+          "latency_ms": 28.537699952721596
+        }
+      },
+      {
+        "id": "Q12",
+        "category": "Numerical Results & Methodology",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5326857566833496,
+          "verdict_reason": "2 passage(s) exceed the relevance threshold (score \u2265 0.38); 12/23 query term(s) matched. All 1 required entity/entities confirmed present.",
+          "top_score": 0.555048406124115,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 1.0,
+          "retrieved_docs": [
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "2012.10802v2.pdf",
+            "paper.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2505.21049.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "2012.10802v2.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              3
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "2012.10802v2.pdf",
+              6
+            ],
+            [
+              "2012.10802v2.pdf",
+              7
+            ],
+            [
+              "2505.21049.pdf",
+              13
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              6
+            ],
+            [
+              "2012.10802v2.pdf",
+              6
+            ]
+          ],
+          "latency_ms": 23.886000039055943
+        }
+      },
+      {
+        "id": "Q13",
+        "category": "Page-Level Evidence & Citation",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5208762884140015,
+          "verdict_reason": "1 passage(s) exceed the relevance threshold (score \u2265 0.38); 5/19 query term(s) matched.",
+          "top_score": 0.5208762884140015,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.5,
+          "ndcg_10": 0.6240505200038379,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "2012.10802v2.pdf",
+            "journal.pone.0344604.pdf",
+            "journal.pone.0344604.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "2505.21049.pdf",
+              11
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ],
+            [
+              "2012.10802v2.pdf",
+              8
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              11
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              13
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              15
+            ]
+          ],
+          "latency_ms": 18.765000044368207
+        }
+      },
+      {
+        "id": "Q14",
+        "category": "Page-Level Evidence & Citation",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.4835771471261978,
+          "verdict_reason": "4 passage(s) exceed the relevance threshold (score \u2265 0.38); 11/18 query term(s) matched.",
+          "top_score": 0.6038222312927246,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": false,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 0.25,
+          "ndcg_10": 0.46845052016107697,
+          "retrieved_docs": [
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf",
+            "2012.10802v2.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2012.10802v2.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              3
+            ],
+            [
+              "2012.10802v2.pdf",
+              1
+            ],
+            [
+              "2012.10802v2.pdf",
+              4
+            ],
+            [
+              "2012.10802v2.pdf",
+              10
+            ],
+            [
+              "2012.10802v2.pdf",
+              9
+            ],
+            [
+              "2012.10802v2.pdf",
+              4
+            ],
+            [
+              "2012.10802v2.pdf",
+              5
+            ],
+            [
+              "2012.10802v2.pdf",
+              6
+            ],
+            [
+              "2012.10802v2.pdf",
+              7
+            ]
+          ],
+          "latency_ms": 26.457500061951578
+        }
+      },
+      {
+        "id": "Q15",
+        "category": "Page-Level Evidence & Citation",
+        "eval": {
+          "is_answerable": true,
+          "verdict_sufficient": true,
+          "verdict_should_abstain": false,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5709581315517426,
+          "verdict_reason": "10 passage(s) exceed the relevance threshold (score \u2265 0.38); 10/16 query term(s) matched.",
+          "top_score": 0.714433491230011,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "gold_page_proportion_10": 1.0,
+          "all_target_docs_top10": true,
+          "mrr": 1.0,
+          "ndcg_10": 0.8072467605676945,
+          "retrieved_docs": [
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf",
+            "paper.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "paper.pdf",
+              1
+            ],
+            [
+              "paper.pdf",
+              5
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              6
+            ],
+            [
+              "paper.pdf",
+              8
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              7
+            ],
+            [
+              "paper.pdf",
+              5
+            ]
+          ],
+          "latency_ms": 17.57749996613711
+        }
+      },
+      {
+        "id": "Q16",
+        "category": "Unanswerable (Abstention)",
+        "eval": {
+          "is_answerable": false,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": true,
+          "verdict_confidence": 0.44674608707427976,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['UAV', 'drone']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 0.46339815855026245,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "journal.pone.0344604.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "paper.pdf",
+            "1-s2.0-S2665917426000206-main.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "journal.pone.0344604.pdf",
+              7
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              13
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              7
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              2
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              12
+            ],
+            [
+              "isprs-archives-XLVIII-4-W14-2025-291-2025.pdf",
+              3
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              4
+            ],
+            [
+              "paper.pdf",
+              10
+            ],
+            [
+              "1-s2.0-S2665917426000206-main.pdf",
+              5
+            ],
+            [
+              "2505.21049.pdf",
+              7
+            ]
+          ],
+          "latency_ms": 21.020299987867475
+        }
+      },
+      {
+        "id": "Q17",
+        "category": "Unanswerable (Abstention)",
+        "eval": {
+          "is_answerable": false,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": true,
+          "verdict_confidence": 0.473590612411499,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['ResNet-50']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 0.473590612411499,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2012.10802v2.pdf",
+            "2505.21049.pdf",
+            "journal.pone.0344604.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2012.10802v2.pdf",
+            "journal.pone.0344604.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              14
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              6
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              8
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              2
+            ],
+            [
+              "2012.10802v2.pdf",
+              1
+            ],
+            [
+              "2505.21049.pdf",
+              15
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              2
+            ],
+            [
+              "2012.10802v2.pdf",
+              10
+            ],
+            [
+              "journal.pone.0344604.pdf",
+              14
+            ]
+          ],
+          "latency_ms": 20.165499998256564
+        }
+      },
+      {
+        "id": "Q18",
+        "category": "Unanswerable (Abstention)",
+        "eval": {
+          "is_answerable": false,
+          "verdict_sufficient": false,
+          "verdict_should_abstain": true,
+          "abstention_correct": true,
+          "verdict_confidence": 0.5959486067295074,
+          "verdict_reason": "Required technical entity/entities not found in the scoped evidence: ['YOLOv10-X', 'COCO 2017']. Entity presence is necessary but not sufficient for propositional grounding.",
+          "top_score": 0.7052747011184692,
+          "doc_hit_3": true,
+          "doc_hit_5": true,
+          "doc_hit_10": true,
+          "page_hit_3": true,
+          "page_hit_5": true,
+          "page_hit_10": true,
+          "all_target_docs_top10": true,
+          "mrr": 0.0,
+          "ndcg_10": 0.0,
+          "retrieved_docs": [
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "2505.21049.pdf",
+            "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+            "2505.21049.pdf"
+          ],
+          "retrieved_pages": [
+            [
+              "2505.21049.pdf",
+              3
+            ],
+            [
+              "2505.21049.pdf",
+              8
+            ],
+            [
+              "2505.21049.pdf",
+              3
+            ],
+            [
+              "2505.21049.pdf",
+              4
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              5
+            ],
+            [
+              "2505.21049.pdf",
+              1
+            ],
+            [
+              "2505.21049.pdf",
+              9
+            ],
+            [
+              "2505.21049.pdf",
+              2
+            ],
+            [
+              "Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf",
+              6
+            ],
+            [
+              "2505.21049.pdf",
+              2
+            ]
+          ],
+          "latency_ms": 21.658600075170398
+        }
+      }
+    ]
+  }
+}

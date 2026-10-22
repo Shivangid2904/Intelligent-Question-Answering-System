@@ -1,0 +1,308 @@
+=== FILE: 1-s2.0-S2665917426000206-main.pdf (8,488,742 bytes, 13 pages) ===
+First 20 non-empty lines:
+  3D vision and depth sensing for intelligent pothole detection using
+  time-of-flight imaging
+  Baskar Ponnusamy
+  School of Mechanical Engineering, Vellore Institute of Technology, Vellore, 632014, India
+  A R T I C L E  I N F O
+  Keywords:
+  Time-of-Flight imaging
+  Pothole detection
+  Depth sensing and segmentation
+  Autonomous vehicle perception
+  Intelligent transportation systems
+  A B S T R A C T
+  Accurate and automated detection of pavement potholes is essential for intelligent transportation systems and
+  predictive maintenance planning. This study presents a comprehensive Time-of-Flight (ToF) camera based
+  framework for real-time pothole detection and three-dimensional geometric characterization. The system in­
+  tegrates amplitude imaging, colorized depth mapping, adaptive segmentation, and 3-D surface reconstruction to
+  quantify key geometric descriptors such as maximum depth, mean depth, surface area, and approximate volume.
+  Experimental validation was conducted on five representative pothole geometries exhibiting different depth
+  profiles central deep, medium, shallow, and asymmetric depressions. Results demonstrate that the ToF sensor
+  accurately captures sub-centimeter depth variations, maintaining good detection reliability for moderate to se­
+
+Last 10 non-empty lines on page 1:
+  et al. [3] emphasises the need for calibration procedures,
+  E-mail address: pbaskar@vit.ac.in.
+  Contents lists available at ScienceDirect
+  Measurement: Sensors
+  journal homepage: www.sciencedirect.com/journal/measurement-sensors
+  https://doi.org/10.1016/j.measen.2026.102002
+  Received 11 November 2025; Received in revised form 13 March 2026; Accepted 17 April 2026
+  Measurement: Sensors 45 (2026) 102002
+  Available online 18 April 2026
+  2665-9174/© 2026 Published by Elsevier Ltd. This is an open access article under the CC BY-NC-ND license ( http://creativecommons.org/licenses/by-nc-nd/4.0/ ).
+
+Last 5 lines of last page:
+  method for asphalt pavement texture characteristics, Constr. Build. Mater. 287
+  (2021) 122966, https://doi.org/10.1016/j.conbuildmat.2021.122966.
+  B. Ponnusamy
+  Measurement: Sensors 45 (2026) 102002
+  13
+
+============================================================
+
+=== FILE: 2012.10802v2.pdf (5,773,199 bytes, 10 pages) ===
+First 20 non-empty lines:
+  1
+  Rethinking Road Surface 3D Reconstruction and
+  Pothole Detection: From Perspective Transformation
+  to Disparity Map Segmentation
+  Rui Fan, Member, IEEE, Umar Ozgunalp, Member, IEEE,
+  Yuan Wang, Ming Liu, Senior Member, IEEE, Ioannis Pitas, Fellow, IEEE
+  Abstract—Potholes are one of the most common forms of road
+  damage, which can severely affect driving comfort, road safety
+  and vehicle condition. Pothole detection is typically performed
+  by either structural engineers or certiﬁed inspectors. This task
+  is, however, not only hazardous for the personnel but also ex-
+  tremely time-consuming. This paper presents an efﬁcient pothole
+  detection algorithm based on road disparity map estimation and
+  segmentation. We ﬁrst generalize the perspective transformation
+  by incorporating the stereo rig roll angle. The road disparities
+  are then estimated using semi-global matching. A disparity map
+  transformation algorithm is then performed to better distinguish
+  the damaged road areas. Finally, we utilize simple linear iterative
+  clustering to group the transformed disparities into a collection
+  of superpixels. The potholes are then detected by ﬁnding the su-
+
+Last 10 non-empty lines on page 1:
+  • the intensities of the pothole region-of-interest (RoI)
+  pixels are typically lower than those of the surrounding
+  road surface, due to shadows.
+  Basic image segmentation algorithms are ﬁrst applied on
+  RGB or gray-scale road surface images to separate the dam-
+  aged and undamaged road areas. Most commonly used seg-
+  mentation algorithms are triangle thresholding [12] and Otsu’s
+  thresholding [13]. Compared with the former one, Otsu’s
+  thresholding algorithm minimizes the intra-class variance and
+  arXiv:2012.10802v2  [cs.CV]  31 Dec 2020
+
+Last 5 lines of last page:
+  information in drivable area and road anomaly detection for ground
+  mobile robots,” arXiv preprint arXiv:2008.11383, 2020.
+  [58] S. Geisser, “The predictive sample reuse method with applications,”
+  Journal of the American statistical Association, vol. 70, no. 350, pp.
+  320–328, 1975.
+
+============================================================
+
+=== FILE: 2505.21049.pdf (37,703,871 bytes, 15 pages) ===
+First 20 non-empty lines:
+  arXiv:2505.21049v1  [cs.CV]  27 May 2025
+  JOURNAL OF LATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021
+  1
+  Robust Video-Based Pothole Detection and Area Estimation for
+  Intelligent Vehicles with Depth Map and Kalman Smoothing
+  Dehao Wang, Haohang Zhu, Yiwen Xu, and Kaiqi Liu
+  Abstract—Road potholes pose a serious threat to driving
+  safety and comfort, making their detection and assessment a
+  critical task in fields such as autonomous driving. When driving
+  vehicles, the operators usually avoid large potholes and approach
+  smaller ones at reduced speeds to ensure safety. Therefore,
+  accurately estimating pothole area is of vital importance. Most
+  existing vision-based methods rely on distance priors to construct
+  geometric models. However, their performance is susceptible to
+  variations in camera angles and typically relies on the assumption
+  of a flat road surface, potentially leading to significant errors in
+  complex real-world environments. To address these problems,
+  a robust pothole area estimation framework that integrates
+  object detection and monocular depth estimation in a video
+  stream is proposed in this paper. First, to enhance pothole
+
+Last 10 non-empty lines on page 1:
+  and holds strong promise for practical applications.
+  To improve the accuracy and robustness of pothole area
+  estimation while enhancing processing efficiency and reducing
+  costs using only 2D images, a novel and robust pothole area es-
+  timation framework is proposed. The framework is built upon
+  a newly designed pothole detection model, ACSH-YOLOv8,
+  combined with the advanced monocular metric depth es-
+  timation network, DepthAnything V2. A novel Minimum
+  Bounding Triangulated Pixel (MBTP) method is introduced to
+  estimate pothole areas with improved reliability. To reduce the
+
+Last 5 lines of last page:
+  A novel
+  framework for pothole area estimation based on object detection and
+  monocular metric depth estimation. In 2024 IEEE International Con-
+  ference on Signal, Information and Data Processing (ICSIDP), pages
+  1–6. IEEE, 2024.
+
+============================================================
+
+=== FILE: Deep_Learning_Enhanced_Feature_Extraction_of_Potholes_Using_Vision_and_LiDAR_Data_for_Road_Maintenance.pdf (2,610,973 bytes, 9 pages) ===
+First 20 non-empty lines:
+  Received 25 September 2024, accepted 11 November 2024, date of publication 9 December 2024,
+  date of current version 17 December 2024.
+  Digital Object Identifier 10.1109/ACCESS.2024.3512783
+  Deep Learning Enhanced Feature Extraction
+  of Potholes Using Vision and LiDAR Data
+  for Road Maintenance
+  ABHIRAM KARUKAYIL
+  1, CHRISTOPHER QUAIL1, AND
+  FERNANDO AUAT CHEEIN
+  2,3, (Senior Member, IEEE)
+  1School of Engineering and Physical Sciences, The National Robotarium, Heriot-Watt University, EH14 4AS Edinburgh, U.K.
+  2Department of Engineering, Harper-Adams University, Newport, TF10 8NB England, U.K.
+  3Department of Electronic Engineering, Advanced Center of Electrical and Electronic Engineering, Federico Santa Maria Technical University, Valparaiso 1680,
+  Chile
+  Corresponding authors: Abhiram Karukayil (ak5001@hw.ac.uk) and Fernando Auat Cheein (fauat@harper-adams.ac.uk)
+  This work was supported in part by The National Robotarium–the Institute of Sensors, Signals and Systems, Heriot-Watt University; and in
+  part by the Advanced Centre of Electrical and Electronic Engineering (ANID), Universidad Tecnica Federico Santa Maria (UTFSM), under
+  Grant AFB240002.
+  ABSTRACT As the global population increases, so does the number of vehicles on our roads, which makes
+  maintenance of the road infrastructure critical for safe and efficient transportation. A significant challenge
+
+Last 10 non-empty lines on page 1:
+  over 7,000 from Scottish councils. Of these, 13,187 claims
+  were successful in securing compensation [5]. Potholes not
+  only damage vehicles, but also pose serious risks to cyclists
+  and pedestrians, with these road defects that cause 15% of
+  bicycle accidents [5]. In 2016, a cyclist in San Diego suffered
+  serious injuries from a pothole, resulting in a $1 million
+  VOLUME 12, 2024
+  2024 The Authors. This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.
+  For more information, see https://creativecommons.org/licenses/by-nc-nd/4.0/
+  184541
+
+Last 5 lines of last page:
+  vehicles, robotics and perception in agriculture, motion planning and control,
+  and efficient navigation strategies. He is an associate editor of several
+  journals.
+  VOLUME 12, 2024
+  184549
+
+============================================================
+
+=== FILE: isprs-archives-XLVIII-4-W14-2025-291-2025.pdf (2,354,782 bytes, 6 pages) ===
+First 20 non-empty lines:
+  High-Precision 3D Recognition of Road Potholes Based on Binocular Vision and
+  Cross-Modal Feature Fusion
+  Hanzheng Wang 1, Shishuo Xu 1, Danyang Hu 1,Zheng Wen 1,Jianxi Ou 1
+  1 School of Geomatics and Urban Information, Beijing University of Civil Engineering and Architecture, Beijing, 102612, China
+  kryonk1@gmail.com,xss_bucea@163.com, 3247464395@qq.com,wenzheng bucea@163.com, 1108130421002@stu.bucea.edu.cn
+  Keywords: binocular vision, lightweight detection, Mask R-CNN, 3D reconstruction, road damage ratio
+  Abstract
+  Efficient detection and accurate three-dimensional characterization of road potholes are crucial for road maintenance and traffic
+  safety. To address the issues of high cost and poor environmental adaptability in existing detection methods, this study proposes a
+  lightweight pothole detection and 3D reconstruction method based on binocular stereo vision and deep learning. A ZED 2i binocular
+  camera was used to build a vehicle-mounted acquisition system, combined with the Mask R-CNN model to achieve pothole detection
+  and pixel-level segmentation. The 3D point cloud of potholes was reconstructed using the principles of binocular stereo vision, and a
+  dynamic mesh density method was proposed to optimize surface area calculation. Additionally, the RANSAC algorithm was
+  employed to fit the ground plane and extract depth parameters. Experimental results demonstrate that this method can achieve precise
+  measurements of pothole depth and surface area at a speed of 40 km/h, with relative errors of 12.53% and 18.19%, respectively, and
+  an average accuracy of 82% for damage ratio (DR) calculation. Furthermore, an MSRCP image enhancement technique and a sliding
+  window cropping strategy (overlap rate of 0.7) were used to construct a dataset containing 6,416 images, significantly improving the
+  model's robustness in complex scenarios such as shadows and varying lighting conditions. This study provides road maintenance
+  departments with a low-cost, high-precision intelligent pothole detection solution, reducing hardware costs by 90% compared to
+  traditional laser sensors, and demonstrates significant value for engineering applications.
+
+Last 10 non-empty lines on page 1:
+  Figure 1 illustrates the left and right cameras and the image
+  coordinate systems, denoted as O-XY, orxy and 0rXY, o-xya,
+  respectively. The focal lengths of the left and right cameras are f
+  and f, respectively. There is a point P in space, and its
+  projections on the left and right images are P and P. According
+  The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences, Volume XLVIII-4/W14-2025
+  9th International Workshop on Dynamic and Multi-dimensional GIS (DMGIS 2025), 22–24 August 2025, Beijing, China
+  This contribution has been peer-reviewed.
+  https://doi.org/10.5194/isprs-archives-XLVIII-4-W14-2025-291-2025 | © Author(s) 2025. CC BY 4.0 License.
+  291
+
+Last 5 lines of last page:
+  The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences, Volume XLVIII-4/W14-2025
+  9th International Workshop on Dynamic and Multi-dimensional GIS (DMGIS 2025), 22–24 August 2025, Beijing, China
+  This contribution has been peer-reviewed.
+  https://doi.org/10.5194/isprs-archives-XLVIII-4-W14-2025-291-2025 | © Author(s) 2025. CC BY 4.0 License.
+  296
+
+============================================================
+
+=== FILE: journal.pone.0344604.pdf (1,062,171 bytes, 17 pages) ===
+First 20 non-empty lines:
+  PLOS One | https://doi.org/10.1371/journal.pone.0344604  May 8, 2026
+  1 / 17
+  OPEN ACCESS
+  Citation: Rauf Butt W, Farooq M, Jabbar
+  S, Iqbal MM, Raza U, Ahmed AES (2026)
+  Smartphone-based accurate pothole depth
+  estimation using monocular RGB and LiDAR-
+  guided deep learning. PLoS One 21(5):
+  e0344604. https://doi.org/10.1371/journal.
+  pone.0344604
+  Editor: Francesco Bardozzo, University of
+  Salerno: Universita degli Studi di Salerno, ITALY
+  Received: September 19, 2025
+  Accepted: February 23, 2026
+  Published: May 8, 2026
+  Copyright: © 2026 Rauf Butt et al. This is an
+  open access article distributed under the terms
+  of the Creative Commons Attribution License,
+  which permits unrestricted use, distribution,
+  and reproduction in any medium, provided the
+
+Last 10 non-empty lines on page 1:
+  estimation and pothole delineation, significantly outperforming existing methods. This
+  work highlights the potential of lightweight smartphone-based solutions for real-time
+  automated road condition assessment, offering a practical and economical tool for
+  modern infrastructure management.
+  Introduction
+  Road networks are a fundamental component of transportation systems, contribut­
+  ing to travel safety, improving mobility, and driving economic growth. However, the
+  increasing scale and complexity of road networks pose considerable challenges for
+  regular monitoring and timely maintenance. One of the most common and hazard­
+  ous forms of pavement deterioration is the pothole—typically formed due to cyclic
+
+Last 5 lines of last page:
+  Abbas SF, Abed FM. Evaluating the accuracy of iPhone LiDAR sensor for building façade conservation. Remote Sens. 2024;16:378–91. https://doi.
+  org/10.3390/rs16030378
+  34.
+  Ali R, Cha YJ. Deep Learning Based Pothole Monocular Depth Estimation and Segmentation Using 3D Scanner Derived Depth Maps. In: Struc­
+  tural Health Monitoring (SHM). 2023.
+
+============================================================
+
+=== FILE: paper.pdf (1,404,833 bytes, 12 pages) ===
+First 20 non-empty lines:
+  LAM ET AL.: ROBUST POTHOLE DETECTION THROUGH DUAL-PASS RGB AND DEPTH 1
+  Robust Pothole Detection through dual-pass
+  RGB and Depth Fusion
+  Percy Lam1
+  phl25@cam.ac.uk
+  Weiwei Chen1,2
+  weiwei.chen@ucl.ac.uk
+  Lavindra de Silva1
+  lpd25@cam.ac.uk
+  Ioannis Brilakis1
+  ib340@cam.ac.uk
+  1 Department of Engineering
+  Civil Engineering Building
+  University of Cambridge
+  7a JJ Thomson Avenue
+  Cambridge, UK
+  2 Bartlett School of Sustainable
+  Construction
+  University College London
+  1-19 Torrington Place
+
+Last 10 non-empty lines on page 1:
+  Well-maintained roads are crucial for providing reliable connectivity. Road conditions have
+  traditionally been assessed by engineering judgement, while since the 1970s automation be-
+  gan with computerised analytical methods on measurements and priority setting [29]. The
+  current practice commonly measures road defects with automatic scanning and vision pro-
+  cessing, such as SCANNER and TRACS in the UK. They produce features such as transverse
+  profile (rut depth), longitudinal profile (bumpiness), cracks and surface textures [6] for cal-
+  culating the Road Condition Index and assigning maintenance priorities. The current survey
+  techniques however cannot identify potholes as a specific defect or record their deterioration
+  © 2025. The copyright of this document resides with its authors.
+  It may be distributed unchanged freely in print or electronic forms.
+
+Last 5 lines of last page:
+  [36] Qihang Yang, Yang Zhao, and Hong Cheng. MMLF: Multi-modal Multi-class Late
+  Fusion for Object Detection with Uncertainty Estimation. arXiv preprint, 10 2024.
+  [37] Junkui Zhong, Deyi Kong, Yuliang Wei, and Bin Pan. YOLOv8 and point cloud fusion
+  for enhanced road pothole detection and quantification. Scientific Reports, 15(1), 12
+  2025. ISSN 20452322. doi: 10.1038/s41598-025-94993-0.
+
+============================================================
+
