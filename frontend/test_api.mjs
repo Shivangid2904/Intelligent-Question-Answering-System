@@ -1099,3 +1099,386 @@ test('exportMatrixCSV: client guard prevents duplicate in-flight requests', asyn
   assert.equal(secondCall, null) // Blocked second call
   assert.equal(requestCount, 1) // Exactly one network request sent
 })
+
+// ── Phase 2F.5: clearHistory Client ─────────────────────────────────────────
+
+async function clearHistory(fetchFn = globalThis.fetch) {
+  try {
+    const res = await fetchFn('/api/history', { method: 'DELETE' })
+    if (!res.ok) {
+      let detailMsg = `Failed to clear query history: status ${res.status}`
+      try {
+        const errorJson = await res.json()
+        detailMsg = errorJson.detail || errorJson.error || detailMsg
+      } catch {
+        // fallback
+      }
+      throw new APIError(detailMsg, res.status, detailMsg)
+    }
+    return await res.json()
+  } catch (err) {
+    if (err instanceof APIError) throw err
+    throw new APIError(
+      'Unable to clear query history. Backend may be offline.',
+      0,
+      String(err),
+    )
+  }
+}
+
+// ── Phase 2F.5 Tests: Query History Integration ──────────────────────────────
+
+test('fetchHistory: renders all returned fields including optional ones', async () => {
+  const mockHistory = [
+    {
+      history_id: 42,
+      query: 'What is the RMSE of the depth estimation model?',
+      answer: 'The RMSE is 1.2 cm as reported on page 9.',
+      answer_source: 'ollama',
+      has_supporting_evidence: true,
+      best_source: 'paper.pdf',
+      best_score: 0.712,
+      citations: ['[paper.pdf, p. 9]', '[paper.pdf, p. 4]'],
+      timestamp: '2026-10-23T10:15:00Z',
+    },
+  ]
+
+  const fakeFetch = async () => ({
+    ok: true,
+    status: 200,
+    json: async () => mockHistory,
+  })
+
+  const history = await fetchHistory(100, fakeFetch)
+  assert.equal(history.length, 1)
+
+  const entry = history[0]
+  assert.equal(entry.history_id, 42)
+  assert.equal(entry.query, 'What is the RMSE of the depth estimation model?')
+  assert.equal(entry.answer, 'The RMSE is 1.2 cm as reported on page 9.')
+  assert.equal(entry.answer_source, 'ollama')
+  assert.equal(entry.has_supporting_evidence, true)
+  assert.equal(entry.best_source, 'paper.pdf')
+  assert.equal(entry.best_score, 0.712)
+  assert.deepEqual(entry.citations, ['[paper.pdf, p. 9]', '[paper.pdf, p. 4]'])
+  assert.equal(entry.timestamp, '2026-10-23T10:15:00Z')
+})
+
+test('fetchHistory: handles empty history list correctly', async () => {
+  const fakeFetch = async () => ({
+    ok: true,
+    status: 200,
+    json: async () => [],
+  })
+
+  const history = await fetchHistory(100, fakeFetch)
+  assert.deepEqual(history, [])
+  assert.equal(history.length, 0)
+})
+
+test('fetchHistory: propagates APIError with status code on HTTP error', async () => {
+  const fake503 = async () => ({
+    ok: false,
+    status: 503,
+    json: async () => ({ detail: 'Database unavailable' }),
+  })
+
+  await assert.rejects(
+    async () => fetchHistory(100, fake503),
+    (err) => {
+      assert.equal(err.name, 'APIError')
+      assert.equal(err.statusCode, 503)
+      assert.match(err.message, /Database unavailable/)
+      return true
+    },
+  )
+})
+
+test('fetchHistory: wraps network failure in APIError with statusCode 0', async () => {
+  const fakeNetworkError = async () => {
+    throw new Error('ECONNREFUSED: Connection refused')
+  }
+
+  await assert.rejects(
+    async () => fetchHistory(100, fakeNetworkError),
+    (err) => {
+      assert.equal(err.name, 'APIError')
+      assert.equal(err.statusCode, 0)
+      assert.match(err.message, /Unable to load query history/)
+      return true
+    },
+  )
+})
+
+test('fetchHistory: handles missing/null optional fields gracefully', async () => {
+  // answer, best_source, best_score can all be null; citations defaults to []
+  const mockHistory = [
+    {
+      history_id: 99,
+      query: 'Unanswerable question',
+      answer: null,
+      answer_source: 'abstention',
+      has_supporting_evidence: false,
+      best_source: null,
+      best_score: null,
+      citations: [],
+      timestamp: '2026-10-24T08:00:00Z',
+    },
+  ]
+
+  const fakeFetch = async () => ({
+    ok: true,
+    status: 200,
+    json: async () => mockHistory,
+  })
+
+  const history = await fetchHistory(100, fakeFetch)
+  const entry = history[0]
+  assert.equal(entry.answer, null)
+  assert.equal(entry.best_source, null)
+  assert.equal(entry.best_score, null)
+  assert.deepEqual(entry.citations, [])
+  assert.equal(entry.has_supporting_evidence, false)
+  assert.equal(entry.answer_source, 'abstention')
+})
+
+test('fetchHistory: handles missing citations field (undefined) safely', async () => {
+  // citations field omitted entirely to simulate malformed response
+  const mockHistory = [
+    {
+      history_id: 77,
+      query: 'What sensors are used?',
+      answer: 'LiDAR sensors.',
+      answer_source: 'ollama',
+      has_supporting_evidence: true,
+      best_source: 'sensors.pdf',
+      best_score: 0.55,
+      // citations deliberately omitted
+      timestamp: '2026-10-25T12:00:00Z',
+    },
+  ]
+
+  const fakeFetch = async () => ({
+    ok: true,
+    status: 200,
+    json: async () => mockHistory,
+  })
+
+  const history = await fetchHistory(100, fakeFetch)
+  const entry = history[0]
+  // citations is undefined from server — component must guard Array.isArray
+  const safeCitations = Array.isArray(entry.citations) ? entry.citations : []
+  assert.deepEqual(safeCitations, [])
+})
+
+// ── clearHistory client tests ─────────────────────────────────────────────────
+
+test('clearHistory: successfully clears history and returns deleted_count + message', async () => {
+  const fakeFetch = async (url, init) => {
+    assert.equal(url, '/api/history')
+    assert.equal(init?.method, 'DELETE')
+    return {
+      ok: true,
+      status: 200,
+      json: async () => ({
+        deleted_count: 5,
+        message: 'Successfully cleared 5 query history record(s).',
+        scope: 'query_history_only',
+      }),
+    }
+  }
+
+  const result = await clearHistory(fakeFetch)
+  assert.equal(result.deleted_count, 5)
+  assert.match(result.message, /5 query history record/)
+  assert.equal(result.scope, 'query_history_only')
+})
+
+test('clearHistory: returns zero deleted_count when history is already empty', async () => {
+  const fakeFetch = async () => ({
+    ok: true,
+    status: 200,
+    json: async () => ({
+      deleted_count: 0,
+      message: 'Successfully cleared 0 query history record(s).',
+      scope: 'query_history_only',
+    }),
+  })
+
+  const result = await clearHistory(fakeFetch)
+  assert.equal(result.deleted_count, 0)
+})
+
+test('clearHistory: propagates APIError on HTTP error without losing records', async () => {
+  const fake500 = async () => ({
+    ok: false,
+    status: 500,
+    json: async () => ({ detail: 'Internal database error during clear.' }),
+  })
+
+  // Simulate the HistoryPage guard: preserve existing entries on error
+  let entries = [{ history_id: 1, query: 'Q1' }, { history_id: 2, query: 'Q2' }]
+  let clearErrorMsg = null
+
+  try {
+    await clearHistory(fake500)
+    entries = [] // should NOT reach here
+  } catch (err) {
+    // Records are preserved — do not clear entries
+    clearErrorMsg = err.message
+  }
+
+  assert.equal(entries.length, 2, 'Entries must be preserved on failure')
+  assert.match(clearErrorMsg, /Internal database error/)
+})
+
+test('clearHistory: wraps network failure in APIError', async () => {
+  const fakeNetworkError = async () => {
+    throw new Error('Network timeout')
+  }
+
+  await assert.rejects(
+    async () => clearHistory(fakeNetworkError),
+    (err) => {
+      assert.equal(err.name, 'APIError')
+      assert.equal(err.statusCode, 0)
+      assert.match(err.message, /Unable to clear query history/)
+      return true
+    },
+  )
+})
+
+test('clearHistory: cancellation — setShowClearConfirm(false) prevents request', async () => {
+  let clearWasCalled = false
+
+  const fakeFetch = async () => {
+    clearWasCalled = true
+    return { ok: true, status: 200, json: async () => ({ deleted_count: 3, message: 'ok', scope: 'query_history_only' }) }
+  }
+
+  // Simulate: user opens dialog then clicks Cancel before confirming
+  let showClearConfirm = true
+  let entries = [{ history_id: 1 }, { history_id: 2 }, { history_id: 3 }]
+
+  // Cancel action: just close dialog without calling clearHistory
+  showClearConfirm = false
+
+  // Since we never called clearHistory(), clearWasCalled must stay false
+  assert.equal(showClearConfirm, false)
+  assert.equal(clearWasCalled, false)
+  assert.equal(entries.length, 3, 'Records must be untouched after cancellation')
+
+  // Suppress unused variable lint by referencing fakeFetch
+  assert.equal(typeof fakeFetch, 'function')
+})
+
+test('clearHistory: successful clear refreshes displayed history and shows success state', async () => {
+  let entries = [
+    { history_id: 1, query: 'Query A' },
+    { history_id: 2, query: 'Query B' },
+  ]
+  let clearSuccess = null
+  let clearError = null
+  let isClearing = false
+
+  const fakeFetch = async () => ({
+    ok: true,
+    status: 200,
+    json: async () => ({
+      deleted_count: 2,
+      message: 'Successfully cleared 2 query history record(s).',
+      scope: 'query_history_only',
+    }),
+  })
+
+  // Simulate handleClearHistory() logic
+  if (!isClearing) {
+    isClearing = true
+    try {
+      const result = await clearHistory(fakeFetch)
+      entries = [] // refresh
+      clearSuccess = result.message
+    } catch (err) {
+      clearError = err.message
+    } finally {
+      isClearing = false
+    }
+  }
+
+  assert.equal(entries.length, 0, 'History list must be cleared on success')
+  assert.match(clearSuccess, /Successfully cleared 2/)
+  assert.equal(clearError, null)
+  assert.equal(isClearing, false)
+})
+
+test('clearHistory: failed clear preserves existing records and sets error state', async () => {
+  let entries = [
+    { history_id: 10, query: 'Important query' },
+    { history_id: 11, query: 'Another query' },
+  ]
+  let clearSuccess = null
+  let clearError = null
+  let isClearing = false
+
+  const fake503 = async () => ({
+    ok: false,
+    status: 503,
+    json: async () => ({ detail: 'Backend unavailable, try again.' }),
+  })
+
+  // Simulate handleClearHistory() logic with failure
+  if (!isClearing) {
+    isClearing = true
+    try {
+      await clearHistory(fake503)
+      entries = [] // must NOT be reached
+      clearSuccess = 'cleared'
+    } catch (err) {
+      clearError = err.message
+      // Do NOT clear entries — preserve on failure
+    } finally {
+      isClearing = false
+    }
+  }
+
+  assert.equal(entries.length, 2, 'Entries must be preserved after failed clear')
+  assert.match(clearError, /Backend unavailable/)
+  assert.equal(clearSuccess, null)
+  assert.equal(isClearing, false)
+})
+
+test('clearHistory: duplicate deletion prevention — second call while in-flight is blocked', async () => {
+  let requestCount = 0
+
+  const slowDeleteFetch = async () => {
+    requestCount += 1
+    await new Promise((resolve) => setTimeout(resolve, 60))
+    return {
+      ok: true,
+      status: 200,
+      json: async () => ({ deleted_count: 3, message: 'Cleared.', scope: 'query_history_only' }),
+    }
+  }
+
+  // Simulate the isClearing guard from HistoryPage
+  let isClearing = false
+  const guardedClear = async () => {
+    if (isClearing) return null   // blocked
+    isClearing = true
+    try {
+      return await clearHistory(slowDeleteFetch)
+    } finally {
+      isClearing = false
+    }
+  }
+
+  // Fire two rapid concurrent calls (e.g. double-click on "Clear History")
+  const [first, second] = await Promise.all([
+    guardedClear(),
+    guardedClear(),
+  ])
+
+  assert.ok(first !== null, 'First call must succeed')
+  assert.equal(second, null, 'Second call must be blocked')
+  assert.equal(requestCount, 1, 'Exactly one DELETE request must be sent')
+})

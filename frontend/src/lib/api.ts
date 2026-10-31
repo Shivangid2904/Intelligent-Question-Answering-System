@@ -357,9 +357,12 @@ export async function streamQuery(
 /**
  * Fetch recent research query history from GET /api/history.
  */
-export async function fetchHistory(limit = 50): Promise<HistoryEntry[]> {
+export async function fetchHistory(
+  limit = 50,
+  fetchFn: typeof fetch = fetch,
+): Promise<HistoryEntry[]> {
   try {
-    const res = await fetch(`${ENDPOINTS.history}?limit=${limit}`)
+    const res = await fetchFn(`${ENDPOINTS.history}?limit=${limit}`)
     if (!res.ok) {
       let detailMsg = `Failed to fetch query history: status ${res.status}`
       try {
@@ -375,6 +378,43 @@ export async function fetchHistory(limit = 50): Promise<HistoryEntry[]> {
     if (err instanceof APIError) throw err
     throw new APIError(
       'Unable to load query history. Backend may be offline.',
+      0,
+      String(err),
+    )
+  }
+}
+
+export interface ClearHistoryResponse {
+  deleted_count: number
+  message: string
+  scope: string
+}
+
+/**
+ * Clear all query history records via DELETE /api/history.
+ * Only query_history rows are deleted; documents, extractions, and corpus
+ * files are never affected (enforced by backend scope guarantee).
+ */
+export async function clearHistory(
+  fetchFn: typeof fetch = fetch,
+): Promise<ClearHistoryResponse> {
+  try {
+    const res = await fetchFn(ENDPOINTS.history, { method: 'DELETE' })
+    if (!res.ok) {
+      let detailMsg = `Failed to clear query history: status ${res.status}`
+      try {
+        const errorJson = (await res.json()) as APIErrorDetail
+        detailMsg = errorJson.detail || errorJson.error || detailMsg
+      } catch {
+        // fallback
+      }
+      throw new APIError(detailMsg, res.status, detailMsg)
+    }
+    return (await res.json()) as ClearHistoryResponse
+  } catch (err) {
+    if (err instanceof APIError) throw err
+    throw new APIError(
+      'Unable to clear query history. Backend may be offline.',
       0,
       String(err),
     )
