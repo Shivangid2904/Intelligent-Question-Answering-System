@@ -337,6 +337,81 @@ async function uploadDocument(file, fetchFn, endpoint = '/api/documents/upload')
   }
 }
 
+// ── Literature Matrix Methods (Phase 2F.4) ──────────────────────────────────
+
+const CANONICAL_MATRIX_COLUMNS = [
+  'Document',
+  'Title',
+  'Authors',
+  'Year',
+  'Research Objective',
+  'Methodology',
+  'Dataset',
+  'Hardware/Sensors',
+  'Key Metrics',
+  'Limitations',
+  'Pages Cited',
+  'Extraction Timestamp',
+]
+
+async function fetchMatrix(fetchFn = globalThis.fetch, endpoint = '/api/matrix') {
+  try {
+    const res = await fetchFn(endpoint)
+    if (!res.ok) {
+      let detailMsg = `Failed to fetch literature matrix: status ${res.status}`
+      try {
+        const errorJson = await res.json()
+        detailMsg = errorJson.detail || errorJson.error || detailMsg
+      } catch {
+        // fallback
+      }
+      throw new APIError(detailMsg, res.status, detailMsg)
+    }
+    return await res.json()
+  } catch (err) {
+    if (err instanceof APIError) throw err
+    throw new APIError(
+      'Unable to load literature matrix. Backend may be offline.',
+      0,
+      String(err),
+    )
+  }
+}
+
+async function exportMatrixCSV(fetchFn = globalThis.fetch, endpoint = '/api/matrix/export') {
+  try {
+    const res = await fetchFn(endpoint)
+    if (!res.ok) {
+      let detailMsg = `Failed to export literature matrix CSV: status ${res.status}`
+      try {
+        const errorJson = await res.json()
+        detailMsg = errorJson.detail || errorJson.error || detailMsg
+      } catch {
+        // fallback
+      }
+      throw new APIError(detailMsg, res.status, detailMsg)
+    }
+
+    const disposition = res.headers?.get ? res.headers.get('content-disposition') || '' : ''
+    let filename = 'literature_matrix.csv'
+    const filenameMatch = disposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)
+    if (filenameMatch && filenameMatch[1]) {
+      filename = filenameMatch[1].replace(/['"]/g, '').trim()
+    }
+
+    const text = await res.text()
+    const blob = new Blob([text], { type: 'text/csv;charset=utf-8;' })
+    return { blob, filename, content: text }
+  } catch (err) {
+    if (err instanceof APIError) throw err
+    throw new APIError(
+      'Unable to export literature matrix CSV. Backend may be offline.',
+      0,
+      String(err),
+    )
+  }
+}
+
 // ── Mock Stream Helper ──────────────────────────────────────────────────────
 
 function createMockReadableStream(chunks) {
@@ -764,4 +839,263 @@ test('uploadDocument: sends multipart FormData with field "file"', async () => {
   assert.equal(capturedInit.body.get('file').name, 'paper.pdf')
   assert.equal(res.document_id, 'doc-pdf-1')
   assert.equal(res.is_searchable, true)
+})
+
+// ── Phase 2F.4 Tests: Literature Matrix Client & CSV Export ─────────────────
+
+test('fetchMatrix: successfully loads 12 canonical columns and records', async () => {
+  const mockMatrix = {
+    columns: [
+      'Document',
+      'Title',
+      'Authors',
+      'Year',
+      'Research Objective',
+      'Methodology',
+      'Dataset',
+      'Hardware/Sensors',
+      'Key Metrics',
+      'Limitations',
+      'Pages Cited',
+      'Extraction Timestamp',
+    ],
+    rows: [
+      {
+        Document: '2505.21049.pdf',
+        Title: 'Robust Video-Based Pothole Detection',
+        Authors: 'Dehao Wang et al.',
+        Year: 2025,
+        'Research Objective': 'Video-based pothole depth and area estimation',
+        Methodology: 'YOLOv8 + Depth Map + Kalman Smoothing',
+        Dataset: 'Roboflow Pothole Dataset',
+        'Hardware/Sensors': 'RGB Monocular Camera',
+        'Key Metrics': 'mAP@0.5: 89.4%; RMSE: 1.2 cm',
+        Limitations: 'Sensitive to lens flare in rain',
+        'Pages Cited': '1, 4, 9',
+        'Extraction Timestamp': '2026-10-22T17:00:00Z',
+      },
+    ],
+    total_rows: 1,
+  }
+
+  const fakeFetch = async (url) => {
+    assert.equal(url, '/api/matrix')
+    return {
+      ok: true,
+      status: 200,
+      json: async () => mockMatrix,
+    }
+  }
+
+  const matrix = await fetchMatrix(fakeFetch)
+  assert.equal(matrix.total_rows, 1)
+  assert.equal(matrix.rows.length, 1)
+  assert.equal(matrix.columns.length, 12)
+  assert.equal(matrix.rows[0].Document, '2505.21049.pdf')
+  assert.equal(matrix.rows[0].Year, 2025)
+  assert.equal(matrix.rows[0]['Key Metrics'], 'mAP@0.5: 89.4%; RMSE: 1.2 cm')
+})
+
+test('fetchMatrix: verifies canonical column order and handles missing/empty values', async () => {
+  const mockMatrix = {
+    columns: CANONICAL_MATRIX_COLUMNS,
+    rows: [
+      {
+        Document: 'sparse_paper.pdf',
+        Title: 'Minimal Study',
+        Authors: null,
+        Year: undefined,
+        'Research Objective': 'Evaluate depth',
+        // other fields deliberately omitted to simulate partial extractions
+      },
+    ],
+    total_rows: 1,
+  }
+
+  const fakeFetch = async () => ({
+    ok: true,
+    status: 200,
+    json: async () => mockMatrix,
+  })
+
+  const matrix = await fetchMatrix(fakeFetch)
+
+  // Verify exact deterministic column order
+  assert.deepEqual(matrix.columns, [
+    'Document',
+    'Title',
+    'Authors',
+    'Year',
+    'Research Objective',
+    'Methodology',
+    'Dataset',
+    'Hardware/Sensors',
+    'Key Metrics',
+    'Limitations',
+    'Pages Cited',
+    'Extraction Timestamp',
+  ])
+
+  // Verify missing/null/undefined values are safely handled without throwing
+  const row = matrix.rows[0]
+  assert.equal(row.Document, 'sparse_paper.pdf')
+  assert.equal(row.Authors, null)
+  assert.equal(row.Year, undefined)
+  assert.equal(row['Hardware/Sensors'], undefined)
+  assert.equal(row['Limitations'], undefined)
+})
+
+test('fetchMatrix: handles empty matrix state (total_rows: 0, rows: [])', async () => {
+  const fakeFetch = async () => ({
+    ok: true,
+    status: 200,
+    json: async () => ({
+      columns: CANONICAL_MATRIX_COLUMNS,
+      rows: [],
+      total_rows: 0,
+    }),
+  })
+
+  const matrix = await fetchMatrix(fakeFetch)
+  assert.equal(matrix.total_rows, 0)
+  assert.deepEqual(matrix.rows, [])
+  assert.equal(matrix.columns.length, 12)
+})
+
+test('fetchMatrix: handles API failure and propagates APIError for retry logic', async () => {
+  // 1. HTTP 500 error
+  const fake500Fetch = async () => ({
+    ok: false,
+    status: 500,
+    json: async () => ({ detail: 'Database table missing or corrupt.' }),
+  })
+
+  await assert.rejects(
+    async () => fetchMatrix(fake500Fetch),
+    (err) => {
+      assert.equal(err.name, 'APIError')
+      assert.equal(err.statusCode, 500)
+      assert.match(err.message, /Database table missing or corrupt/)
+      return true
+    },
+  )
+
+  // 2. Network connection error
+  const fakeNetworkError = async () => {
+    throw new Error('Connection refused')
+  }
+
+  await assert.rejects(
+    async () => fetchMatrix(fakeNetworkError),
+    (err) => {
+      assert.equal(err.name, 'APIError')
+      assert.equal(err.statusCode, 0)
+      assert.match(err.message, /Unable to load literature matrix/)
+      return true
+    },
+  )
+})
+
+test('exportMatrixCSV: successfully fetches CSV blob and extracts filename from Content-Disposition', async () => {
+  const csvContent =
+    'Document,Title,Authors,Year,Research Objective,Methodology,Dataset,Hardware/Sensors,Key Metrics,Limitations,Pages Cited,Extraction Timestamp\r\n' +
+    'paper1.pdf,Test Paper,"Smith, J.",2025,Objective,Method,Data,ToF,Metric,Limitation,1,2026-10-22T17:00:00Z\r\n'
+
+  const headersMap = new Map([
+    [
+      'content-disposition',
+      'attachment; filename="literature_matrix_20261022_173128.csv"',
+    ],
+    ['content-type', 'text/csv; charset=utf-8'],
+  ])
+
+  const fakeFetch = async (url) => {
+    assert.equal(url, '/api/matrix/export')
+    return {
+      ok: true,
+      status: 200,
+      headers: {
+        get: (name) => headersMap.get(name.toLowerCase()) || null,
+      },
+      text: async () => csvContent,
+    }
+  }
+
+  const result = await exportMatrixCSV(fakeFetch)
+  assert.equal(result.filename, 'literature_matrix_20261022_173128.csv')
+  assert.equal(result.content, csvContent)
+  assert.ok(result.blob instanceof Blob)
+  assert.equal(result.blob.type, 'text/csv;charset=utf-8;')
+  assert.equal(await result.blob.text(), csvContent)
+})
+
+test('exportMatrixCSV: handles default filename fallback when Content-Disposition is missing', async () => {
+  const csvContent = 'Document,Title\r\n'
+  const fakeFetch = async () => ({
+    ok: true,
+    status: 200,
+    headers: {
+      get: () => null,
+    },
+    text: async () => csvContent,
+  })
+
+  const result = await exportMatrixCSV(fakeFetch)
+  assert.equal(result.filename, 'literature_matrix.csv')
+  assert.equal(result.content, csvContent)
+})
+
+test('exportMatrixCSV: handles API failure with proper status and error detail', async () => {
+  const fakeFetch = async () => ({
+    ok: false,
+    status: 503,
+    json: async () => ({ detail: 'Matrix service temporarily unavailable.' }),
+  })
+
+  await assert.rejects(
+    async () => exportMatrixCSV(fakeFetch),
+    (err) => {
+      assert.equal(err.name, 'APIError')
+      assert.equal(err.statusCode, 503)
+      assert.match(err.message, /Matrix service temporarily unavailable/)
+      return true
+    },
+  )
+})
+
+test('exportMatrixCSV: client guard prevents duplicate in-flight requests', async () => {
+  let requestCount = 0
+  const slowFetch = async () => {
+    requestCount += 1
+    // simulate network delay
+    await new Promise((resolve) => setTimeout(resolve, 50))
+    return {
+      ok: true,
+      status: 200,
+      headers: { get: () => 'attachment; filename="matrix.csv"' },
+      text: async () => 'csv-data\r\n',
+    }
+  }
+
+  // Simulate client-side duplicate prevention wrapper
+  let isExporting = false
+  const guardedExport = async () => {
+    if (isExporting) return null
+    isExporting = true
+    try {
+      return await exportMatrixCSV(slowFetch)
+    } finally {
+      isExporting = false
+    }
+  }
+
+  // Fire two rapid concurrent calls (e.g. double-click)
+  const [firstCall, secondCall] = await Promise.all([
+    guardedExport(),
+    guardedExport(),
+  ])
+
+  assert.ok(firstCall !== null)
+  assert.equal(secondCall, null) // Blocked second call
+  assert.equal(requestCount, 1) // Exactly one network request sent
 })

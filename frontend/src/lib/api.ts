@@ -380,3 +380,120 @@ export async function fetchHistory(limit = 50): Promise<HistoryEntry[]> {
     )
   }
 }
+
+// ── Literature Matrix Schemas & Methods ──────────────────────────────────────
+
+/**
+ * 12 canonical matrix columns in backend deterministic order.
+ */
+export const CANONICAL_MATRIX_COLUMNS: readonly string[] = [
+  'Document',
+  'Title',
+  'Authors',
+  'Year',
+  'Research Objective',
+  'Methodology',
+  'Dataset',
+  'Hardware/Sensors',
+  'Key Metrics',
+  'Limitations',
+  'Pages Cited',
+  'Extraction Timestamp',
+] as const
+
+export interface MatrixRow {
+  Document?: string
+  Title?: string
+  Authors?: string
+  Year?: number | string
+  'Research Objective'?: string
+  Methodology?: string
+  Dataset?: string
+  'Hardware/Sensors'?: string
+  'Key Metrics'?: string
+  Limitations?: string
+  'Pages Cited'?: string
+  'Extraction Timestamp'?: string
+  [key: string]: unknown
+}
+
+export interface MatrixResponse {
+  columns: string[]
+  rows: MatrixRow[]
+  total_rows: number
+}
+
+export interface MatrixExportResult {
+  blob: Blob
+  filename: string
+  content: string
+}
+
+/**
+ * Fetch literature review matrix from GET /api/matrix.
+ */
+export async function fetchMatrix(
+  fetchFn: typeof fetch = fetch,
+): Promise<MatrixResponse> {
+  try {
+    const res = await fetchFn(ENDPOINTS.matrix)
+    if (!res.ok) {
+      let detailMsg = `Failed to fetch literature matrix: status ${res.status}`
+      try {
+        const errorJson = (await res.json()) as APIErrorDetail
+        detailMsg = errorJson.detail || errorJson.error || detailMsg
+      } catch {
+        // fallback
+      }
+      throw new APIError(detailMsg, res.status, detailMsg)
+    }
+    return (await res.json()) as MatrixResponse
+  } catch (err) {
+    if (err instanceof APIError) throw err
+    throw new APIError(
+      'Unable to load literature matrix. Backend may be offline.',
+      0,
+      String(err),
+    )
+  }
+}
+
+/**
+ * Export literature review matrix as RFC 4180 CSV via GET /api/matrix/export.
+ */
+export async function exportMatrixCSV(
+  fetchFn: typeof fetch = fetch,
+): Promise<MatrixExportResult> {
+  try {
+    const res = await fetchFn(ENDPOINTS.matrixExport)
+    if (!res.ok) {
+      let detailMsg = `Failed to export literature matrix CSV: status ${res.status}`
+      try {
+        const errorJson = (await res.json()) as APIErrorDetail
+        detailMsg = errorJson.detail || errorJson.error || detailMsg
+      } catch {
+        // fallback
+      }
+      throw new APIError(detailMsg, res.status, detailMsg)
+    }
+
+    // Extract filename from Content-Disposition header if provided by backend
+    const disposition = res.headers?.get ? res.headers.get('content-disposition') || '' : ''
+    let filename = 'literature_matrix.csv'
+    const filenameMatch = disposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)
+    if (filenameMatch && filenameMatch[1]) {
+      filename = filenameMatch[1].replace(/['"]/g, '').trim()
+    }
+
+    const text = await res.text()
+    const blob = new Blob([text], { type: 'text/csv;charset=utf-8;' })
+    return { blob, filename, content: text }
+  } catch (err) {
+    if (err instanceof APIError) throw err
+    throw new APIError(
+      'Unable to export literature matrix CSV. Backend may be offline.',
+      0,
+      String(err),
+    )
+  }
+}
